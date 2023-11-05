@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://c4i5iwblsdar8"]
+
+[ext_resource type="Texture2D" uid="uid://npuqq5c2rcmf" path="res://Assets/Sprites/MainMenu-Background-Animation.png" id="1_ud07m"]
+[ext_resource type="Script" path="res://Scripts/MainMenuAnimatedBackground.cs" id="2_cgnxm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed5fg"]
+atlas = ExtResource("1_ud07m")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6dgs"]
+atlas = ExtResource("1_ud07m")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqoxm"]
+atlas = ExtResource("1_ud07m")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxu87"]
+atlas = ExtResource("1_ud07m")
+region = Rect2(3072, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50kqj"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_ed5fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6dgs")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_gqoxm")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_fxu87")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Background" type="AnimatedSprite2D"]
+modulate = Color(0.407843, 0.407843, 0.407843, 1)
+sprite_frames = SubResource("SpriteFrames_50kqj")
+frame_progress = 0.45253
+script = ExtResource("2_cgnxm")

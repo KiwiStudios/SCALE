@@ -1,0 +1,36 @@
+<Project Sdk="Godot.NET.Sdk/4.1.1">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <Nullable>enable</Nullable>
+        <GodotProjectDir>$(MSBuildProjectDirectory)</GodotProjectDir>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="bin\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="bin\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="protobuf-net" Version="3.2.26" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Models\" />
+    </ItemGroup>
+
+</Project>

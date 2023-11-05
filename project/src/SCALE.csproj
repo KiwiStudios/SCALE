@@ -1,0 +1,56 @@
+<Project Sdk="Godot.NET.Sdk/4.1.1">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+        <Nullable>enable</Nullable>
+        <GodotProjectDir>$(MSBuildProjectDirectory)</GodotProjectDir>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\source-generators\EventBusSourceGenerator\EventBusSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\source-generators\InputMapSourceGenerator\InputMapSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\source-generators\AudioPathsSourceGenerator\AudioPathsSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\source-generators\ScenesPathSourceGenerator\ScenesPathSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="ConsoleTest\**" />
+      <Compile Remove="Scripts\ShootingPoint.cs" />
+      <Compile Remove="Serialization\**" />
+      <Compile Remove="Shared\**" />
+      <Compile Remove="Scenes\**" />
+      <Compile Remove="SaveGameReader\**" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="obj\**" />
+        <Compile Remove="bin\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="ConsoleTest\**" />
+      <EmbeddedResource Remove="Serialization\**" />
+      <EmbeddedResource Remove="Shared\**" />
+      <EmbeddedResource Remove="Scenes\**" />
+      <EmbeddedResource Remove="SaveGameReader\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Bogus" Version="34.0.2" />
+      <PackageReference Include="protobuf-net" Version="3.2.26" />
+      <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.3.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="levels\**">
+        <CopyToOutputDirectory >Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+</Project>

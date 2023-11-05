@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cc0bau2i1f4ju"]
+
+[ext_resource type="Texture2D" uid="uid://bed2spi8qcyqa" path="res://Assets/Aseprite/Buttons/pressed.png" id="1_lhm2n"]
+
+[resource]
+content_margin_top = 5.0
+texture = ExtResource("1_lhm2n")

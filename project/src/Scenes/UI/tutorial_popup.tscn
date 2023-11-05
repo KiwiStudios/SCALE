@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0qu1p8ba8w6q"]
+
+[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="1_epuf1"]
+[ext_resource type="Texture2D" uid="uid://bwf2oo2s42n3e" path="res://Assets/Sprites/Win-Popup-Background.png" id="2_t6ow6"]
+[ext_resource type="Script" path="res://Scripts/Popups/CloseButton.cs" id="3_vl41q"]
+
+[node name="TotPopUp" type="Popup"]
+transparent_bg = true
+initial_position = 2
+size = Vector2i(1430, 500)
+visible = true
+always_on_top = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_epuf1")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(1100, 500)
+layout_mode = 2
+texture = ExtResource("2_t6ow6")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Instructions" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "The goal is to make the atom reach the end goal.
+Which in this level is in the top right.
+You can plan a route for the atom by creating lines,
+using the left mouse button.
+You can only create  a limited amount of them, 
+and not all of them are of the same length.
+Good luck 👍
+(Made a mistake? Use right click to undo it)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Close" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_epuf1")
+text = "Close"
+script = ExtResource("3_vl41q")
+_popupName = 1
