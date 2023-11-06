@@ -7,18 +7,17 @@ namespace SCALE.Scripts;
 
 public class Storage
 {
+
+    public Storage()
+    {
+        InitializeStorage();
+    }
     public List<Item> InStorage { get; set; } = new List<Item>();
 
     private const int StartingItemCount = 6;
 
     public void InitializeStorage()
     {
-        InStorage
-            .AddRange(
-                Items.GetAllItems
-                    .Shuffle()
-                    .Take(StartingItemCount)
-            );
-
+        InStorage.AddRange(Items.RandomItems(StartingItemCount));
     }
 }

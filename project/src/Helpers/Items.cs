@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using MoreLinq.Extensions;
 using SCALE.Enums;
 
 namespace SCALE.Helpers;
@@ -118,5 +120,12 @@ public static class Items
     public static List<Item> GetAllItems
     {
         get => _backingGetAllItems ?? GetAllItemsOnce();
+    }
+
+    public static IEnumerable<Item> RandomItems(int amount)
+    {
+        return GetAllItems
+            .Shuffle()
+            .Take(amount);
     }
 }

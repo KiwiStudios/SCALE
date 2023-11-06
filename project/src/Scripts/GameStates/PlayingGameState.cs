@@ -36,7 +36,6 @@ public partial class PlayingGameState : GameState
             Root.Data.IsFirstInstructionsShown = true;
         }
         _storage = new Storage();
-        _storage.InitializeStorage();
         var y = 0;
         foreach (var item in _storage.InStorage)
         {
