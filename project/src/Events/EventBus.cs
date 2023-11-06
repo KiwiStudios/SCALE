@@ -60,4 +60,9 @@ public partial class EventBus : Node
 
     #endregion
     
+    /// <summary>
+    /// Time in ticks (DateTime)
+    /// </summary>
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnTimeTickEventHandler(long timestamp);
 }
