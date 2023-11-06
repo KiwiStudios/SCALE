@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bccrvfjs5ony1"]
+[gd_scene load_steps=10 format=3 uid="uid://bccrvfjs5ony1"]
 
 [ext_resource type="PackedScene" uid="uid://c4i5iwblsdar8" path="res://Scenes/Background/menu-animated-background.tscn" id="1_bivay"]
 [ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="1_qihtu"]
@@ -9,49 +9,6 @@
 [ext_resource type="Script" path="res://Scripts/Buttons/ExitToDesktopButton.cs" id="7_h7ive"]
 [ext_resource type="AudioStream" uid="uid://c7xepebj5yowa" path="res://Sounds/main-menu-audio.wav" id="8_moug8"]
 [ext_resource type="Script" path="res://Scripts/Buttons/HelpButton.cs" id="9_pjv58"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x5urs"]
-atlas = ExtResource("6_kkxap")
-region = Rect2(0, 0, 512, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ouu7c"]
-atlas = ExtResource("6_kkxap")
-region = Rect2(512, 0, 512, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iprhy"]
-atlas = ExtResource("6_kkxap")
-region = Rect2(1024, 0, 512, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ndn7"]
-atlas = ExtResource("6_kkxap")
-region = Rect2(1536, 0, 512, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik3ka"]
-atlas = ExtResource("6_kkxap")
-region = Rect2(2048, 0, 512, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xp0y4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x5urs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouu7c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iprhy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ndn7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ik3ka")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Menu" type="Node2D"]
 
@@ -88,9 +45,25 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Logo" type="AnimatedSprite2D" parent="Overlay/BoxContainer/LogoContainer/TextureRect"]
-sprite_frames = SubResource("SpriteFrames_xp0y4")
+[node name="Logo" type="Sprite2D" parent="Overlay/BoxContainer/LogoContainer/TextureRect"]
+scale = Vector2(1.2723, 1.2723)
+texture = ExtResource("6_kkxap")
 script = ExtResource("7_ewmpg")
+
+[node name="Label" type="Label" parent="Overlay/BoxContainer/LogoContainer/TextureRect"]
+layout_mode = 0
+offset_left = -226.715
+offset_top = 29.9881
+offset_right = 242.285
+offset_bottom = 146.988
+rotation = -0.127409
+theme_override_colors/font_color = Color(0.968627, 0.682353, 0.215686, 1)
+theme_override_colors/font_shadow_color = Color(0.482353, 0.482353, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "
+Sell Commodities to Adventurers and 
+Leverage your Entrepreneurship"
 
 [node name="BoxContainer" type="BoxContainer" parent="Overlay/BoxContainer"]
 layout_mode = 2
