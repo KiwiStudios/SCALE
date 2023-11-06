@@ -5,7 +5,7 @@ public partial class AdventurerManager : Node
     private EventBus _eventBus = null!;
     public override void _EnterTree()
     {
-        var eventBus = this.GetEventBus();
+        _eventBus = this.GetEventBus();
         base._EnterTree();
     }
 
