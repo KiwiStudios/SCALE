@@ -1,6 +1,7 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://w4x3tfweipqf"]
 
-[ext_resource type="Texture2D" uid="uid://cg7mq1ffkqjrb" path="res://Assets/Aseprite/Buttons/hover.png" id="1_pbq71"]
+[ext_resource type="Texture2D" uid="uid://bstyx7pxe5iw8" path="res://Assets/Sprites/button.png" id="1_ph7ft"]
 
 [resource]
-texture = ExtResource("1_pbq71")
+texture = ExtResource("1_ph7ft")
+modulate_color = Color(1, 1, 1, 0.74902)

@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://v7dxrhy1m0y"]
+[gd_scene load_steps=2 format=3 uid="uid://v7dxrhy1m0y"]
+
+[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="1_w5kcm"]
 
 [node name="playing" type="Node2D"]
 
@@ -15,4 +17,6 @@ offset_bottom = 345.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_w5kcm")
+theme_type_variation = &"HeaderSmall"
 text = "hello from playing game state"

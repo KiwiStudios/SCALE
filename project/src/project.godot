@@ -29,7 +29,7 @@ project/assembly_name="SCALE"
 
 [gui]
 
-theme/custom_font="res://Assets/Fonts/ChiKareGo2.ttf"
+theme/custom_font="res://Assets/Fonts/Ecriture.ttf"
 
 [input]
 

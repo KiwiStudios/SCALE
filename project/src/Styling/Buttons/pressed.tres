@@ -1,7 +1,8 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://cc0bau2i1f4ju"]
 
-[ext_resource type="Texture2D" uid="uid://bed2spi8qcyqa" path="res://Assets/Aseprite/Buttons/pressed.png" id="1_lhm2n"]
+[ext_resource type="Texture2D" uid="uid://bstyx7pxe5iw8" path="res://Assets/Sprites/button.png" id="1_x556n"]
 
 [resource]
 content_margin_top = 5.0
-texture = ExtResource("1_lhm2n")
+texture = ExtResource("1_x556n")
+modulate_color = Color(0.74902, 0.74902, 0.74902, 1)
