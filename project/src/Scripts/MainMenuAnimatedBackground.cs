@@ -1,11 +1,11 @@
 namespace SCALE.Scripts;
 
-public partial class MainMenuAnimatedBackground : AnimatedSprite2D
+public partial class MainMenuAnimatedBackground : Sprite2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Play();
+		//Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,11 +25,12 @@ public partial class MainMenuAnimatedBackground : AnimatedSprite2D
 			scale.X = viewport.X / 1024;
 		}
 
-		if (viewport.Y > 1024)
+		if (viewport.Y > 1824)
 		{
-			scale.Y = viewport.Y / 1024;
+			scale.Y = viewport.Y / 1824;
 		}
 
 		Scale = scale;
+		
 	}
 }
