@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bccrvfjs5ony1"]
+[gd_scene load_steps=11 format=3 uid="uid://bccrvfjs5ony1"]
 
 [ext_resource type="PackedScene" uid="uid://c4i5iwblsdar8" path="res://Scenes/Background/menu-animated-background.tscn" id="1_bivay"]
 [ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="1_qihtu"]
@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cmu4trw06r7ro" path="res://Assets/Sprites/Logo.png" id="6_kkxap"]
 [ext_resource type="Script" path="res://Scripts/Logo.cs" id="7_ewmpg"]
 [ext_resource type="Script" path="res://Scripts/Buttons/ExitToDesktopButton.cs" id="7_h7ive"]
-[ext_resource type="AudioStream" uid="uid://c7xepebj5yowa" path="res://Sounds/main-menu-audio.wav" id="8_moug8"]
+[ext_resource type="AudioStream" uid="uid://b5air8aeffsd4" path="res://Sounds/background-music.wav" id="9_3w0tt"]
 [ext_resource type="Script" path="res://Scripts/Buttons/HelpButton.cs" id="9_pjv58"]
+[ext_resource type="Script" path="res://Scripts/MainMenuBackgroundMusic.cs" id="10_072dj"]
 
 [node name="Menu" type="Node2D"]
 
@@ -129,6 +130,6 @@ text = " ? "
 script = ExtResource("9_pjv58")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_moug8")
-volume_db = -27.625
-autoplay = true
+stream = ExtResource("9_3w0tt")
+volume_db = -15.445
+script = ExtResource("10_072dj")
