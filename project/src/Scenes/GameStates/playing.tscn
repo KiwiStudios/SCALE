@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://v7dxrhy1m0y"]
+
+[node name="playing" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 543.0
+offset_top = 319.0
+offset_right = 773.0
+offset_bottom = 345.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "hello from playing game state"

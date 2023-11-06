@@ -25,7 +25,7 @@ window/stretch/mode="viewport"
 
 [dotnet]
 
-project/assembly_name="Quantum Bounce"
+project/assembly_name="SCALE"
 
 [gui]
 
