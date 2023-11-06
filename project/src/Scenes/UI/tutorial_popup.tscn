@@ -7,7 +7,7 @@
 [node name="TotPopUp" type="Popup"]
 transparent_bg = true
 initial_position = 2
-size = Vector2i(1430, 500)
+size = Vector2i(1430, 607)
 visible = true
 always_on_top = true
 
