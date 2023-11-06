@@ -28,7 +28,7 @@ public partial class PlayingGameState : GameState
     public override void _Ready()
     {
         base._Ready();
-        _eventBus.EmitOnGoToScene(Scenes.GAMESTATES_PLAYING_SCENE);
+        _eventBus.EmitOnGoToScene(Scenes.UI_DAYSTART_SCENE);
 
         if (Root.Data.IsFirstInstructionsShown is false)
         {
