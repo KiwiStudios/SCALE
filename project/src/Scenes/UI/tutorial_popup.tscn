@@ -59,4 +59,3 @@ layout_mode = 2
 theme = ExtResource("1_epuf1")
 text = "Close"
 script = ExtResource("3_vl41q")
-_popupName = 1

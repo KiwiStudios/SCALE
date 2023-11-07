@@ -43,7 +43,7 @@ public partial class PopupManager : Node
 
 	private void OnPopupClose(string popupName)
 	{
-		Enum.Parse<EPopupNames>(popupName);
+		//Enum.Parse<EPopupNames>(popupName);
 		if (currentPopup is null) return;
 		var popup = Root.Tree.GetNodeOrNull<Popup>($"/root/{popupName}");
 		popup.QueueFree();

@@ -11,7 +11,6 @@ public partial class PlayingGameState : GameState
 {
     public Node? scene;
     private EventBus _eventBus = null!;
-    private Storage _storage = null!;
 
     public override void _EnterTree()
     {
@@ -34,16 +33,6 @@ public partial class PlayingGameState : GameState
         {
             _eventBus.EmitOnPopupOpen(EPopupNames.InitialInstructions.ToString());
             Root.Data.IsFirstInstructionsShown = true;
-        }
-        _storage = new Storage();
-        var y = 0;
-        foreach (var item in _storage.InStorage)
-        {
-            var label = new Label();
-            label.Text = item.Name.ToString();
-            label.Position = new Vector2(0, y);
-            AddChild(label);
-            y += 50;
         }
     }
     

@@ -22,6 +22,8 @@ public partial class Root : Node2D
 	public static PersistedDataManager PersistedDataManager = null!;
 	public static WindowManager WindowManager = null!;
 	public static TimeManager TimeManager = null!;
+    public static AdventurerManager AdventurerManager = null!;
+    public static StoreManager StoreManager = null!;
 	
 	// Guarantee that it's only run once in the lifetime of the program
 	// As calling this duplicate times will throw exceptions
@@ -43,7 +45,9 @@ public partial class Root : Node2D
 		InitializePopupManager();
 		InitializePersistedDataManager();
         InitializeTimeManager();
-
+        InitializeAdventurerManager();
+        InitializeStoreManager();
+        
 		InitializeGameData();
 
 		ParseCmdArgs();
@@ -56,6 +60,26 @@ public partial class Root : Node2D
             TimeManager = new TimeManager();
             TimeManager.Name = nameof(TimeManager);
             AddChild(TimeManager, true);
+        }
+    }
+    
+    private void InitializeAdventurerManager()
+    {
+        if (AdventurerManager is null)
+        {
+            AdventurerManager = new AdventurerManager();
+            AdventurerManager.Name = nameof(AdventurerManager);
+            AddChild(AdventurerManager, true);
+        }
+    }
+    
+    private void InitializeStoreManager()
+    {
+        if (StoreManager is null)
+        {
+            StoreManager = new StoreManager();
+            StoreManager.Name = nameof(StoreManager);
+            AddChild(StoreManager, true);
         }
     }
 

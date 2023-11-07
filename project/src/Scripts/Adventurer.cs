@@ -24,7 +24,7 @@ public class Adventurer
     {
         var startingItems = Items.RandomItems(3);
         Inventory.AddRange(startingItems);
-        var randomLocale = _locales[GD.RandRange(0, _locales.Count)];
+        var randomLocale = _locales[GD.RandRange(0, _locales.Count - 1)];
         Name = new Faker(randomLocale).Name.FirstName();
     }
 }
