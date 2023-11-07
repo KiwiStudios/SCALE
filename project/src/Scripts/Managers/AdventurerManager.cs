@@ -5,8 +5,9 @@ namespace SCALE.Scripts.Managers;
 public partial class AdventurerManager : Node
 {
     private EventBus _eventBus = null!;
-    private static int adventureCount = 50;
-
+    private const int AdventureCount = 50;
+    private StoreManager _storeManager = null!;
+    
     private List<Adventurer> _adventurers = AdventurerList();
     public override void _EnterTree()
     {
@@ -18,13 +19,13 @@ public partial class AdventurerManager : Node
     {
         base._Ready();
         _eventBus.OnTimeTick += AdventureBuying;
-        
+        _storeManager = Root.Tree.GetNode<StoreManager>($"/root/Root/StoreManager");
     }
 
     private static List<Adventurer> AdventurerList()
     {
         var t = new List<Adventurer>();
-        for (int i = 0; i < adventureCount; i++)
+        for (int i = 0; i < AdventureCount; i++)
         {
             t.Add(new Adventurer());
         }
@@ -51,6 +52,10 @@ public partial class AdventurerManager : Node
 
     private void BuyRandomItem(Adventurer adventurer)
     {
-        
+        var storeItems = _storeManager.Store.items;
+        if (storeItems.Count <= 0) return;
+        var randItemIndex =  GD.RandRange(0, storeItems.Count - 1);
+        var randItem = storeItems[randItemIndex];
+        _storeManager.Store.BuyItem(_eventBus, randItem);
     }
 }

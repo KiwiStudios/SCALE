@@ -59,6 +59,13 @@ public partial class EventBus : Node
     public delegate void OnGoToGameStateFinishedEventHandler(string gameState, params GodotObject[] args);
 
     #endregion
+
+    #region Store
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnGoldCountChangedEventHandler(int goldCount);
+
+    #endregion
     
     /// <summary>
     /// Time in ticks (DateTime)

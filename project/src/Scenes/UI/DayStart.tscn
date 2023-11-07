@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ceiql28r8acbj"]
+[gd_scene load_steps=5 format=3 uid="uid://ceiql28r8acbj"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_i4qr2"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_wwyhq"]
+[ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="3_gcri0"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartItemlist.cs" id="3_yxing"]
 
 [node name="DayStart" type="Node2D"]
@@ -28,6 +29,14 @@ theme_override_constants/margin_bottom = 20
 [node name="BoxContainer" type="BoxContainer" parent="BoxContainer2/MarginContainer"]
 layout_mode = 2
 vertical = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer2/MarginContainer/BoxContainer"]
+layout_direction = 3
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainer2/MarginContainer/BoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_gcri0")
 
 [node name="Label" type="Label" parent="BoxContainer2/MarginContainer/BoxContainer"]
 layout_mode = 2

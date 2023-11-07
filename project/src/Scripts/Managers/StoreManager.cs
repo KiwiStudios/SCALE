@@ -4,8 +4,8 @@ public partial class StoreManager : Node
 {
     
     private EventBus _eventBus = null!;
-    private Storage _storage = null!;
-    private Store _store = null!;
+    public Storage Storage = null!;
+    public Store Store = null!;
     
     public override void _EnterTree()
     {
@@ -16,11 +16,11 @@ public partial class StoreManager : Node
     public override void _Ready()
     {
         base._Ready();
-        _storage = new Storage();
-        _store = new Store();
-        
+        Storage = new Storage();
+        Store = new Store();
+        Store.items = Storage.InStorage;
         var y = 0;
-        foreach (var item in _storage.InStorage)
+        foreach (var item in Storage.InStorage)
         {
             var label = new Label();
             label.Text = item.Name.ToString();

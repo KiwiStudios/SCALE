@@ -3,6 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using SCALE.Constants;
 using SCALE.Enums;
+using SCALE.Scripts.Managers;
 using EventBus = SCALE.Events.EventBus;
 
 namespace SCALE.Scripts.GameStates;
@@ -11,6 +12,7 @@ public partial class PlayingGameState : GameState
 {
     public Node? scene;
     private EventBus _eventBus = null!;
+    private StoreManager _storeManager = null!;
 
     public override void _EnterTree()
     {
@@ -28,6 +30,8 @@ public partial class PlayingGameState : GameState
     {
         base._Ready();
         _eventBus.EmitOnGoToScene(Scenes.UI_DAYSTART_SCENE);
+        _storeManager = Root.Tree.GetNode<StoreManager>($"/root/Root/StoreManager");
+        _eventBus.EmitOnGoldCountChanged(_storeManager.Store.Gold);
 
         if (Root.Data.IsFirstInstructionsShown is false)
         {
