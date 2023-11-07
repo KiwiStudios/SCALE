@@ -18,6 +18,8 @@ public partial class StoreManager : Node
         base._Ready();
         Storage = new Storage();
         Store = new Store();
+        
+        //This is just for testing should still be reworked
         Store.items = Storage.InStorage;
         var y = 0;
         foreach (var item in Storage.InStorage)
