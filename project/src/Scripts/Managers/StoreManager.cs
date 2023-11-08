@@ -24,13 +24,13 @@ public partial class StoreManager : Node
         
         base._EnterTree();
         _eventBus = this.GetEventBus();
-
-        _eventBus.OnGoToGameStateFinished += OnGoToGameStateFinished;
+        
         _eventBus.OnTimeTick += OnTimetick;
         _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
         _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
         _eventBus.OnGoToSceneFinished += OnGoToSceneFinished;
         _eventBus.OnEndDay += NewMorning;
+        InitializeStore();
     }
     private void NewMorning()
     {
@@ -61,14 +61,6 @@ public partial class StoreManager : Node
         AddItemsToDayStart(rowContainer, Storage.InStorage);
     }
 
-    private void OnGoToGameStateFinished(string gamestate, GodotObject[] args)
-    {
-        if (gamestate == EGameState.Playing.ToString())
-        {
-            InitializeStore();
-        }
-    }
-
     #region Shop
 
     private void StartShop()
@@ -93,8 +85,6 @@ public partial class StoreManager : Node
     {
         Storage = new Storage();
         Store = new Store();
-
-        SetupItemSelect();
         _eventBus.EmitOnGoldCountChanged(Store.Gold);
     }
 
