@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceiql28r8acbj"]
+[gd_scene load_steps=7 format=3 uid="uid://ceiql28r8acbj"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_i4qr2"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_wwyhq"]
 [ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="3_gcri0"]
 [ext_resource type="Texture2D" uid="uid://oacqqd57m2xx" path="res://Assets/Sprites/border.png" id="3_n61sn"]
+[ext_resource type="Script" path="res://Scripts/Buttons/ContinueButton.cs" id="5_b34e6"]
 [ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="5_obhab"]
 
 [node name="DayStart" type="Node2D"]
@@ -47,6 +48,14 @@ vertical = true
 [node name="VBoxContainer" type="HBoxContainer" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer"]
 layout_direction = 3
 layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer" groups=["continue_button"]]
+layout_mode = 2
+theme = ExtResource("5_obhab")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "Continue"
+script = ExtResource("5_b34e6")
 
 [node name="Label" type="Label" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer"]
 layout_mode = 2

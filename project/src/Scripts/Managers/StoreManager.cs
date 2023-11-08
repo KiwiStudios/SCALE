@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SCALE.Constants;
 using SCALE.Enums;
+using SCALE.Scripts.Buttons;
 
 namespace SCALE.Scripts.Managers;
 
@@ -12,6 +13,8 @@ public partial class StoreManager : Node
     public Store Store = null!;
     private Node _itemContainer = null!;
 
+    private List<Item> dayStartSelectedItems = new List<Item>();
+
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -19,6 +22,8 @@ public partial class StoreManager : Node
 
         _eventBus.OnGoToGameStateFinished += OnGoToGameStateFinished;
     }
+
+    #region OnDayStart
 
     private void OnGoToGameStateFinished(string gamestate, GodotObject[] args)
     {
@@ -39,26 +44,32 @@ public partial class StoreManager : Node
 
         _itemContainer = Root.SceneTree.GetFirstNodeInGroup("item_container") ?? throw new ArgumentNullException();
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
+        var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
 
         _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
         _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
-        
+        continueButton.Pressed += ContinueButtonOnPressed;
+
         AddItemsToDayStart(rowContainer, Storage.InStorage);
 
         _eventBus.EmitOnGoldCountChanged(Store.Gold);
     }
 
+    private void ContinueButtonOnPressed()
+    {
+        Storage.InStorage = dayStartSelectedItems;
+        _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
+    }
+
     private void OnDayStartItemUnSelected(Item item)
     {
-        
+        dayStartSelectedItems.Remove(item);
     }
 
     private void OnDayStartItemSelected(Item item)
     {
-        
+        dayStartSelectedItems.Add(item);
     }
-    
-    
 
     private void AddItemsToDayStart(VBoxContainer rowContainer,
                                     List<Item> items,
@@ -83,4 +94,6 @@ public partial class StoreManager : Node
             rowContainer.AddChild(row);
         }
     }
+
+    #endregion
 }

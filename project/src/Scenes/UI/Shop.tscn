@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d22xsmxko1bnd"]
+
+[ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_adkuf"]
+[ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_b3840"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_adkuf")
+script = ExtResource("2_b3840")
