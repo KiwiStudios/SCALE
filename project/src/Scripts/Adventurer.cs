@@ -4,7 +4,7 @@ using SCALE.Helpers;
 
 namespace SCALE.Scripts;
 
-public class Adventurer
+public partial class Adventurer : RefCounted
 {
     public string Name;
     public List<Item> Inventory = new List<Item>();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EventBus = SCALE.Events.EventBus;
@@ -12,6 +13,17 @@ public static class Extensions
 	{
 		return GodotObject.IsInstanceValid(inst);
 	}
+    
+    public static string Reverse(this string text)
+    {
+        var sb = new StringBuilder(text.Length);
+        for (int i = text.Length - 1; i >= 0; i--)
+        {
+            sb.Append(text[i]);
+        }
+
+        return sb.ToString();
+    }
 	
 	public static bool IsNotValid([NotNullWhen(false)] this GodotObject? inst)
 	{

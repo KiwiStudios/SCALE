@@ -1,5 +1,6 @@
 using SCALE.GameData;
 using SCALE.Scripts.Managers;
+using StringyEnums;
 using AudioManager = SCALE.Scripts.Managers.AudioManager;
 using Camera = SCALE.Scripts.Camera;
 using EventBus = SCALE.Events.EventBus;
@@ -33,6 +34,7 @@ public partial class Root : Node2D
 	public override void _EnterTree()
 	{
 		Tree = GetTree().Root;
+        EnumCore.Init();
 		SceneTree = GetTree();
 		InitializeEventBus();
 		InitializeWindowManager();

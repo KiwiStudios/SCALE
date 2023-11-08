@@ -69,10 +69,13 @@ public partial class EventBus : Node
     public delegate void OnGoldCountChangedEventHandler(int goldCount);
     
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnDayStartItemSelectedEventHandler(Item item);
+    public delegate void OnDayStartItemSelectedEventHandler(SCALE.Models.Item item);
     
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnDayStartItemUnSelectedEventHandler(Item item);
+    public delegate void OnDayStartItemUnSelectedEventHandler(SCALE.Models.Item item);
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnItemSoldEventHandler(SCALE.Models.Item item, SCALE.Scripts.Adventurer adventurer);
 
     #endregion
     

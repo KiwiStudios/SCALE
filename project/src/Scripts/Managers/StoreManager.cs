@@ -25,7 +25,6 @@ public partial class StoreManager : Node
         _eventBus = this.GetEventBus();
 
         _eventBus.OnGoToGameStateFinished += OnGoToGameStateFinished;
-        _eventBus.OnTimeTick += OnTimetick;
         _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
         _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
         _eventBus.OnGoToSceneFinished += OnGoToSceneFinished;
@@ -51,16 +50,8 @@ public partial class StoreManager : Node
 
     private void StartShop()
     {
-        OnTimetick(TimeManager.CurrentTime);
     }
 
-    private void OnTimetick(long timestamp)
-    {
-        var label = Root.SceneTree.GetFirstNodeInGroup("time_label") as Label;
-        if (label is null) return;
-
-        label.Text = new DateTime(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
-    }
 
     #endregion
 

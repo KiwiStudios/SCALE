@@ -56,6 +56,6 @@ public partial class AdventurerManager : Node
         if (storeItems.Count <= 0) return;
         var randItemIndex =  GD.RandRange(0, storeItems.Count - 1);
         var randItem = storeItems[randItemIndex];
-        _storeManager.Store.BuyItem(_eventBus, randItem);
+        _storeManager.Store.BuyItem(_eventBus, randItem, adventurer);
     }
 }
