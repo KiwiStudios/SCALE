@@ -8,9 +8,8 @@ public partial class TimeManager : Node
 
     /// <summary>
     /// Every Threshold amount we signify a 'tick'
-    /// Next to that, we increase the in-game clock with a varied amount every tick
     /// </summary>
-    private float Threshold = 0.5f;
+    private float Threshold = 0.05f;
 
     private EventBus _eventBus = null!;
     public static bool TimeTicking;

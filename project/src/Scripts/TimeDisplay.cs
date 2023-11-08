@@ -22,11 +22,11 @@ public partial class TimeDisplay : Label
 
     private void OnTimeTick(long timestamp)
     {
-        Text = GetDateText(timestamp);
+        Text = GetDateText(new DateTime(timestamp));
     }
 
-    private static string GetDateText(long timestamp)
+    private static string GetDateText(DateTime dateTime)
     {
-        return new DateTime(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
+        return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
     }
 }
