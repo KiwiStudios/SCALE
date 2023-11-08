@@ -15,8 +15,12 @@ public partial class StoreManager : Node
 
     private List<Item> dayStartSelectedItems = new List<Item>();
 
+    public static string GroupName = nameof(StoreManager);
+
     public override void _EnterTree()
     {
+        AddToGroup(GroupName);
+        
         base._EnterTree();
         _eventBus = this.GetEventBus();
 
@@ -69,14 +73,9 @@ public partial class StoreManager : Node
         Storage = new Storage();
         Store = new Store();
 
-        //This is just for testing should still be reworked
-        Store.items = Storage.InStorage;
-
         _itemContainer = Root.SceneTree.GetFirstNodeInGroup("item_container") ?? throw new ArgumentNullException();
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
         var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
-
-
         continueButton.Pressed += ContinueButtonOnPressed;
 
         AddItemsToDayStart(rowContainer, Storage.InStorage);
@@ -86,7 +85,7 @@ public partial class StoreManager : Node
 
     private void ContinueButtonOnPressed()
     {
-        Storage.InStorage = dayStartSelectedItems;
+        Store.items = dayStartSelectedItems;
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 
