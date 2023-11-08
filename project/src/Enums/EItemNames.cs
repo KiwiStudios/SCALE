@@ -1,9 +1,8 @@
-using System.ComponentModel.DataAnnotations;
-using NetEscapades.EnumGenerators;
+using StringyEnums;
 
 namespace SCALE.Enums;
 
-[EnumExtensions]
+[Flags]
 public enum EItemNames
 {
     Longsword,
@@ -26,72 +25,182 @@ public enum EItemNames
     Scimitar,
     Falchion,
 
-    [Display(Name = "Leather Helmet")] LeatherHelmet,
-    [Display(Name = "Leather Chestpiece")] LeatherChestpiece,
-    [Display(Name = "Leather Leggings")] LeatherLeggings,
-    [Display(Name = "Leather Boots")] LeatherBoots,
-    [Display(Name = "Chainmail Coif")] ChainmailCoif,
-    [Display(Name = "Chainmail Hauberk")] ChainmailHauberk,
-    [Display(Name = "Chainmail Leggings")] ChainmailLeggings,
-    [Display(Name = "Chainmail Boots")] ChainmailBoots,
-    [Display(Name = "Iron Helmet")] IronHelmet,
-    [Display(Name = "Iron Chestplate")] IronChestplate,
-    [Display(Name = "Iron Leggings")] IronLeggings,
-    [Display(Name = "Iron Boots")] IronBoots,
-    [Display(Name = "Steel Helmet")] SteelHelmet,
-    [Display(Name = "Steel Chestplate")] SteelChestplate,
-    [Display(Name = "Steel Leggings")] SteelLeggings,
-    [Display(Name = "Steel Boots")] SteelBoots,
-    
-    
-    [Display(Name = "Elixir of Healing")] ElixirOfHealing,
-    [Display(Name = "Potion of Invisibility")] PotionOfInvisibility,
-    [Display(Name = "Mana Crystal")] ManaCrystal,
-    [Display(Name = "Firebreath Ale")] FirebreathAle,
-    [Display(Name = "Ambrosia Nectar")] AmbrosiaNectar,
-    [Display(Name = "Dragon's Blood Wine")] DragonsBloodWine,
-    [Display(Name = "Trollbane Tonic")] TrollbaneTonic,
-    [Display(Name = "Feywild Honey")] FeywildHoney,
-    [Display(Name = "Ghost Pepper Elixir")] GhostPepperElixir,
-    [Display(Name = "Manticore Milk")] ManticoreMilk,
-    [Display(Name = "Moonlit Dewdrops")] MoonlitDewdrops,
-    [Display(Name = "Celestial Essence")] CelestialEssence,
-    [Display(Name = "Wyrmwood Brew")] WyrmwoodBrew,
-    [Display(Name = "Phoenix Feather Tea")] PhoenixFeatherTea,
-    [Display(Name = "Enchanted Truffle")] EnchantedTruffle,
-    [Display(Name = "Faerie Fruit")] FaerieFruit,
-    [Display(Name = "Basilisk Eye Brew")] BasiliskEyeBrew,
-    [Display(Name = "Stardust Loaf")] StardustLoaf,
-    [Display(Name = "Ogre's Strength Ale")] OgresStrengthAle,
-    [Display(Name = "Siren's Song Ale")] SirensSongAle,
-    [Display(Name = "Shadowfire Whiskey")] ShadowfireWhiskey,
-    [Display(Name = "Griffin's Roar Brew")] GriffinsRoarBrew,
-    [Display(Name = "Pixie Plum Wine")] PixiePlumWine,
-    [Display(Name = "Wyrmscale Draught")] WyrmscaleDraught,
-    [Display(Name = "Unicorn Tear Elixir")] UnicornTearElixir,
-    [Display(Name = "Gorgon's Gaze Mead")] GorgonsGazeMead,
-    [Display(Name = "Nymph's Nectar")] NymphsNectar,
-    [Display(Name = "Lichbane Elixir")] LichbaneElixir,
-    [Display(Name = "Goblin's Gold Stout")] GoblinsGoldStout,
-    [Display(Name = "Frostberry Nog")] FrostberryNog,
-    [Display(Name = "Angel's Kiss Mead")] AngelsKissMead,
-    [Display(Name = "Chimera Chili")] ChimeraChili,
-    [Display(Name = "Sorcerer's Brew")] SorcerersBrew,
-    [Display(Name = "Minotaur Muscle Mead")] MinotaurMuscleMead,
-    [Display(Name = "Starlight Biscuit")] StarlightBiscuit,
-    [Display(Name = "Gargoyle Gravy")] GargoyleGravy,
-    [Display(Name = "Elfroot Elixir")] ElfrootElixir,
-    [Display(Name = "Demon's Delight")] DemonsDelight,
-    [Display(Name = "Valkyrie's Vigor")] ValkyriesVigor,
-    [Display(Name = "Enchanter's Infusion")] EnchantersInfusion,
-    [Display(Name = "Sphinx's Secret")] SphinxsSecret,
-    [Display(Name = "Gnomish Grog")] GnomishGrog,
-    [Display(Name = "Moonlit Muffin")] MoonlitMuffin,
-    [Display(Name = "Viper's Venom Vial")] VipersVenomVial,
-    [Display(Name = "Witch's Brew")] WitchsBrew,
-    [Display(Name = "Paladins Pint")] PaladinsPint,
-    [Display(Name = "Goblins Grog")] GoblinsGrog,
-    [Display(Name = "Pegasus Plum Brandy")] PegasusPlumBrandy,
-    [Display(Name = "Feywild Fizz")] FeywildFizz,
-    [Display(Name = "Moonshadow Mint Tea")] MoonshadowMintTea,
+    [StringRepresentation("Leather Helmet")]
+    LeatherHelmet,
+
+    [StringRepresentation("Leather Chestpiece")]
+    LeatherChestpiece,
+
+    [StringRepresentation("Leather Leggings")]
+    LeatherLeggings,
+
+    [StringRepresentation("Leather Boots")]
+    LeatherBoots,
+
+    [StringRepresentation("Chainmail Coif")]
+    ChainmailCoif,
+
+    [StringRepresentation("Chainmail Hauberk")]
+    ChainmailHauberk,
+
+    [StringRepresentation("Chainmail Leggings")]
+    ChainmailLeggings,
+
+    [StringRepresentation("Chainmail Boots")]
+    ChainmailBoots,
+    [StringRepresentation("Iron Helmet")] IronHelmet,
+
+    [StringRepresentation("Iron Chestplate")]
+    IronChestplate,
+
+    [StringRepresentation("Iron Leggings")]
+    IronLeggings,
+    [StringRepresentation("Iron Boots")] IronBoots,
+    [StringRepresentation("Steel Helmet")] SteelHelmet,
+
+    [StringRepresentation("Steel Chestplate")]
+    SteelChestplate,
+
+    [StringRepresentation("Steel Leggings")]
+    SteelLeggings,
+    [StringRepresentation("Steel Boots")] SteelBoots,
+
+
+    [StringRepresentation("Elixir of Healing")]
+    ElixirOfHealing,
+
+    [StringRepresentation("Potion of Invisibility")]
+    PotionOfInvisibility,
+    [StringRepresentation("Mana Crystal")] ManaCrystal,
+
+    [StringRepresentation("Firebreath Ale")]
+    FirebreathAle,
+
+    [StringRepresentation("Ambrosia Nectar")]
+    AmbrosiaNectar,
+
+    [StringRepresentation("Dragon's Blood Wine")]
+    DragonsBloodWine,
+
+    [StringRepresentation("Trollbane Tonic")]
+    TrollbaneTonic,
+
+    [StringRepresentation("Feywild Honey")]
+    FeywildHoney,
+
+    [StringRepresentation("Ghost Pepper Elixir")]
+    GhostPepperElixir,
+
+    [StringRepresentation("Manticore Milk")]
+    ManticoreMilk,
+
+    [StringRepresentation("Moonlit Dewdrops")]
+    MoonlitDewdrops,
+
+    [StringRepresentation("Celestial Essence")]
+    CelestialEssence,
+
+    [StringRepresentation("Wyrmwood Brew")]
+    WyrmwoodBrew,
+
+    [StringRepresentation("Phoenix Feather Tea")]
+    PhoenixFeatherTea,
+
+    [StringRepresentation("Enchanted Truffle")]
+    EnchantedTruffle,
+    [StringRepresentation("Faerie Fruit")] FaerieFruit,
+
+    [StringRepresentation("Basilisk Eye Brew")]
+    BasiliskEyeBrew,
+
+    [StringRepresentation("Stardust Loaf")]
+    StardustLoaf,
+
+    [StringRepresentation("Ogre's Strength Ale")]
+    OgresStrengthAle,
+
+    [StringRepresentation("Siren's Song Ale")]
+    SirensSongAle,
+
+    [StringRepresentation("Shadowfire Whiskey")]
+    ShadowfireWhiskey,
+
+    [StringRepresentation("Griffin's Roar Brew")]
+    GriffinsRoarBrew,
+
+    [StringRepresentation("Pixie Plum Wine")]
+    PixiePlumWine,
+
+    [StringRepresentation("Wyrmscale Draught")]
+    WyrmscaleDraught,
+
+    [StringRepresentation("Unicorn Tear Elixir")]
+    UnicornTearElixir,
+
+    [StringRepresentation("Gorgon's Gaze Mead")]
+    GorgonsGazeMead,
+
+    [StringRepresentation("Nymph's Nectar")]
+    NymphsNectar,
+
+    [StringRepresentation("Lichbane Elixir")]
+    LichbaneElixir,
+
+    [StringRepresentation("Goblin's Gold Stout")]
+    GoblinsGoldStout,
+
+    [StringRepresentation("Frostberry Nog")]
+    FrostberryNog,
+
+    [StringRepresentation("Angel's Kiss Mead")]
+    AngelsKissMead,
+
+    [StringRepresentation("Chimera Chili")]
+    ChimeraChili,
+
+    [StringRepresentation("Sorcerer's Brew")]
+    SorcerersBrew,
+
+    [StringRepresentation("Minotaur Muscle Mead")]
+    MinotaurMuscleMead,
+
+    [StringRepresentation("Starlight Biscuit")]
+    StarlightBiscuit,
+
+    [StringRepresentation("Gargoyle Gravy")]
+    GargoyleGravy,
+
+    [StringRepresentation("Elfroot Elixir")]
+    ElfrootElixir,
+
+    [StringRepresentation("Demon's Delight")]
+    DemonsDelight,
+
+    [StringRepresentation("Valkyrie's Vigor")]
+    ValkyriesVigor,
+
+    [StringRepresentation("Enchanter's Infusion")]
+    EnchantersInfusion,
+
+    [StringRepresentation("Sphinx's Secret")]
+    SphinxsSecret,
+    [StringRepresentation("Gnomish Grog")] GnomishGrog,
+
+    [StringRepresentation("Moonlit Muffin")]
+    MoonlitMuffin,
+
+    [StringRepresentation("Viper's Venom Vial")]
+    VipersVenomVial,
+    [StringRepresentation("Witch's Brew")] WitchsBrew,
+
+    [StringRepresentation("Paladins Pint")]
+    PaladinsPint,
+    [StringRepresentation("Goblins Grog")] GoblinsGrog,
+
+    [StringRepresentation("Pegasus Plum Brandy")]
+    PegasusPlumBrandy,
+    [StringRepresentation("Feywild Fizz")] FeywildFizz,
+
+    [StringRepresentation("Moonshadow Mint Tea")]
+    MoonshadowMintTea,
 }
