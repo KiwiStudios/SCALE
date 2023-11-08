@@ -6,7 +6,8 @@ public partial class ButtonPressedMove : Button
 {
     private bool isHovered = false;
     private bool playedSound = false;
-    private EventBus _eventBus = null!;
+    public EventBus _eventBus = null!;
+    public bool PlaySound = true;
 
     public override void _EnterTree()
     {
@@ -17,6 +18,8 @@ public partial class ButtonPressedMove : Button
 
     public override void _Process(double delta)
     {
+        if (!PlaySound) return;
+        
         if (isHovered != IsHovered())
         {
             isHovered = IsHovered();
@@ -42,6 +45,8 @@ public partial class ButtonPressedMove : Button
     private void OnButtonDown()
     {
         GlobalPosition += new Vector2(0, 5);
+
+        if (!PlaySound) return;
         
         _eventBus.EmitOnRequestToPlaySound(AudioPaths.UI_SOUNDPACK_WAV_MODERN8_WAV);
     }

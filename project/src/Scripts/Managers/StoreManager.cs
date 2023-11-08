@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using SCALE.Constants;
 using SCALE.Enums;
@@ -39,16 +40,40 @@ public partial class StoreManager : Node
         _itemContainer = Root.SceneTree.GetFirstNodeInGroup("item_container") ?? throw new ArgumentNullException();
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
 
-        var itemsPerRow = 4;
-        for (var i = 0; i < Storage.InStorage.Count; i += itemsPerRow)
+        _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
+        _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
+        
+        AddItemsToDayStart(rowContainer, Storage.InStorage);
+
+        _eventBus.EmitOnGoldCountChanged(Store.Gold);
+    }
+
+    private void OnDayStartItemUnSelected(Item item)
+    {
+        
+    }
+
+    private void OnDayStartItemSelected(Item item)
+    {
+        
+    }
+    
+    
+
+    private void AddItemsToDayStart(VBoxContainer rowContainer,
+                                    List<Item> items,
+                                    int itemsPerRow = 4)
+    {
+        for (var i = 0; i < items.Count; i += itemsPerRow)
         {
             var row = Scenes.UI_ITEM_ROW_SCENE.Instantiate();
 
-            foreach (var item in Storage.InStorage
+            foreach (var item in items
                          .Skip(i)
                          .Take(itemsPerRow))
             {
                 var itemContainer = Scenes.UI_ITEM_CONTAINER_SCENE.Instantiate() as ItemContainer ?? throw new ArgumentNullException();
+                itemContainer.Item = item;
 
                 itemContainer.SetText(item.Name.ToString());
 
@@ -57,7 +82,5 @@ public partial class StoreManager : Node
 
             rowContainer.AddChild(row);
         }
-
-        _eventBus.EmitOnGoldCountChanged(Store.Gold);
     }
 }

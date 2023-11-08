@@ -6,7 +6,7 @@ namespace SCALE.Scripts.Buttons;
 
 public partial class PlayButton : ButtonPressedMove
 {
-    private EventBus _eventBus = default!;
+    private new EventBus _eventBus = default!;
 
     public override void _Ready()
     {

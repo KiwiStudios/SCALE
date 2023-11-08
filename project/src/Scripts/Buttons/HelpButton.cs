@@ -5,7 +5,7 @@ namespace SCALE.Scripts.Buttons;
 
 public partial class HelpButton : ButtonPressedMove
 {
-    private EventBus _eventBus = null!;
+    private new EventBus _eventBus = null!;
 
     public override void _EnterTree()
     {

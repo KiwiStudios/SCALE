@@ -5,7 +5,7 @@ namespace SCALE.Scripts.Buttons;
 
 public partial class SettingsButton : ButtonPressedMove
 {
-    private EventBus? _eventBus = default!;
+    private new EventBus? _eventBus = default!;
 
     public override void _Ready()
     {

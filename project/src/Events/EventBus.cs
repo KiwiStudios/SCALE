@@ -64,6 +64,12 @@ public partial class EventBus : Node
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnGoldCountChangedEventHandler(int goldCount);
+    
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnDayStartItemSelectedEventHandler(Item item);
+    
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnDayStartItemUnSelectedEventHandler(Item item);
 
     #endregion
     
