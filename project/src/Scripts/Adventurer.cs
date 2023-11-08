@@ -13,7 +13,6 @@ public partial class Adventurer : RefCounted
         "en",
         "de",
         "it",
-        "uk",
         "fr",
         "nl",
         "es",

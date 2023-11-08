@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SCALE.Constants;
 using SCALE.Enums;
+using SCALE.Helpers;
 using SCALE.Scripts.Buttons;
 
 namespace SCALE.Scripts.Managers;
@@ -24,10 +25,17 @@ public partial class StoreManager : Node
         base._EnterTree();
         _eventBus = this.GetEventBus();
 
-        _eventBus.OnGoToGameStateFinished += OnGoToGameStateFinished;
         _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
         _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
         _eventBus.OnGoToSceneFinished += OnGoToSceneFinished;
+        _eventBus.OnEndDay += NewMorning;
+        InitializeStore();
+    }
+    private void NewMorning()
+    {
+        Storage.InStorage.AddRange(Items.RandomItems(5));
+        var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
+        AddItemsToDayStart(rowContainer, Storage.InStorage);
     }
 
     private void OnGoToSceneFinished(PackedScene scene)
@@ -36,14 +44,20 @@ public partial class StoreManager : Node
         {
             StartShop();
         }
+        if (scene == Scenes.UI_DAYSTART_SCENE)
+        {
+            SetupItemSelect();
+        }
     }
 
-    private void OnGoToGameStateFinished(string gamestate, GodotObject[] args)
+    private void SetupItemSelect()
     {
-        if (gamestate == EGameState.Playing.ToString())
-        {
-            InitializeStore();
-        }
+        _itemContainer = Root.SceneTree.GetFirstNodeInGroup("item_container") ?? throw new ArgumentNullException();
+        var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
+        var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
+        continueButton.Pressed += NewDay;
+
+        AddItemsToDayStart(rowContainer, Storage.InStorage);
     }
 
     #region Shop
@@ -60,23 +74,19 @@ public partial class StoreManager : Node
 
     private void InitializeStore()
     {
-        base._Ready();
         Storage = new Storage();
         Store = new Store();
-
-        _itemContainer = Root.SceneTree.GetFirstNodeInGroup("item_container") ?? throw new ArgumentNullException();
-        var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
-        var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
-        continueButton.Pressed += ContinueButtonOnPressed;
-
-        AddItemsToDayStart(rowContainer, Storage.InStorage);
-
         _eventBus.EmitOnGoldCountChanged(Store.Gold);
     }
 
-    private void ContinueButtonOnPressed()
+    private void NewDay()
     {
+        foreach (var item in dayStartSelectedItems)
+        {
+            Storage.InStorage.Remove(item);
+        }
         Store.items = dayStartSelectedItems;
+        _eventBus.EmitOnStartTime();
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 

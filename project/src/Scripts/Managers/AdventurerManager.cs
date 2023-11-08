@@ -42,7 +42,7 @@ public partial class AdventurerManager : Node
 
     private void SimulateDay(Adventurer adventurer)
     {
-        var buyChance = 5;
+        var buyChance = 1;
         var willBuy =  GD.RandRange(0, 100) < buyChance;
         if (willBuy)
         {

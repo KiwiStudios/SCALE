@@ -78,6 +78,19 @@ public partial class EventBus : Node
     public delegate void OnItemSoldEventHandler(SCALE.Models.Item item, SCALE.Scripts.Adventurer adventurer);
 
     #endregion
+
+    #region TimeManagment
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnStopTimeEventHandler();
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnStartTimeEventHandler();
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnEndDayEventHandler();
+
+    #endregion
     
     /// <summary>
     /// Time in ticks (DateTime)
