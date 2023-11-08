@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d22xsmxko1bnd"]
+[gd_scene load_steps=4 format=3 uid="uid://tpmaqv2shllt"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_adkuf"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_b3840"]

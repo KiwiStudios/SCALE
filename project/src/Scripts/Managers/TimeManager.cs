@@ -1,4 +1,6 @@
-﻿namespace SCALE.Scripts.Managers;
+﻿using SCALE.Constants;
+
+namespace SCALE.Scripts.Managers;
 
 public partial class TimeManager : Node
 {
@@ -8,11 +10,13 @@ public partial class TimeManager : Node
     /// Every Threshold amount we signify a 'tick'
     /// Next to that, we increase the in-game clock with a varied amount every tick
     /// </summary>
-    private float Threshold = 5;
+    private float Threshold = 0.5f;
 
     private EventBus _eventBus = null!;
     public static bool TimeTicking;
-    public static long CurrentTime = DateTime.UtcNow.Ticks;
+    public static DateTime StartOfDayTime = DateTime.Today.AddHours(6);
+    public static DateTime CurrentTime = StartOfDayTime;
+    public static DateTime NightTime = DateTime.Today.AddHours(18);
 
     public override void _EnterTree()
     {
@@ -36,13 +40,22 @@ public partial class TimeManager : Node
         if(!TimeTicking) return;
         
         deltaSum += delta;
-        if (deltaSum > Threshold)
-        {
-            deltaSum = 0;
+        
+        if (!(deltaSum > Threshold)) return;
+        deltaSum = 0;
+        CurrentTime = CurrentTime.AddMinutes(5);
+        _eventBus.EmitOnTimeTick(CurrentTime.Ticks);
 
-            var time = new DateTime(CurrentTime);
-            CurrentTime = time.AddMinutes(GD.RandRange(2, 10)).Ticks;
-            _eventBus.EmitOnTimeTick(CurrentTime);
-        }
+        if (CurrentTime.Hour < NightTime.Hour) return;
+        EndDay();
+    }
+
+    public void EndDay()
+    {
+        TimeTicking = false;
+        CurrentTime = StartOfDayTime;
+        _eventBus.EmitOnStopTime();
+        _eventBus.EmitOnGoToScene(Scenes.UI_DAYSTART_SCENE);
+        _eventBus.EmitOnEndDay();
     }
 }

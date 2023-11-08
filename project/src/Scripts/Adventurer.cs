@@ -13,7 +13,6 @@ public class Adventurer
         "en",
         "de",
         "it",
-        "uk",
         "fr",
         "nl",
         "es",

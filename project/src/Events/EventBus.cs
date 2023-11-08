@@ -84,6 +84,9 @@ public partial class EventBus : Node
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnStartTimeEventHandler();
 
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnEndDayEventHandler();
+
     #endregion
     
     /// <summary>
