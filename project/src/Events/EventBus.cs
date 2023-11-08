@@ -51,6 +51,9 @@ public partial class EventBus : Node
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnGoToSceneEventHandler(PackedScene scene);
+    
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnGoToSceneFinishedEventHandler(PackedScene scene);
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnGoToPreviousSceneEventHandler();

@@ -8,3 +8,13 @@
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_adkuf")
 script = ExtResource("2_b3840")
+
+[node name="Label" type="Label" parent="." groups=["time_label"]]
+offset_left = 186.0
+offset_top = 78.0
+offset_right = 1114.0
+offset_bottom = 637.0
+theme_override_font_sizes/font_size = 64
+text = "wdawdas"
+horizontal_alignment = 1
+vertical_alignment = 1

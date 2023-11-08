@@ -21,9 +21,19 @@ public partial class StoreManager : Node
         _eventBus = this.GetEventBus();
 
         _eventBus.OnGoToGameStateFinished += OnGoToGameStateFinished;
+        _eventBus.OnTimeTick += OnTimetick;
+        _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
+        _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
+        _eventBus.OnGoToSceneFinished += OnGoToSceneFinished;
     }
 
-    #region OnDayStart
+    private void OnGoToSceneFinished(PackedScene scene)
+    {
+        if (scene == Scenes.UI_SHOP_SCENE)
+        {
+            StartShop();
+        }
+    }
 
     private void OnGoToGameStateFinished(string gamestate, GodotObject[] args)
     {
@@ -32,6 +42,24 @@ public partial class StoreManager : Node
             InitializeStore();
         }
     }
+
+    #region Shop
+
+    private void StartShop()
+    {
+        OnTimetick(TimeManager.CurrentTime);
+    }
+
+    private void OnTimetick(long timestamp)
+    {
+        var label = Root.SceneTree.GetFirstNodeInGroup("time_label") as Label ?? throw new ArgumentNullException();
+        label.Text = new DateTime(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
+    }
+
+    #endregion
+
+
+    #region OnDayStart
 
     private void InitializeStore()
     {
@@ -46,8 +74,7 @@ public partial class StoreManager : Node
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
         var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
 
-        _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
-        _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
+
         continueButton.Pressed += ContinueButtonOnPressed;
 
         AddItemsToDayStart(rowContainer, Storage.InStorage);

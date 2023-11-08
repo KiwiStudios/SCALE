@@ -8,10 +8,10 @@ public partial class TimeManager : Node
     /// Every Threshold amount we signify a 'tick'
     /// Next to that, we increase the in-game clock with a varied amount every tick
     /// </summary>
-    private float Threshold = 10;
+    private float Threshold = 5;
 
     private EventBus _eventBus = null!;
-    private long currentTime = DateTime.UtcNow.Ticks;
+    public static long CurrentTime = DateTime.UtcNow.Ticks;
 
     public override void _EnterTree()
     {
@@ -26,9 +26,9 @@ public partial class TimeManager : Node
         {
             deltaSum = 0;
 
-            var time = new DateTime(currentTime);
-            currentTime = time.AddMinutes(GD.RandRange(2, 10)).Ticks;
-            _eventBus.EmitOnTimeTick(currentTime);
+            var time = new DateTime(CurrentTime);
+            CurrentTime = time.AddMinutes(GD.RandRange(2, 10)).Ticks;
+            _eventBus.EmitOnTimeTick(CurrentTime);
         }
     }
 }

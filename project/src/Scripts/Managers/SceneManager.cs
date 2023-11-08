@@ -6,11 +6,12 @@ namespace SCALE.Scripts.Managers;
 public partial class SceneManager : Node
 {
     private static readonly Stack<PackedScene> ScenesStack = new Stack<PackedScene>();
+    private static EventBus eventBus = null!;
 
     public override void _EnterTree()
     {
         base._Ready();
-        var eventBus = this.GetEventBus();
+        eventBus = this.GetEventBus();
         eventBus!.OnGoToScene += SwitchScene;
         eventBus.OnGoToPreviousScene += GoBackToPreviousScene;
     }
@@ -22,6 +23,7 @@ public partial class SceneManager : Node
         SetNameBasedOffFilePath(newScene, instance);
         NukeOldScenes();
         GameStateManager.Instance.AddChild(instance, true);
+        eventBus.EmitOnGoToSceneFinished(newScene);
     }
 
     private static void NukeOldScenes()
