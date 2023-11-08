@@ -9,7 +9,7 @@ public partial class TimeManager : Node
     /// <summary>
     /// Every Threshold amount we signify a 'tick'
     /// </summary>
-    private float Threshold = 0.05f;
+    public static float Threshold = 0.5f;
 
     private EventBus _eventBus = null!;
     public static bool TimeTicking;

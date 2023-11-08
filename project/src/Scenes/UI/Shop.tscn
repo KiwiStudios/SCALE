@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://tpmaqv2shllt"]
+[gd_scene load_steps=7 format=3 uid="uid://d22xsmxko1bnd"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_adkuf"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_b3840"]
 [ext_resource type="Script" path="res://Scripts/EventLogLabel.cs" id="3_0tcba"]
 [ext_resource type="Texture2D" uid="uid://dvgwkpoh4aj7e" path="res://Assets/Sprites/white-line.png" id="3_36xko"]
+[ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="3_37k86"]
 [ext_resource type="Script" path="res://Scripts/TimeDisplay.cs" id="3_kd181"]
 
 [node name="Shop" type="Node2D"]
@@ -35,8 +36,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="TimeDisplay" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/TextLogContainer"]
 layout_mode = 2
+
+[node name="GoldCounter" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_37k86")
+
+[node name="TimeDisplay" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 horizontal_alignment = 2
 script = ExtResource("3_kd181")
 

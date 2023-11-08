@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SCALE.Scripts.Managers;
 using StringyEnums;
 using Environment = System.Environment;
 
@@ -34,7 +35,7 @@ public partial class EventLogLabel : Label
     }
 
     private double deltaSum = 0;
-    private double writeSpeed = 0.02f; // per second
+    private double writeSpeed = TimeManager.Threshold / 20; // per second
 
     public override void _Process(double delta)
     {
