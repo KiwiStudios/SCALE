@@ -11,17 +11,31 @@ public partial class TimeManager : Node
     private float Threshold = 5;
 
     private EventBus _eventBus = null!;
+    public static bool TimeTicking;
     public static long CurrentTime = DateTime.UtcNow.Ticks;
 
     public override void _EnterTree()
     {
+        base._EnterTree();
         _eventBus = this.GetEventBus();
+        _eventBus.OnStopTime += StopTime;
+        _eventBus.OnStartTime += StartTime;
+    }
+    private void StartTime()
+    {
+        TimeTicking = true;
+    }
+    private void StopTime()
+    {
+        TimeTicking = false;
     }
 
     public override void _Process(double delta)
     {
+        base._Process(delta);
+        if(!TimeTicking) return;
+        
         deltaSum += delta;
-
         if (deltaSum > Threshold)
         {
             deltaSum = 0;

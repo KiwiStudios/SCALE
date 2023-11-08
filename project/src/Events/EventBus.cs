@@ -75,6 +75,16 @@ public partial class EventBus : Node
     public delegate void OnDayStartItemUnSelectedEventHandler(Item item);
 
     #endregion
+
+    #region TimeManagment
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnStopTimeEventHandler();
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnStartTimeEventHandler();
+
+    #endregion
     
     /// <summary>
     /// Time in ticks (DateTime)

@@ -69,7 +69,6 @@ public partial class StoreManager : Node
 
     private void InitializeStore()
     {
-        base._Ready();
         Storage = new Storage();
         Store = new Store();
 
@@ -86,6 +85,7 @@ public partial class StoreManager : Node
     private void ContinueButtonOnPressed()
     {
         Store.items = dayStartSelectedItems;
+        _eventBus.EmitOnStartTime();
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 
