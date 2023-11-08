@@ -14,7 +14,7 @@ public class Storage
     }
     public List<Item> InStorage { get; set; } = new List<Item>();
 
-    private const int StartingItemCount = 6;
+    private const int StartingItemCount = 12;
 
     public void InitializeStorage()
     {

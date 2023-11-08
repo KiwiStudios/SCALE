@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://tphvofak6ldf"]
+
+[node name="CenterContainer" type="HBoxContainer"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1

@@ -30,8 +30,6 @@ public partial class PlayingGameState : GameState
     {
         base._Ready();
         _eventBus.EmitOnGoToScene(Scenes.UI_DAYSTART_SCENE);
-        _storeManager = Root.Tree.GetNode<StoreManager>($"/root/Root/StoreManager");
-        _eventBus.EmitOnGoldCountChanged(_storeManager.Store.Gold);
 
         if (Root.Data.IsFirstInstructionsShown is false)
         {

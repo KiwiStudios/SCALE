@@ -1,17 +1,20 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://y3dyprgd8tld"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://y3dyprgd8tld"]
 
-[ext_resource type="FontFile" uid="uid://ddraywu0pg5yg" path="res://Assets/Fonts/Ecriture.ttf" id="1_iab5f"]
+[ext_resource type="FontFile" uid="uid://cpigb3fj2lwar" path="res://Assets/Fonts/VCR_OSD_MONO_1.001.ttf" id="1_rnf0q"]
 [ext_resource type="StyleBox" uid="uid://cgfoae4rtxxay" path="res://Styling/Buttons/normal.tres" id="2_t5snh"]
 [ext_resource type="StyleBox" uid="uid://w4x3tfweipqf" path="res://Styling/Buttons/hover.tres" id="3_h06tj"]
 [ext_resource type="StyleBox" uid="uid://cc0bau2i1f4ju" path="res://Styling/Buttons/pressed.tres" id="4_fdy7v"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gtmnb"]
+
 [resource]
 Button/colors/font_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/font_sizes/font_size = 42
-Button/fonts/font = ExtResource("1_iab5f")
+Button/fonts/font = ExtResource("1_rnf0q")
 Button/styles/focus = ExtResource("4_fdy7v")
 Button/styles/hover = ExtResource("3_h06tj")
 Button/styles/normal = ExtResource("2_t5snh")
 Button/styles/pressed = ExtResource("4_fdy7v")
 HSlider/styles/grabber_area_highlight = null
 Label/font_sizes/font_size = 44
+ScrollContainer/styles/panel = SubResource("StyleBoxEmpty_gtmnb")
