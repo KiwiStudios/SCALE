@@ -52,7 +52,9 @@ public partial class StoreManager : Node
 
     private void OnTimetick(long timestamp)
     {
-        var label = Root.SceneTree.GetFirstNodeInGroup("time_label") as Label ?? throw new ArgumentNullException();
+        var label = Root.SceneTree.GetFirstNodeInGroup("time_label") as Label;
+        if (label is null) return;
+
         label.Text = new DateTime(timestamp).ToString("yyyy-MM-dd HH:mm:ss");
     }
 
