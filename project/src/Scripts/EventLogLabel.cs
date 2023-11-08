@@ -9,8 +9,9 @@ namespace SCALE.Scripts;
 public partial class EventLogLabel : Label
 {
     private EventBus _eventBus = null!;
-
     private List<string> textToWrite = new List<string>();
+    private double deltaSum = 0;
+    private double writeSpeed = TimeManager.Threshold / 20; // per second
 
     public override void _EnterTree()
     {
@@ -34,8 +35,6 @@ public partial class EventLogLabel : Label
         textToWrite.Add(text);
     }
 
-    private double deltaSum = 0;
-    private double writeSpeed = TimeManager.Threshold / 20; // per second
 
     public override void _Process(double delta)
     {
