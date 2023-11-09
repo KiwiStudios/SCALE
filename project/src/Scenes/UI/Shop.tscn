@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d22xsmxko1bnd"]
+[gd_scene load_steps=10 format=3 uid="uid://d22xsmxko1bnd"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_adkuf"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_b3840"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dvgwkpoh4aj7e" path="res://Assets/Sprites/white-line.png" id="3_36xko"]
 [ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="3_37k86"]
 [ext_resource type="Script" path="res://Scripts/TimeDisplay.cs" id="3_kd181"]
+[ext_resource type="Script" path="res://Scripts/DayDisplay.cs" id="4_kja1x"]
+[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="8_5ye26"]
+[ext_resource type="Script" path="res://Scripts/Buttons/SkipDayButton.cs" id="9_arynl"]
 
 [node name="Shop" type="Node2D"]
 
@@ -44,6 +47,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("3_37k86")
 
+[node name="DayDisplay" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Day 1"
+horizontal_alignment = 2
+script = ExtResource("4_kja1x")
+
 [node name="TimeDisplay" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -72,3 +82,25 @@ custom_minimum_size = Vector2(635, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/ShopContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SkipDay" type="Button" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_5ye26")
+text = "Skip day"
+script = ExtResource("9_arynl")

@@ -90,6 +90,12 @@ public partial class EventBus : Node
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnEndDayEventHandler();
 
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnStartNewDayEventHandler();
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnSkipRestOfDayEventHandler();
+    
     #endregion
     
     /// <summary>

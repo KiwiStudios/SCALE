@@ -1,9 +1,9 @@
-﻿namespace SCALE.Scripts.Buttons;
+namespace SCALE.Scripts.Buttons;
 
 public partial class ContinueButton : ButtonPressedMove
 {
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-    }
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+	}
 }
