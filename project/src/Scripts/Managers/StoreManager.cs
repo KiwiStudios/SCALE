@@ -40,13 +40,14 @@ public partial class StoreManager : Node
 
     private void OnGoToSceneFinished(PackedScene scene)
     {
-        if (scene == Scenes.UI_SHOP_SCENE)
-        {
-            StartShop();
-        }
         if (scene == Scenes.UI_DAYSTART_SCENE)
         {
             SetupItemSelect();
+        }
+        if (scene == Scenes.UI_SHOP_SCENE)
+        {
+            _eventBus.EmitOnGoldCountChanged(Store.Gold);
+            _eventBus.EmitOnStartNewDay();
         }
     }
 
@@ -60,15 +61,6 @@ public partial class StoreManager : Node
         AddItemsToDayStart(rowContainer, Storage.InStorage);
     }
 
-    #region Shop
-
-    private void StartShop()
-    {
-    }
-
-
-    #endregion
-
 
     #region OnDayStart
 
@@ -76,7 +68,6 @@ public partial class StoreManager : Node
     {
         Storage = new Storage();
         Store = new Store();
-        _eventBus.EmitOnGoldCountChanged(Store.Gold);
     }
 
     private void NewDay()
@@ -86,7 +77,6 @@ public partial class StoreManager : Node
             Storage.InStorage.Remove(item);
         }
         Store.items = dayStartSelectedItems;
-        _eventBus.EmitOnStartTime();
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 

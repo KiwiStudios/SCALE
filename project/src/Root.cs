@@ -34,7 +34,7 @@ public partial class Root : Node2D
 	public override void _EnterTree()
 	{
 		Tree = GetTree().Root;
-        EnumCore.Init();
+		EnumCore.Init();
 		SceneTree = GetTree();
 		InitializeEventBus();
 		InitializeWindowManager();

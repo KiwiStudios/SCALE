@@ -27,6 +27,6 @@ public partial class TimeDisplay : Label
 
     private static string GetDateText(DateTime dateTime)
     {
-        return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        return dateTime.ToString("HH:mm:ss");
     }
 }

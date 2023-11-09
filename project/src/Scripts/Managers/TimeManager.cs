@@ -16,13 +16,22 @@ public partial class TimeManager : Node
     public static DateTime StartOfDayTime = DateTime.Today.AddHours(6);
     public static DateTime CurrentTime = StartOfDayTime;
     public static DateTime NightTime = DateTime.Today.AddHours(18);
+    public int Day = 1;
+    public static string GroupName = nameof(TimeManager);
 
     public override void _EnterTree()
     {
         base._EnterTree();
+        AddToGroup(GroupName);
         _eventBus = this.GetEventBus();
         _eventBus.OnStopTime += StopTime;
         _eventBus.OnStartTime += StartTime;
+        _eventBus.OnSkipRestOfDay += OnSkipRestOfDay;
+        _eventBus.OnStartNewDay += StartTime;
+    }
+    private void OnSkipRestOfDay()
+    {
+        EndDay();
     }
     private void StartTime()
     {
@@ -51,6 +60,7 @@ public partial class TimeManager : Node
 
     public void EndDay()
     {
+        Day++;
         TimeTicking = false;
         CurrentTime = StartOfDayTime;
         _eventBus.EmitOnStopTime();
