@@ -18,7 +18,7 @@ public partial class EventLogLabel : Label
         base._EnterTree();
 
         _eventBus = this.GetEventBus();
-
+ 
         _eventBus.OnItemSold += OnItemSold;
     }
 
