@@ -15,9 +15,6 @@
     <ItemGroup>
         <ProjectReference Include="..\source-generators\InputMapSourceGenerator\InputMapSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
-<!--    <ItemGroup>-->
-<!--        <ProjectReference Include="..\source-generators\AudioPathsSourceGenerator\AudioPathsSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />-->
-<!--    </ItemGroup>-->
     <ItemGroup>
         <ProjectReference Include="..\source-generators\ScenesPathSourceGenerator\ScenesPathSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
