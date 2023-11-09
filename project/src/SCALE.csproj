@@ -8,10 +8,6 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
     </PropertyGroup>
-    
-    <ItemGroup>
-        <ProjectReference Include="..\source-generators\EventBusSourceGenerator\EventBusSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\source-generators\InputMapSourceGenerator\InputMapSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
@@ -38,8 +34,9 @@
       <EmbeddedResource Remove="SaveGameReader\**" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="AudioPathsSourceGenerator" Version="2023.11.4-17-10" />
+      <PackageReference Include="AudioPathsSourceGenerator" Version="2023.11.9-21-51" />
       <PackageReference Include="Bogus" Version="34.0.2" />
+      <PackageReference Include="EventBusSourceGenerator" Version="2023.11.9-21-53" />
       <PackageReference Include="morelinq" Version="4.0.0" />
       <PackageReference Include="protobuf-net" Version="3.2.26" />
       <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.3.0">
