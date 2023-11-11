@@ -87,9 +87,15 @@ public partial class EventBus : Node
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnStartTimeEventHandler();
 
+    /// <summary>
+    /// Emitted after the day ends, (before the setting up shop is loaded)
+    /// </summary>
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnEndDayEventHandler();
 
+    /// <summary>
+    ///  Emitted after setting up the shop and the day actually starts
+    /// </summary>
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnStartNewDayEventHandler();
 

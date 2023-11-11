@@ -17,13 +17,18 @@ public enum EItemNames
     Morningstar,
     Greatsword,
     Lance,
-    Quarterstaff,
     Javelin,
     Rapier,
     Bow,
     Shield,
     Scimitar,
     Falchion,
+    
+    SimpleStaff,
+    EnchantedStaff,
+    MagicalStaff,
+    WondrousStaff,
+    GodlyStaff,
 
     [StringRepresentation("Leather Helmet")]
     LeatherHelmet,

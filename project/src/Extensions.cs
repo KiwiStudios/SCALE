@@ -24,6 +24,14 @@ public static class Extensions
 
         return sb.ToString();
     }
+    
+    public static T GetRandomEnumValue<T>() where T : Enum
+    {
+        Array values = Enum.GetValues(typeof(T));
+        Random random = new Random();
+        T randomEnumValue = (T)values.GetValue(random.Next(values.Length))!;
+        return randomEnumValue;
+    }
 	
 	public static bool IsNotValid([NotNullWhen(false)] this GodotObject? inst)
 	{

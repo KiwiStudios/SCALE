@@ -21,7 +21,6 @@ public static class Items
         new Weapon(EItemNames.Morningstar, 55),
         new Weapon(EItemNames.Greatsword, 70),
         new Weapon(EItemNames.Lance, 60),
-        new Weapon(EItemNames.Quarterstaff, 40),
         new Weapon(EItemNames.Javelin, 45),
         new Weapon(EItemNames.Rapier, 45),
         new Weapon(EItemNames.Bow, 45),
@@ -29,6 +28,12 @@ public static class Items
         new Weapon(EItemNames.Scimitar, 50),
         new Weapon(EItemNames.Falchion, 50),
     };
+
+    public static readonly Staff SimpleStaff = new Staff(EItemNames.SimpleStaff, 20);
+    public static readonly Staff EnchantedStaff = new Staff(EItemNames.EnchantedStaff, 55);
+    public static readonly Staff MagicalStaff = new Staff(EItemNames.MagicalStaff, 120);
+    public static readonly Staff WondrousStaff = new Staff(EItemNames.WondrousStaff, 230);
+    public static readonly Staff GoldyStaff = new Staff(EItemNames.GodlyStaff, 500);
 
     public static readonly List<Armour> Armour = new List<Armour>()
     {
@@ -125,6 +130,26 @@ public static class Items
     public static IEnumerable<Item> RandomItems(int amount)
     {
         return GetAllItems
+            .Shuffle()
+            .Take(amount);
+    }
+
+    public static Weapon RandomWeapon()
+    {
+        int randomIndex = GD.RandRange(0, Weapons.Count - 1);
+        return Weapons[randomIndex];
+    }
+
+    public static IEnumerable<Miscellaneous> RandomMiscItems(int amount)
+    {
+        return MiscItems
+            .Shuffle()
+            .Take(amount);
+    }
+
+    public static IEnumerable<Armour> RandomGear(int amount)
+    {
+        return Armour
             .Shuffle()
             .Take(amount);
     }
