@@ -151,7 +151,7 @@ public partial class Adventurer : RefCounted
                     ERank.Silver => Items.EnchantedBow,
                     ERank.Gold => Items.MagicalBow,
                     ERank.Diamond => Items.WondrousBow,
-                    ERank.Legendary => Items.GoldyBow,
+                    ERank.Legendary => Items.GodlyBow,
                     _ => throw new ArgumentOutOfRangeException()
                 };
             default:
