@@ -11,46 +11,10 @@ public enum EItemNames
     Staff,
     Bow,
 
-    [StringRepresentation("Leather Helmet")]
-    LeatherHelmet,
-
-    [StringRepresentation("Leather Chestpiece")]
-    LeatherChestpiece,
-
-    [StringRepresentation("Leather Leggings")]
-    LeatherLeggings,
-
-    [StringRepresentation("Leather Boots")]
-    LeatherBoots,
-
-    [StringRepresentation("Chainmail Coif")]
-    ChainmailCoif,
-
-    [StringRepresentation("Chainmail Hauberk")]
-    ChainmailHauberk,
-
-    [StringRepresentation("Chainmail Leggings")]
-    ChainmailLeggings,
-
-    [StringRepresentation("Chainmail Boots")]
-    ChainmailBoots,
-    [StringRepresentation("Iron Helmet")] IronHelmet,
-
-    [StringRepresentation("Iron Chestplate")]
-    IronChestplate,
-
-    [StringRepresentation("Iron Leggings")]
-    IronLeggings,
-    [StringRepresentation("Iron Boots")] IronBoots,
-    [StringRepresentation("Steel Helmet")] SteelHelmet,
-
-    [StringRepresentation("Steel Chestplate")]
-    SteelChestplate,
-
-    [StringRepresentation("Steel Leggings")]
-    SteelLeggings,
-    [StringRepresentation("Steel Boots")] SteelBoots,
-
+    Helmet,
+    Chestplate,
+    Leggings,
+    Boots,
 
     [StringRepresentation("Elixir of Healing")]
     ElixirOfHealing,

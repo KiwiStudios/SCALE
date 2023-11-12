@@ -10,9 +10,10 @@ public class Equipment
     public Armour? Leggings;
     public Armour? Boots;
     public Weapon? PrimaryWeapon;
+    public Shield? Shield;
     public List<Miscellaneous> Consumables;
     
-    public Equipment(List<Miscellaneous> consumables, Armour? helmet, Armour? chestPlate, Armour? leggings, Armour? boots, Weapon? primaryWeapon)
+    public Equipment(List<Miscellaneous> consumables, Weapon primaryWeapon, Armour? helmet, Armour? chestPlate, Armour? leggings, Armour? boots, Shield? shield)
     {
         if (helmet is not null && helmet.EquipmentSlot != EArmour.Helmet)
         {
@@ -36,6 +37,20 @@ public class Equipment
         Leggings = leggings;
         Boots = boots;
         PrimaryWeapon = primaryWeapon;
+        Shield = shield;
         Consumables = consumables;
+    }
+    
+    
+    public int DetermineArmourRating()
+    {
+        var rating = 0;
+        rating += Helmet?.ArmourRating ?? 0;
+        rating += ChestPlate?.ArmourRating ?? 0;
+        rating += Leggings?.ArmourRating ?? 0;
+        rating += Boots?.ArmourRating ?? 0;
+        rating += Shield?.ArmourRating ?? 0;
+        return rating;
+
     }
 }

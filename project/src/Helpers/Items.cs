@@ -7,6 +7,8 @@ namespace SCALE.Helpers;
 
 public static class Items
 {
+
+    #region Weapons
     private const int CostOfSimpleWeapon = 20;
     private const int CostOfMagicalWeapon = 55;
     private const int CostOfEnchantedWeapon = 120;
@@ -48,26 +50,50 @@ public static class Items
     public static readonly Bow GodlyBow = new Bow(EItemNames.Bow, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
     public static Bow[] ArcherWeapons = { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
 
-    public static readonly List<Armour> Armour = new List<Armour>()
-    {
-        new Armour(EItemNames.LeatherHelmet, 20),
-        new Armour(EItemNames.LeatherChestpiece, 35),
-        new Armour(EItemNames.LeatherLeggings, 25),
-        new Armour(EItemNames.LeatherBoots, 15),
-        new Armour(EItemNames.ChainmailCoif, 30),
-        new Armour(EItemNames.ChainmailHauberk, 40),
-        new Armour(EItemNames.ChainmailLeggings, 35),
-        new Armour(EItemNames.ChainmailBoots, 20),
-        new Armour(EItemNames.IronHelmet, 40),
-        new Armour(EItemNames.IronChestplate, 60),
-        new Armour(EItemNames.IronLeggings, 50),
-        new Armour(EItemNames.IronBoots, 30),
-        new Armour(EItemNames.SteelHelmet, 50),
-        new Armour(EItemNames.SteelChestplate, 70),
-        new Armour(EItemNames.SteelLeggings, 60),
-        new Armour(EItemNames.SteelBoots, 40)
-    };
+    #endregion
 
+    #region Armour
+
+    private const int BaseLeatherCost = 20;
+    private const int BaseBronzeCost = 55;
+    private const int BaseIronCost = 120;
+    private const int BaseSteelCost = 230;
+    private const int BaseDragonScaleCost = 500;
+
+    private const double HelmetModifier = 1.0;
+    private const double ChestPlateModifier = 1.5;
+    private const double LeggingsModifier = 1.3;
+    private const double BootsModifier = 1.0;
+
+    public static readonly Armour LeatherHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseLeatherCost * HelmetModifier), EArmorMaterial.Leather);
+    public static readonly Armour LeatherChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseLeatherCost * ChestPlateModifier), EArmorMaterial.Leather);
+    public static readonly Armour LeatherLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseLeatherCost * LeggingsModifier), EArmorMaterial.Leather);
+    public static readonly Armour LeatherBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseLeatherCost * BootsModifier), EArmorMaterial.Leather);
+    
+    public static readonly Armour BronzeHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseBronzeCost * HelmetModifier), EArmorMaterial.Bronze);
+    public static readonly Armour BronzeChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseBronzeCost * ChestPlateModifier), EArmorMaterial.Bronze);
+    public static readonly Armour BronzeLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseBronzeCost * LeggingsModifier), EArmorMaterial.Bronze);
+    public static readonly Armour BronzeBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseBronzeCost * BootsModifier), EArmorMaterial.Bronze);
+    
+    public static readonly Armour IronHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseIronCost * HelmetModifier), EArmorMaterial.Iron);
+    public static readonly Armour IronChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseIronCost * ChestPlateModifier), EArmorMaterial.Iron);
+    public static readonly Armour IronLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseIronCost * LeggingsModifier), EArmorMaterial.Iron);
+    public static readonly Armour IronBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseIronCost * BootsModifier), EArmorMaterial.Iron);
+    
+    public static readonly Armour SteelHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseSteelCost * HelmetModifier), EArmorMaterial.Steel);
+    public static readonly Armour SteelChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseSteelCost * ChestPlateModifier), EArmorMaterial.Steel);
+    public static readonly Armour SteelLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseSteelCost * LeggingsModifier), EArmorMaterial.Steel);
+    public static readonly Armour SteelBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseSteelCost * BootsModifier), EArmorMaterial.Steel);
+    
+    public static readonly Armour DragonScaleHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseDragonScaleCost * HelmetModifier), EArmorMaterial.DragonScale);
+    public static readonly Armour DragonScalePlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseDragonScaleCost * ChestPlateModifier), EArmorMaterial.DragonScale);
+    public static readonly Armour DragonScaleLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseDragonScaleCost * LeggingsModifier), EArmorMaterial.DragonScale);
+    public static readonly Armour DragonScaleBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseDragonScaleCost * BootsModifier), EArmorMaterial.DragonScale);
+    
+    #endregion
+
+    #region Miscellaneous
+    
     public static readonly List<Miscellaneous> MiscItems = new List<Miscellaneous>()
     {
         new Miscellaneous(EItemNames.ElixirOfHealing, 30),
@@ -122,14 +148,14 @@ public static class Items
         new Miscellaneous(EItemNames.MoonshadowMintTea, 30),
     };
 
+    #endregion
 
+    #region Collections
     private static List<Item>? _backingGetAllItems;
 
     private static List<Item> GetAllItemsOnce () 
     {
         var l = new List<Item>(MiscItems);
-        l.AddRange(Armour);
-        
         _backingGetAllItems ??= l;
         return l;
     }
@@ -153,11 +179,6 @@ public static class Items
             .Shuffle()
             .Take(amount);
     }
-
-    public static IEnumerable<Armour> RandomGear(int amount)
-    {
-        return Armour
-            .Shuffle()
-            .Take(amount);
-    }
+    
+    #endregion
 }

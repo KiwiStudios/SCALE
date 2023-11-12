@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Bogus;
 using SCALE.Enums;
@@ -12,7 +13,7 @@ public partial class Adventurer : RefCounted
     public string Name;
     public ERank Rank;
     public int Health;
-    public int Intelligence;
+    public int Arcana;
     public int Strength;
     public int Agility;
     public int Gold;
@@ -38,7 +39,7 @@ public partial class Adventurer : RefCounted
         Rank = DetermineRank();
         GenerateInitialStats();
         Equipment = DetermineStartingEquipment();
-        ArmourRating = DetermineArmourRating();
+        ArmourRating = Equipment.DetermineArmourRating();
     }
 
     private ERank DetermineRank()
@@ -53,10 +54,10 @@ public partial class Adventurer : RefCounted
             _ => ERank.Legendary
         };
     }
-    
+
     private void GenerateInitialStats()
     {
-        Intelligence = AverageStat();
+        Arcana = AverageStat();
         Strength = AverageStat();
         Agility = AverageStat();
         Health = AverageStat();
@@ -71,7 +72,7 @@ public partial class Adventurer : RefCounted
                 Agility = HighStat();
                 break;
             case EAdventureClass.Spellcaster:
-                Intelligence = HighStat();
+                Arcana = HighStat();
                 break;
             case EAdventureClass.Tank:
                 Health = HighStat();
@@ -85,11 +86,11 @@ public partial class Adventurer : RefCounted
     {
         return Rank switch
         {
-            ERank.Bronze => GD.RandRange(1,8),
-            ERank.Silver => GD.RandRange(3,10),
-            ERank.Gold => GD.RandRange(5,12),
-            ERank.Diamond => GD.RandRange(8,15),
-            ERank.Legendary => GD.RandRange(10,20),
+            ERank.Bronze => GD.RandRange(1, 8),
+            ERank.Silver => GD.RandRange(3, 10),
+            ERank.Gold => GD.RandRange(5, 12),
+            ERank.Diamond => GD.RandRange(8, 15),
+            ERank.Legendary => GD.RandRange(10, 20),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -97,11 +98,11 @@ public partial class Adventurer : RefCounted
     {
         return Rank switch
         {
-            ERank.Bronze => GD.RandRange(8,12),
-            ERank.Silver => GD.RandRange(10,14),
-            ERank.Gold => GD.RandRange(12,16),
-            ERank.Diamond => GD.RandRange(15,20),
-            ERank.Legendary => GD.RandRange(20,25),
+            ERank.Bronze => GD.RandRange(8, 12),
+            ERank.Silver => GD.RandRange(10, 14),
+            ERank.Gold => GD.RandRange(12, 16),
+            ERank.Diamond => GD.RandRange(15, 20),
+            ERank.Legendary => GD.RandRange(20, 25),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -110,24 +111,81 @@ public partial class Adventurer : RefCounted
     {
         var startingConsumables = Items.RandomMiscItems(2);
         var weapon = DetermineStartingWeapon();
-        var gear = Items.RandomGear(3).ToList();
-        var helmet = gear.Find(piece => piece.EquipmentSlot == EArmour.Helmet);
-        var chestPlate = gear.Find(piece => piece.EquipmentSlot == EArmour.Chestplate);
-        var leggings = gear.Find(piece => piece.EquipmentSlot == EArmour.Leggings);
-        var boots = gear.Find(piece => piece.EquipmentSlot == EArmour.Boots);
-        
-        return new Equipment(startingConsumables.ToList(), helmet, chestPlate, leggings, boots, weapon);
+        var helmet = FindStartingArmourPiece(EArmour.Helmet);
+        var chestPlate = FindStartingArmourPiece(EArmour.Chestplate);
+        var leggings = FindStartingArmourPiece(EArmour.Leggings);
+        var boots = FindStartingArmourPiece(EArmour.Boots);
+        var shield = Class is EAdventureClass.Tank ? FindStartingShield() : null;
+
+        return new Equipment(startingConsumables.ToList(), weapon, helmet, chestPlate, leggings, boots, shield);
     }
 
-    private int DetermineArmourRating()
+    private Armour? FindStartingArmourPiece(EArmour slot)
     {
-        var rating = 0;
-        rating += Equipment.Helmet?.ArmourRating ?? 0;
-        rating += Equipment.ChestPlate?.ArmourRating ?? 0;
-        rating += Equipment.Leggings?.ArmourRating ?? 0;
-        rating += Equipment.Boots?.ArmourRating ?? 0;
-        return rating;
+        var onPar = GD.RandRange(0, 100) > 40;
+        if (Rank is ERank.Bronze && !onPar)
+        {
+            return null;
+        }
+        var rankToUse = onPar ? Rank : (ERank)((int)Rank - 1);
+        return rankToUse switch
+        {
+            ERank.Bronze => slot switch
+            {
+                EArmour.Helmet => Items.LeatherHelmet,
+                EArmour.Chestplate => Items.LeatherChestPlate,
+                EArmour.Leggings => Items.LeatherLeggings,
+                EArmour.Boots => Items.LeatherBoots,
+                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+            },
+            ERank.Silver => slot switch
+            {
+                EArmour.Helmet => Items.BronzeHelmet,
+                EArmour.Chestplate => Items.BronzeChestPlate,
+                EArmour.Leggings => Items.BronzeLeggings,
+                EArmour.Boots => Items.BronzeBoots,
+                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+            },
+            ERank.Gold => slot switch
+            {
+                EArmour.Helmet => Items.IronHelmet,
+                EArmour.Chestplate => Items.IronChestPlate,
+                EArmour.Leggings => Items.IronLeggings,
+                EArmour.Boots => Items.IronBoots,
+                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+            },
+            ERank.Diamond => slot switch
+            {
+                EArmour.Helmet => Items.SteelHelmet,
+                EArmour.Chestplate => Items.SteelChestPlate,
+                EArmour.Leggings => Items.SteelLeggings,
+                EArmour.Boots => Items.SteelBoots,
+                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+            },
+            ERank.Legendary => slot switch
+            {
+                EArmour.Helmet => Items.DragonScaleHelmet,
+                EArmour.Chestplate => Items.DragonScalePlate,
+                EArmour.Leggings => Items.DragonScaleLeggings,
+                EArmour.Boots => Items.DragonScaleBoots,
+                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
+            },
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
 
+    private Shield FindStartingShield()
+    {
+        return Rank switch
+        {
+
+            ERank.Bronze => Items.SimpleShield,
+            ERank.Silver => Items.EnchantedShield,
+            ERank.Gold => Items.MagicalShield,
+            ERank.Diamond => Items.WondrousShield,
+            ERank.Legendary => Items.GodlyShield,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     private Weapon DetermineStartingWeapon()

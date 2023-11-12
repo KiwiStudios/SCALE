@@ -6,5 +6,4 @@ public enum EOneHanded
     Axe,
     Mace,
     Flail,
-    Scimitar
 }
