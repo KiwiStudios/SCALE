@@ -5,36 +5,11 @@ namespace SCALE.Enums;
 [Flags]
 public enum EItemNames
 {
-    Longsword,
-    Warhammer,
-    Crossbow,
-    Mace,
-    Halberd,
-    Dagger,
-    Flail,
-    Poleaxe,
-    Battleaxe,
-    Morningstar,
-    Greatsword,
-    Lance,
-    Javelin,
-    Rapier,
-    Bow,
+    OneHanded,
     Shield,
-    Scimitar,
-    Falchion,
-    
-    SimpleStaff,
-    EnchantedStaff,
-    MagicalStaff,
-    WondrousStaff,
-    GodlyStaff,
-    
-    SimpleBow,
-    EnchantedBow,
-    MagicalBow,
-    WondrousBow,
-    GodlyBow,
+    TwoHanded,
+    Staff,
+    Bow,
 
     [StringRepresentation("Leather Helmet")]
     LeatherHelmet,

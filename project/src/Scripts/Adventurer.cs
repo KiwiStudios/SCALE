@@ -141,7 +141,7 @@ public partial class Adventurer : RefCounted
                     ERank.Silver => Items.EnchantedStaff,
                     ERank.Gold => Items.MagicalStaff,
                     ERank.Diamond => Items.WondrousStaff,
-                    ERank.Legendary => Items.GoldyStaff,
+                    ERank.Legendary => Items.GodlyStaff,
                     _ => throw new ArgumentOutOfRangeException()
                 };
             case (EAdventureClass.Archer):
@@ -154,10 +154,29 @@ public partial class Adventurer : RefCounted
                     ERank.Legendary => Items.GodlyBow,
                     _ => throw new ArgumentOutOfRangeException()
                 };
+            case EAdventureClass.Warrior:
+                return Rank switch
+                {
+                    ERank.Bronze => Items.SimpleTwoHandedWeapon,
+                    ERank.Silver => Items.EnchantedTwoHandedWeapon,
+                    ERank.Gold => Items.MagicalTwoHandedWeapon,
+                    ERank.Diamond => Items.WondrousOneHandedWeapon,
+                    ERank.Legendary => Items.GodlyTwoHandedWeapon,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            case EAdventureClass.Tank:
+                return Rank switch
+                {
+                    ERank.Bronze => Items.SimpleOneHandedWeapon,
+                    ERank.Silver => Items.EnchantedOneHandedWeapon,
+                    ERank.Gold => Items.MagicalOneHandedWeapon,
+                    ERank.Diamond => Items.WondrousOneHandedWeapon,
+                    ERank.Legendary => Items.GodlyOneHandedWeapon,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
             default:
             {
-                var weapon = Items.RandomWeapon();
-                return weapon;
+                throw new Exception("Unkown class");
             }
         }
 

@@ -7,39 +7,46 @@ namespace SCALE.Helpers;
 
 public static class Items
 {
-    public static readonly List<Weapon> Weapons = new List<Weapon>()
-    {
-        new Weapon(EItemNames.Longsword, 50),
-        new Weapon(EItemNames.Warhammer, 55),
-        new Weapon(EItemNames.Crossbow, 45),
-        new Weapon(EItemNames.Mace, 50),
-        new Weapon(EItemNames.Halberd, 60),
-        new Weapon(EItemNames.Dagger, 35),
-        new Weapon(EItemNames.Flail, 55),
-        new Weapon(EItemNames.Poleaxe, 65),
-        new Weapon(EItemNames.Battleaxe, 60),
-        new Weapon(EItemNames.Morningstar, 55),
-        new Weapon(EItemNames.Greatsword, 70),
-        new Weapon(EItemNames.Lance, 60),
-        new Weapon(EItemNames.Javelin, 45),
-        new Weapon(EItemNames.Rapier, 45),
-        new Weapon(EItemNames.Bow, 45),
-        new Weapon(EItemNames.Shield, 30),
-        new Weapon(EItemNames.Scimitar, 50),
-        new Weapon(EItemNames.Falchion, 50),
-    };
+    private const int CostOfSimpleWeapon = 20;
+    private const int CostOfMagicalWeapon = 55;
+    private const int CostOfEnchantedWeapon = 120;
+    private const int CostOfWondrousWeapon = 230;
+    private const int CostOfGodlyWeapon = 500;
 
-    public static readonly Staff SimpleStaff = new Staff(EItemNames.SimpleStaff, 20);
-    public static readonly Staff EnchantedStaff = new Staff(EItemNames.EnchantedStaff, 55);
-    public static readonly Staff MagicalStaff = new Staff(EItemNames.MagicalStaff, 120);
-    public static readonly Staff WondrousStaff = new Staff(EItemNames.WondrousStaff, 230);
-    public static readonly Staff GoldyStaff = new Staff(EItemNames.GodlyStaff, 500);
+    public static readonly OneHanded SimpleOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
+    public static readonly OneHanded EnchantedOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfMagicalWeapon, ERank.Silver, EItemLevel.Enchanted);
+    public static readonly OneHanded MagicalOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
+    public static readonly OneHanded WondrousOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
+    public static readonly OneHanded GodlyOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
+    public static OneHanded[] TankWeapons = new[] { SimpleOneHandedWeapon, EnchantedOneHandedWeapon, MagicalOneHandedWeapon, WondrousOneHandedWeapon, GodlyOneHandedWeapon };
+
+    public static readonly Shield SimpleShield = new Shield(EItemNames.Shield, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
+    public static readonly Shield EnchantedShield = new Shield(EItemNames.Shield, CostOfEnchantedWeapon, ERank.Silver, EItemLevel.Enchanted);
+    public static readonly Shield MagicalShield = new Shield(EItemNames.Shield, CostOfMagicalWeapon, ERank.Gold, EItemLevel.Magical);
+    public static readonly Shield WondrousShield = new Shield(EItemNames.Shield, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
+    public static readonly Shield GodlyShield = new Shield(EItemNames.Shield, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
+    public static Shield[] TankShield = new[] { SimpleShield, EnchantedShield, MagicalShield, WondrousShield, GodlyShield };
+
+    public static readonly TwoHanded SimpleTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
+    public static readonly TwoHanded EnchantedTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfEnchantedWeapon, ERank.Silver, EItemLevel.Enchanted);
+    public static readonly TwoHanded MagicalTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfMagicalWeapon, ERank.Gold, EItemLevel.Magical);
+    public static readonly TwoHanded WondrousTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
+    public static readonly TwoHanded GodlyTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
+    public static TwoHanded[] WarriorWeapons = new[] { SimpleTwoHandedWeapon, EnchantedTwoHandedWeapon, MagicalTwoHandedWeapon, WondrousTwoHandedWeapon, GodlyTwoHandedWeapon };
     
-    public static readonly Bow SimpleBow = new Bow(EItemNames.SimpleBow, 20);
-    public static readonly Bow EnchantedBow = new Bow(EItemNames.EnchantedBow, 55);
-    public static readonly Bow MagicalBow = new Bow(EItemNames.MagicalBow, 120);
-    public static readonly Bow WondrousBow = new Bow(EItemNames.WondrousBow, 230);
-    public static readonly Bow GodlyBow = new Bow(EItemNames.GodlyBow, 500);
+    public static readonly Staff SimpleStaff = new Staff(EItemNames.Staff, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
+    public static readonly Staff EnchantedStaff = new Staff(EItemNames.Staff, CostOfMagicalWeapon, ERank.Silver, EItemLevel.Enchanted);
+    public static readonly Staff MagicalStaff = new Staff(EItemNames.Staff, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
+    public static readonly Staff WondrousStaff = new Staff(EItemNames.Staff, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
+    public static readonly Staff GodlyStaff = new Staff(EItemNames.Staff, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
+    public static Staff[] SpellCasterWeapons = new[] { SimpleStaff, EnchantedStaff, MagicalStaff, WondrousStaff, GodlyStaff };
+    
+    public static readonly Bow SimpleBow = new Bow(EItemNames.Bow, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
+    public static readonly Bow EnchantedBow = new Bow(EItemNames.Bow, CostOfMagicalWeapon, ERank.Silver, EItemLevel.Enchanted);
+    public static readonly Bow MagicalBow = new Bow(EItemNames.Bow, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
+    public static readonly Bow WondrousBow = new Bow(EItemNames.Bow, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
+    public static readonly Bow GodlyBow = new Bow(EItemNames.Bow, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
+    public static Bow[] ArcherWeapons = new[] { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
 
     public static readonly List<Armour> Armour = new List<Armour>()
     {
@@ -122,7 +129,6 @@ public static class Items
     {
         var l = new List<Item>(MiscItems);
         l.AddRange(Armour);
-        l.AddRange(Weapons);
         
         _backingGetAllItems ??= l;
         return l;
@@ -139,12 +145,7 @@ public static class Items
             .Shuffle()
             .Take(amount);
     }
-
-    public static Weapon RandomWeapon()
-    {
-        int randomIndex = GD.RandRange(0, Weapons.Count - 1);
-        return Weapons[randomIndex];
-    }
+    
 
     public static IEnumerable<Miscellaneous> RandomMiscItems(int amount)
     {
