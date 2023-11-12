@@ -20,36 +20,42 @@ public static class Items
     public static readonly OneHanded MagicalOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
     public static readonly OneHanded WondrousOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly OneHanded GodlyOneHandedWeapon = new OneHanded(EItemNames.OneHanded, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
-    public static OneHanded[] TankWeapons = { SimpleOneHandedWeapon, EnchantedOneHandedWeapon, MagicalOneHandedWeapon, WondrousOneHandedWeapon, GodlyOneHandedWeapon };
+    public static readonly OneHanded[] TankWeapons = { SimpleOneHandedWeapon, EnchantedOneHandedWeapon, MagicalOneHandedWeapon, WondrousOneHandedWeapon, GodlyOneHandedWeapon };
 
     public static readonly Shield SimpleShield = new Shield(EItemNames.Shield, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
     public static readonly Shield EnchantedShield = new Shield(EItemNames.Shield, CostOfEnchantedWeapon, ERank.Silver, EItemLevel.Enchanted);
     public static readonly Shield MagicalShield = new Shield(EItemNames.Shield, CostOfMagicalWeapon, ERank.Gold, EItemLevel.Magical);
     public static readonly Shield WondrousShield = new Shield(EItemNames.Shield, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly Shield GodlyShield = new Shield(EItemNames.Shield, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
-    public static Shield[] TankShield = new[] { SimpleShield, EnchantedShield, MagicalShield, WondrousShield, GodlyShield };
+    public static readonly Shield[] AllShields = new[] { SimpleShield, EnchantedShield, MagicalShield, WondrousShield, GodlyShield };
 
     public static readonly TwoHanded SimpleTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
     public static readonly TwoHanded EnchantedTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfEnchantedWeapon, ERank.Silver, EItemLevel.Enchanted);
     public static readonly TwoHanded MagicalTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfMagicalWeapon, ERank.Gold, EItemLevel.Magical);
     public static readonly TwoHanded WondrousTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly TwoHanded GodlyTwoHandedWeapon = new TwoHanded(EItemNames.TwoHanded, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
-    public static TwoHanded[] WarriorWeapons = { SimpleTwoHandedWeapon, EnchantedTwoHandedWeapon, MagicalTwoHandedWeapon, WondrousTwoHandedWeapon, GodlyTwoHandedWeapon };
+    public static readonly TwoHanded[] WarriorWeapons = { SimpleTwoHandedWeapon, EnchantedTwoHandedWeapon, MagicalTwoHandedWeapon, WondrousTwoHandedWeapon, GodlyTwoHandedWeapon };
 
     public static readonly Staff SimpleStaff = new Staff(EItemNames.Staff, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
     public static readonly Staff EnchantedStaff = new Staff(EItemNames.Staff, CostOfMagicalWeapon, ERank.Silver, EItemLevel.Enchanted);
     public static readonly Staff MagicalStaff = new Staff(EItemNames.Staff, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
     public static readonly Staff WondrousStaff = new Staff(EItemNames.Staff, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly Staff GodlyStaff = new Staff(EItemNames.Staff, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
-    public static Staff[] SpellCasterWeapons = { SimpleStaff, EnchantedStaff, MagicalStaff, WondrousStaff, GodlyStaff };
+    public static readonly Staff[] SpellCasterWeapons = { SimpleStaff, EnchantedStaff, MagicalStaff, WondrousStaff, GodlyStaff };
 
     public static readonly Bow SimpleBow = new Bow(EItemNames.Bow, CostOfSimpleWeapon, ERank.Bronze, EItemLevel.Simple);
     public static readonly Bow EnchantedBow = new Bow(EItemNames.Bow, CostOfMagicalWeapon, ERank.Silver, EItemLevel.Enchanted);
     public static readonly Bow MagicalBow = new Bow(EItemNames.Bow, CostOfEnchantedWeapon, ERank.Gold, EItemLevel.Magical);
     public static readonly Bow WondrousBow = new Bow(EItemNames.Bow, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly Bow GodlyBow = new Bow(EItemNames.Bow, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
-    public static Bow[] ArcherWeapons = { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
-    
+    public static readonly Bow[] ArcherWeapons = { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
+
+
+    public static readonly Weapon[] SimpleWeapons = { SimpleOneHandedWeapon, SimpleTwoHandedWeapon, SimpleStaff, SimpleBow };
+    public static readonly Weapon[] EnchantedWeapons = { EnchantedOneHandedWeapon, EnchantedTwoHandedWeapon, EnchantedStaff, EnchantedBow };
+    public static readonly Weapon[] MagicalWeapons = { MagicalOneHandedWeapon, MagicalTwoHandedWeapon, MagicalStaff, MagicalBow  };
+    public static readonly Weapon[] WondrousWeapons = { WondrousOneHandedWeapon, WondrousTwoHandedWeapon, WondrousStaff, WondrousBow };
+    public static readonly Weapon[] GodlyWeapons = { GodlyOneHandedWeapon, GodlyTwoHandedWeapon, GodlyStaff, GodlyBow };
     #endregion
 
     #region Armour
@@ -69,32 +75,37 @@ public static class Items
     public static readonly Armour LeatherChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseLeatherCost * ChestPlateModifier), EArmorMaterial.Leather);
     public static readonly Armour LeatherLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseLeatherCost * LeggingsModifier), EArmorMaterial.Leather);
     public static readonly Armour LeatherBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseLeatherCost * BootsModifier), EArmorMaterial.Leather);
+    public static readonly Armour[] LeatherArmour = { LeatherHelmet, LeatherChestPlate, LeatherLeggings, LeatherBoots };
 
     public static readonly Armour BronzeHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseBronzeCost * HelmetModifier), EArmorMaterial.Bronze);
     public static readonly Armour BronzeChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseBronzeCost * ChestPlateModifier), EArmorMaterial.Bronze);
     public static readonly Armour BronzeLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseBronzeCost * LeggingsModifier), EArmorMaterial.Bronze);
     public static readonly Armour BronzeBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseBronzeCost * BootsModifier), EArmorMaterial.Bronze);
-
+    public static readonly Armour[] BronzeArmour = { BronzeHelmet, BronzeChestPlate, BronzeLeggings, BronzeBoots };
+    
     public static readonly Armour IronHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseIronCost * HelmetModifier), EArmorMaterial.Iron);
     public static readonly Armour IronChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseIronCost * ChestPlateModifier), EArmorMaterial.Iron);
     public static readonly Armour IronLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseIronCost * LeggingsModifier), EArmorMaterial.Iron);
     public static readonly Armour IronBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseIronCost * BootsModifier), EArmorMaterial.Iron);
-
+    public static readonly Armour[] IronArmour = { IronHelmet, IronChestPlate, IronLeggings, IronBoots };
+    
     public static readonly Armour SteelHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseSteelCost * HelmetModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseSteelCost * ChestPlateModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseSteelCost * LeggingsModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseSteelCost * BootsModifier), EArmorMaterial.Steel);
-
+    public static readonly Armour[] SteelArmour = { SteelHelmet, SteelChestPlate, SteelLeggings, SteelBoots };
+    
     public static readonly Armour DragonScaleHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseDragonScaleCost * HelmetModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScalePlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseDragonScaleCost * ChestPlateModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScaleLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseDragonScaleCost * LeggingsModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScaleBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseDragonScaleCost * BootsModifier), EArmorMaterial.DragonScale);
-
+    public static readonly Armour[] DragonScaleArmour = { DragonScaleHelmet, DragonScalePlate, DragonScaleLeggings, DragonScaleBoots };
+    
     #endregion
 
     #region Miscellaneous
 
-    public static readonly List<Miscellaneous> MiscItems = new List<Miscellaneous>()
+    public static readonly List<Miscellaneous> MiscItems = new List<Miscellaneous>
     {
         new Miscellaneous(EItemNames.ElixirOfHealing, 30),
         new Miscellaneous(EItemNames.PotionOfInvisibility, 25),
@@ -152,23 +163,239 @@ public static class Items
 
     #region Collections
 
+    private static List<Weapon>? _backingAllWeapons;
+    private static List<Armour>? _backingAllArmour;
     private static List<Item>? _backingGetAllItems;
+    private static List<Item>? _backAllBronzeRankItems;
+    private static List<Item>? _backAllSilverRankItems;
+    private static List<Item>? _backAllGoldRankItems;
+    private static List<Item>? _backAllDiamondRankItems;
+    private static List<Item>? _backAllLegendaryRankItems;
 
+    private static List<Weapon> GetAllWeaponsOnce()
+    {
+        var l = new List<Weapon>();
+        l.AddRange(TankWeapons);
+        l.AddRange(WarriorWeapons);
+        l.AddRange(SpellCasterWeapons);
+        l.AddRange(ArcherWeapons);
+        _backingAllWeapons ??= l;
+        return l;
+    }
+    
+    private static List<Weapon> AllWeapons
+    {
+        get => _backingAllWeapons ?? GetAllWeaponsOnce();
+    }
+    
+    private static List<Armour> GetAllArmourOnce()
+    {
+        var l = new List<Armour>();
+        l.AddRange(LeatherArmour);
+        l.AddRange(BronzeArmour);
+        l.AddRange(IronArmour);
+        l.AddRange(SteelArmour);
+        l.AddRange(DragonScaleArmour);
+        _backingAllArmour ??= l;
+        return l;
+    }
+    
+    private static List<Armour> AllArmour
+    {
+        get => _backingAllArmour ?? GetAllArmourOnce();
+    }
+
+
+    private static List<Item> GetAllBronzeItemsOnce()
+    {
+        var l = new List<Item>();
+        l.AddRange(SimpleWeapons);
+        l.Add(SimpleShield);
+        l.AddRange(LeatherArmour);
+        _backAllBronzeRankItems ??= l;
+        return l;
+    }
+    
+    public static List<Item> AllBronzeRankItems
+    {
+        get => _backAllBronzeRankItems ?? GetAllBronzeItemsOnce();
+    }
+    
+    private static List<Item> GetAllSilverItemsOnce()
+    {
+        var l = new List<Item>();
+        l.AddRange(EnchantedWeapons);
+        l.Add(EnchantedShield);
+        l.AddRange(BronzeArmour);
+        _backAllSilverRankItems ??= l;
+        return l;
+    }
+    
+    public static List<Item> AllSilverRankItems
+    {
+        get => _backAllSilverRankItems ?? GetAllSilverItemsOnce();
+    }
+    
+    private static List<Item> GetAllGoldItemsOnce()
+    {
+        var l = new List<Item>();
+        l.AddRange(MagicalWeapons);
+        l.Add(MagicalShield);
+        l.AddRange(IronArmour);
+        _backAllGoldRankItems ??= l;
+        return l;
+    }
+    
+    public static List<Item> AllGoldRankItems
+    {
+        get => _backAllGoldRankItems ?? GetAllGoldItemsOnce();
+    }
+    
+    private static List<Item> GetAllDiamondItemsOnce()
+    {
+        var l = new List<Item>();
+        l.AddRange(WondrousWeapons);
+        l.Add(WondrousShield);
+        l.AddRange(SteelArmour);
+        _backAllDiamondRankItems ??= l;
+        return l;
+    }
+    
+    public static List<Item> AllDiamondRankItems
+    {
+        get => _backAllDiamondRankItems ?? GetAllDiamondItemsOnce();
+    }
+    
+    private static List<Item> GetAllLegendaryItemsOnce()
+    {
+        var l = new List<Item>();
+        l.AddRange(GodlyWeapons);
+        l.Add(GodlyShield);
+        l.AddRange(DragonScaleArmour);
+        _backAllLegendaryRankItems ??= l;
+        return l;
+    }
+    
+    public static List<Item> AllLegendaryRankItems
+    {
+        get => _backAllLegendaryRankItems ?? GetAllLegendaryItemsOnce();
+    }
+    
     private static List<Item> GetAllItemsOnce()
     {
-        var l = new List<Item>(MiscItems);
+        var l = new List<Item>();
+        l.AddRange(MiscItems);
+        l.AddRange(AllWeapons);
+        l.AddRange(AllShields);
+        l.AddRange(AllArmour);
         _backingGetAllItems ??= l;
         return l;
     }
 
-    public static List<Item> GetAllItems
+    public static List<Item> AllItems
     {
         get => _backingGetAllItems ?? GetAllItemsOnce();
     }
 
+    #endregion
+
+
+    #region RandomItems
+
+        public static Item RandomBronzeRankItem()
+    {
+        var item = AllBronzeRankItems
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (item is null) throw new Exception("No Bronze Rank Item Found");
+        return item;
+    }
+    
+    public static Item RandomSilverRankItem()
+    {
+        var item = AllSilverRankItems
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (item is null) throw new Exception("No Silver Rank Item Found");
+        return item;
+    }
+    
+    public static Item RandomGoldRankItem()
+    {
+        var item = AllGoldRankItems
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (item is null) throw new Exception("No Gold Rank Item Found");
+        return item;
+    }
+    
+    
+    public static Item RandomDiamondRankItem()
+    {
+        var item = AllDiamondRankItems
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (item is null) throw new Exception("No Diamond Rank Item Found");
+        return item;
+    }
+    
+    public static Item RandomLegendaryRankItem()
+    {
+        var item = AllLegendaryRankItems
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (item is null) throw new Exception("No Legendary Rank Item Found");
+        return item;
+    }
+    
     public static IEnumerable<Item> RandomItems(int amount)
     {
-        return GetAllItems
+        return AllItems
+            .Shuffle()
+            .Take(amount);
+    }
+    
+    public static IEnumerable<Item> RandomBronzeRankItems(int amount)
+    {
+        return AllBronzeRankItems
+            .Shuffle()
+            .Take(amount);
+    }
+    
+    public static IEnumerable<Item> RandomSilverRankItems(int amount)
+    {
+        return AllSilverRankItems
+            .Shuffle()
+            .Take(amount);
+    }
+    
+    public static IEnumerable<Item> RandomGoldRankItems(int amount)
+    {
+        return AllGoldRankItems
+            .Shuffle()
+            .Take(amount);
+    }
+    
+    public static IEnumerable<Item> RandomDiamondRankItems(int amount)
+    {
+        return AllDiamondRankItems
+            .Shuffle()
+            .Take(amount);
+    }
+    
+    public static IEnumerable<Item> RandomLegendaryRankItems(int amount)
+    {
+        return AllLegendaryRankItems
             .Shuffle()
             .Take(amount);
     }
@@ -181,6 +408,7 @@ public static class Items
     }
 
     #endregion
+    
 
     #region Functions
 
@@ -190,86 +418,86 @@ public static class Items
         {
             ERank.Bronze => slot switch
             {
-                EArmour.Helmet => Items.LeatherHelmet,
-                EArmour.Chestplate => Items.LeatherChestPlate,
-                EArmour.Leggings => Items.LeatherLeggings,
-                EArmour.Boots => Items.LeatherBoots,
+                EArmour.Helmet => LeatherHelmet,
+                EArmour.Chestplate => LeatherChestPlate,
+                EArmour.Leggings => LeatherLeggings,
+                EArmour.Boots => LeatherBoots,
                 _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
             },
             ERank.Silver => slot switch
             {
-                EArmour.Helmet => Items.BronzeHelmet,
-                EArmour.Chestplate => Items.BronzeChestPlate,
-                EArmour.Leggings => Items.BronzeLeggings,
-                EArmour.Boots => Items.BronzeBoots,
+                EArmour.Helmet => BronzeHelmet,
+                EArmour.Chestplate => BronzeChestPlate,
+                EArmour.Leggings => BronzeLeggings,
+                EArmour.Boots => BronzeBoots,
                 _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
             },
             ERank.Gold => slot switch
             {
-                EArmour.Helmet => Items.IronHelmet,
-                EArmour.Chestplate => Items.IronChestPlate,
-                EArmour.Leggings => Items.IronLeggings,
-                EArmour.Boots => Items.IronBoots,
+                EArmour.Helmet => IronHelmet,
+                EArmour.Chestplate => IronChestPlate,
+                EArmour.Leggings => IronLeggings,
+                EArmour.Boots => IronBoots,
                 _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
             },
             ERank.Diamond => slot switch
             {
-                EArmour.Helmet => Items.SteelHelmet,
-                EArmour.Chestplate => Items.SteelChestPlate,
-                EArmour.Leggings => Items.SteelLeggings,
-                EArmour.Boots => Items.SteelBoots,
+                EArmour.Helmet => SteelHelmet,
+                EArmour.Chestplate => SteelChestPlate,
+                EArmour.Leggings => SteelLeggings,
+                EArmour.Boots => SteelBoots,
                 _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
             },
             ERank.Legendary => slot switch
             {
-                EArmour.Helmet => Items.DragonScaleHelmet,
-                EArmour.Chestplate => Items.DragonScalePlate,
-                EArmour.Leggings => Items.DragonScaleLeggings,
-                EArmour.Boots => Items.DragonScaleBoots,
+                EArmour.Helmet => DragonScaleHelmet,
+                EArmour.Chestplate => DragonScalePlate,
+                EArmour.Leggings => DragonScaleLeggings,
+                EArmour.Boots => DragonScaleBoots,
                 _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
             },
             _ => throw new ArgumentOutOfRangeException()
         };
     }
 
-    public static Weapon FindWeapon(EAdventureClass _class, ERank rank)
+    public static Weapon FindWeapon(EAdventureClass adventureClass, ERank rank)
     {
-        return _class switch
+        return adventureClass switch
         {
             (EAdventureClass.Spellcaster) => rank switch
             {
-                ERank.Bronze => Items.SimpleStaff,
-                ERank.Silver => Items.EnchantedStaff,
-                ERank.Gold => Items.MagicalStaff,
-                ERank.Diamond => Items.WondrousStaff,
-                ERank.Legendary => Items.GodlyStaff,
+                ERank.Bronze => SimpleStaff,
+                ERank.Silver => EnchantedStaff,
+                ERank.Gold => MagicalStaff,
+                ERank.Diamond => WondrousStaff,
+                ERank.Legendary => GodlyStaff,
                 _ => throw new ArgumentOutOfRangeException()
             },
             (EAdventureClass.Archer) => rank switch
             {
-                ERank.Bronze => Items.SimpleBow,
-                ERank.Silver => Items.EnchantedBow,
-                ERank.Gold => Items.MagicalBow,
-                ERank.Diamond => Items.WondrousBow,
-                ERank.Legendary => Items.GodlyBow,
+                ERank.Bronze => SimpleBow,
+                ERank.Silver => EnchantedBow,
+                ERank.Gold => MagicalBow,
+                ERank.Diamond => WondrousBow,
+                ERank.Legendary => GodlyBow,
                 _ => throw new ArgumentOutOfRangeException()
             },
             EAdventureClass.Warrior => rank switch
             {
-                ERank.Bronze => Items.SimpleTwoHandedWeapon,
-                ERank.Silver => Items.EnchantedTwoHandedWeapon,
-                ERank.Gold => Items.MagicalTwoHandedWeapon,
-                ERank.Diamond => Items.WondrousOneHandedWeapon,
-                ERank.Legendary => Items.GodlyTwoHandedWeapon,
+                ERank.Bronze => SimpleTwoHandedWeapon,
+                ERank.Silver => EnchantedTwoHandedWeapon,
+                ERank.Gold => MagicalTwoHandedWeapon,
+                ERank.Diamond => WondrousOneHandedWeapon,
+                ERank.Legendary => GodlyTwoHandedWeapon,
                 _ => throw new ArgumentOutOfRangeException()
             },
             EAdventureClass.Tank => rank switch
             {
-                ERank.Bronze => Items.SimpleOneHandedWeapon,
-                ERank.Silver => Items.EnchantedOneHandedWeapon,
-                ERank.Gold => Items.MagicalOneHandedWeapon,
-                ERank.Diamond => Items.WondrousOneHandedWeapon,
-                ERank.Legendary => Items.GodlyOneHandedWeapon,
+                ERank.Bronze => SimpleOneHandedWeapon,
+                ERank.Silver => EnchantedOneHandedWeapon,
+                ERank.Gold => MagicalOneHandedWeapon,
+                ERank.Diamond => WondrousOneHandedWeapon,
+                ERank.Legendary => GodlyOneHandedWeapon,
                 _ => throw new ArgumentOutOfRangeException()
             },
             _ => throw new Exception("Unkown class")
@@ -280,14 +508,14 @@ public static class Items
     {
         return rank switch
         {
-            ERank.Bronze => Items.SimpleShield,
-            ERank.Silver => Items.EnchantedShield,
-            ERank.Gold => Items.MagicalShield,
-            ERank.Diamond => Items.WondrousShield,
-            ERank.Legendary => Items.GodlyShield,
+            ERank.Bronze => SimpleShield,
+            ERank.Silver => EnchantedShield,
+            ERank.Gold => MagicalShield,
+            ERank.Diamond => WondrousShield,
+            ERank.Legendary => GodlyShield,
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-
+    
     #endregion
 }
