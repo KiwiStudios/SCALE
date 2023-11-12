@@ -49,8 +49,7 @@ public static class Items
     public static readonly Bow WondrousBow = new Bow(EItemNames.Bow, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly Bow GodlyBow = new Bow(EItemNames.Bow, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
     public static readonly Bow[] ArcherWeapons = { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
-
-
+    
     public static readonly Weapon[] SimpleWeapons = { SimpleOneHandedWeapon, SimpleTwoHandedWeapon, SimpleStaff, SimpleBow };
     public static readonly Weapon[] EnchantedWeapons = { EnchantedOneHandedWeapon, EnchantedTwoHandedWeapon, EnchantedStaff, EnchantedBow };
     public static readonly Weapon[] MagicalWeapons = { MagicalOneHandedWeapon, MagicalTwoHandedWeapon, MagicalStaff, MagicalBow  };
@@ -356,13 +355,6 @@ public static class Items
             [0];
         if (item is null) throw new Exception("No Legendary Rank Item Found");
         return item;
-    }
-    
-    public static IEnumerable<Item> RandomItems(int amount)
-    {
-        return AllItems
-            .Shuffle()
-            .Take(amount);
     }
     
     public static IEnumerable<Item> RandomBronzeRankItems(int amount)

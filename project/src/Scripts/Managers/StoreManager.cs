@@ -33,7 +33,8 @@ public partial class StoreManager : Node
     }
     private void NewMorning()
     {
-        Storage.InStorage.AddRange(Items.RandomItems(5));
+        Storage.InStorage.AddRange(Items.RandomMiscItems(3));
+        Storage.InStorage.AddRange(Items.RandomBronzeRankItems(2));
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
         AddItemsToDayStart(rowContainer, Storage.InStorage);
     }

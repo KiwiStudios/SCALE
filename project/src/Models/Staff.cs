@@ -12,6 +12,6 @@ public partial class Staff : Weapon
 
     public override string DisplayName()
     {
-        return ItemLevel + " Staff of" + Element;
+        return ItemLevel + " Staff of " + Element;
     }
 }

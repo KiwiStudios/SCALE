@@ -14,10 +14,15 @@ public class Storage
     }
     public List<Item> InStorage { get; set; } = new List<Item>();
 
-    private const int StartingItemCount = 12;
+    private const int StartingItemCountBronzeRank = 5;
+    private const int StartingItemCountSilverRank = 3;
+    private const int StartingItemCountConsumable = 4;
+    
 
     public void InitializeStorage()
     {
-        InStorage.AddRange(Items.RandomItems(StartingItemCount));
+        InStorage.AddRange(Items.RandomBronzeRankItems(StartingItemCountBronzeRank));
+        InStorage.AddRange(Items.RandomSilverRankItems(StartingItemCountSilverRank));
+        InStorage.AddRange(Items.RandomMiscItems(StartingItemCountConsumable));
     }
 }
