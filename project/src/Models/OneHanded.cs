@@ -14,4 +14,9 @@ public partial class OneHanded : Weapon
     {
         Type = Extensions.GetRandomEnumValue<EOneHanded>();
     }
+
+    public override string DisplayName()
+    {
+        return $"{ItemLevel} {Type}";
+    }
 }

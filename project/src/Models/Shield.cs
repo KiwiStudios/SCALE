@@ -21,4 +21,9 @@ public partial class Shield : Weapon
             _ => throw new ArgumentOutOfRangeException(nameof(itemLevel), itemLevel, null)
         };
     }
+
+    public override string DisplayName()
+    {
+        return $"{ItemLevel} {Type} Shield";
+    }
 }

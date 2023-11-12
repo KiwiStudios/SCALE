@@ -110,133 +110,38 @@ public partial class Adventurer : RefCounted
     private Equipment DetermineStartingEquipment()
     {
         var startingConsumables = Items.RandomMiscItems(2);
-        var weapon = DetermineStartingWeapon();
+        var weapon = Items.FindWeapon(Class, Rank);
         var helmet = FindStartingArmourPiece(EArmour.Helmet);
         var chestPlate = FindStartingArmourPiece(EArmour.Chestplate);
         var leggings = FindStartingArmourPiece(EArmour.Leggings);
         var boots = FindStartingArmourPiece(EArmour.Boots);
-        var shield = Class is EAdventureClass.Tank ? FindStartingShield() : null;
+        var shield = Class is EAdventureClass.Tank ? Items.FindShield(Rank) : null;
 
         return new Equipment(startingConsumables.ToList(), weapon, helmet, chestPlate, leggings, boots, shield);
     }
 
     private Armour? FindStartingArmourPiece(EArmour slot)
     {
+        //Usually adventurers have the gear around their level, chance they have one tier lower
         var onPar = GD.RandRange(0, 100) > 40;
         if (Rank is ERank.Bronze && !onPar)
         {
             return null;
         }
         var rankToUse = onPar ? Rank : (ERank)((int)Rank - 1);
-        return rankToUse switch
-        {
-            ERank.Bronze => slot switch
-            {
-                EArmour.Helmet => Items.LeatherHelmet,
-                EArmour.Chestplate => Items.LeatherChestPlate,
-                EArmour.Leggings => Items.LeatherLeggings,
-                EArmour.Boots => Items.LeatherBoots,
-                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
-            },
-            ERank.Silver => slot switch
-            {
-                EArmour.Helmet => Items.BronzeHelmet,
-                EArmour.Chestplate => Items.BronzeChestPlate,
-                EArmour.Leggings => Items.BronzeLeggings,
-                EArmour.Boots => Items.BronzeBoots,
-                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
-            },
-            ERank.Gold => slot switch
-            {
-                EArmour.Helmet => Items.IronHelmet,
-                EArmour.Chestplate => Items.IronChestPlate,
-                EArmour.Leggings => Items.IronLeggings,
-                EArmour.Boots => Items.IronBoots,
-                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
-            },
-            ERank.Diamond => slot switch
-            {
-                EArmour.Helmet => Items.SteelHelmet,
-                EArmour.Chestplate => Items.SteelChestPlate,
-                EArmour.Leggings => Items.SteelLeggings,
-                EArmour.Boots => Items.SteelBoots,
-                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
-            },
-            ERank.Legendary => slot switch
-            {
-                EArmour.Helmet => Items.DragonScaleHelmet,
-                EArmour.Chestplate => Items.DragonScalePlate,
-                EArmour.Leggings => Items.DragonScaleLeggings,
-                EArmour.Boots => Items.DragonScaleBoots,
-                _ => throw new ArgumentOutOfRangeException(nameof(slot), slot, null)
-            },
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        return Items.FindArmourPiece(rankToUse, slot);
     }
 
-    private Shield FindStartingShield()
+    public String ColourCode()
     {
         return Rank switch
         {
-
-            ERank.Bronze => Items.SimpleShield,
-            ERank.Silver => Items.EnchantedShield,
-            ERank.Gold => Items.MagicalShield,
-            ERank.Diamond => Items.WondrousShield,
-            ERank.Legendary => Items.GodlyShield,
+            ERank.Bronze => "#CD7F32",
+            ERank.Silver => "#C0C0C0",
+            ERank.Gold => "#FFD700",
+            ERank.Diamond => "#B9F2FF",
+            ERank.Legendary => "#ff4500",
             _ => throw new ArgumentOutOfRangeException()
         };
-    }
-
-    private Weapon DetermineStartingWeapon()
-    {
-        switch (Class)
-        {
-            case (EAdventureClass.Spellcaster):
-                return Rank switch
-                {
-                    ERank.Bronze => Items.SimpleStaff,
-                    ERank.Silver => Items.EnchantedStaff,
-                    ERank.Gold => Items.MagicalStaff,
-                    ERank.Diamond => Items.WondrousStaff,
-                    ERank.Legendary => Items.GodlyStaff,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-            case (EAdventureClass.Archer):
-                return Rank switch
-                {
-                    ERank.Bronze => Items.SimpleBow,
-                    ERank.Silver => Items.EnchantedBow,
-                    ERank.Gold => Items.MagicalBow,
-                    ERank.Diamond => Items.WondrousBow,
-                    ERank.Legendary => Items.GodlyBow,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-            case EAdventureClass.Warrior:
-                return Rank switch
-                {
-                    ERank.Bronze => Items.SimpleTwoHandedWeapon,
-                    ERank.Silver => Items.EnchantedTwoHandedWeapon,
-                    ERank.Gold => Items.MagicalTwoHandedWeapon,
-                    ERank.Diamond => Items.WondrousOneHandedWeapon,
-                    ERank.Legendary => Items.GodlyTwoHandedWeapon,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-            case EAdventureClass.Tank:
-                return Rank switch
-                {
-                    ERank.Bronze => Items.SimpleOneHandedWeapon,
-                    ERank.Silver => Items.EnchantedOneHandedWeapon,
-                    ERank.Gold => Items.MagicalOneHandedWeapon,
-                    ERank.Diamond => Items.WondrousOneHandedWeapon,
-                    ERank.Legendary => Items.GodlyOneHandedWeapon,
-                    _ => throw new ArgumentOutOfRangeException()
-                };
-            default:
-            {
-                throw new Exception("Unkown class");
-            }
-        }
-
     }
 }

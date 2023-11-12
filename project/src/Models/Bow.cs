@@ -9,4 +9,9 @@ public partial class Bow : Weapon
     {
         Element = Extensions.GetRandomEnumValue<EBowElement>();
     }
+
+    public override string DisplayName()
+    {
+        return $"{ItemLevel} Bow of {Element}";
+    }
 }

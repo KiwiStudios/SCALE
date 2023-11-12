@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using SCALE.Scripts.Managers;
 using StringyEnums;
@@ -6,7 +7,7 @@ using Environment = System.Environment;
 
 namespace SCALE.Scripts;
 
-public partial class EventLogLabel : Label
+public partial class EventLogLabel : RichTextLabel
 {
     private EventBus _eventBus = null!;
     private List<string> textToWrite = new List<string>();
@@ -24,8 +25,9 @@ public partial class EventLogLabel : Label
 
     private void OnItemSold(Item item, Adventurer adventurer)
     {
+        var colour = adventurer.ColourCode();
         AddEvent(
-            $"{item.Name.ToString()} was sold to {adventurer.Name} for {item.Value}"
+            $"{item.DisplayName()} was sold to [color={colour}]{adventurer.Name}[/color] for {item.Value}"
         );
     }
 
@@ -57,7 +59,7 @@ public partial class EventLogLabel : Label
                     textToWrite.RemoveAt(0);
                     return;
                 }
-
+                
                 Text = textToWrite[0][^1] + Text;
                 textToWrite[0] = textToWrite[0].Remove(textToWrite[0].Length - 1);
             }

@@ -108,4 +108,9 @@ public partial class Armour : Item
                 throw new ArgumentOutOfRangeException(nameof(name), name, null);
         }
     }
+
+    public override string DisplayName()
+    {
+        return $"{Material} {Name}";
+    }
 }

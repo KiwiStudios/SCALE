@@ -11,4 +11,9 @@ public partial class TwoHanded : Weapon
     {
         Type = Extensions.GetRandomEnumValue<ETwoHanded>();
     }
+
+    public override string DisplayName()
+    {
+        return $"{ItemLevel} {Type}";
+    }
 }

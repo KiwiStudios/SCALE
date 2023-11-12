@@ -60,11 +60,13 @@ size_flags_horizontal = 3
 horizontal_alignment = 2
 script = ExtResource("3_kd181")
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/TextLogContainer"]
+[node name="EventLog" type="RichTextLabel" parent="HBoxContainer/MarginContainer/TextLogContainer"]
+clip_contents = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-vertical_alignment = 1
-autowrap_mode = 3
+size_flags_vertical = 4
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
 script = ExtResource("3_0tcba")
 
 [node name="Panel" type="Panel" parent="HBoxContainer"]

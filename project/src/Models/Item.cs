@@ -13,4 +13,9 @@ public partial class Item : RefCounted
     public string InstanceId { get; } = Guid.NewGuid().ToString("N");
     public EItemNames Name { get; set; }
     public int Value { get; set; }
+
+    public virtual string DisplayName()
+    {
+        return Name.ToString();
+    }
 }

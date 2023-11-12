@@ -9,4 +9,9 @@ public partial class Staff : Weapon
     {
         Element = Extensions.GetRandomEnumValue<EStaffElement>();
     }
+
+    public override string DisplayName()
+    {
+        return ItemLevel + " Staff of" + Element;
+    }
 }
