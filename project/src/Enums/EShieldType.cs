@@ -4,5 +4,7 @@ public enum EShieldType
 {
     Storm,
     Night,
+    Sky,
+    Earth,
     
 }
