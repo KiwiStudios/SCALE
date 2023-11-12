@@ -34,6 +34,12 @@ public static class Items
     public static readonly Staff MagicalStaff = new Staff(EItemNames.MagicalStaff, 120);
     public static readonly Staff WondrousStaff = new Staff(EItemNames.WondrousStaff, 230);
     public static readonly Staff GoldyStaff = new Staff(EItemNames.GodlyStaff, 500);
+    
+    public static readonly Bow SimpleBow = new Bow(EItemNames.SimpleBow, 20);
+    public static readonly Bow EnchantedBow = new Bow(EItemNames.EnchantedBow, 55);
+    public static readonly Bow MagicalBow = new Bow(EItemNames.MagicalBow, 120);
+    public static readonly Bow WondrousBow = new Bow(EItemNames.WondrousBow, 230);
+    public static readonly Bow GoldyBow = new Bow(EItemNames.GodlyBow, 500);
 
     public static readonly List<Armour> Armour = new List<Armour>()
     {

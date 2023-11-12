@@ -5,6 +5,5 @@ public enum EAdventureClass
     Warrior,
     Tank,
     Archer,
-    Spellcaster,
-    Healer
+    Spellcaster
 }

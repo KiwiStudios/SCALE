@@ -73,9 +73,6 @@ public partial class Adventurer : RefCounted
             case EAdventureClass.Spellcaster:
                 Intelligence = HighStat();
                 break;
-            case EAdventureClass.Healer:
-                Intelligence = HighStat();
-                break;
             case EAdventureClass.Tank:
                 Health = HighStat();
                 break;
@@ -86,11 +83,27 @@ public partial class Adventurer : RefCounted
 
     private int AverageStat()
     {
-        return GD.RandRange(1, 15) * ((int)Rank + 1);
+        return Rank switch
+        {
+            ERank.Bronze => GD.RandRange(1,8),
+            ERank.Silver => GD.RandRange(3,10),
+            ERank.Gold => GD.RandRange(5,12),
+            ERank.Diamond => GD.RandRange(8,15),
+            ERank.Legendary => GD.RandRange(10,20),
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
     private int HighStat()
     {
-        return GD.RandRange(10, 20) * ((int)Rank + 1);
+        return Rank switch
+        {
+            ERank.Bronze => GD.RandRange(8,12),
+            ERank.Silver => GD.RandRange(10,14),
+            ERank.Gold => GD.RandRange(12,16),
+            ERank.Diamond => GD.RandRange(15,20),
+            ERank.Legendary => GD.RandRange(20,25),
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     private Equipment DetermineStartingEquipment()
@@ -119,16 +132,34 @@ public partial class Adventurer : RefCounted
 
     private Weapon DetermineStartingWeapon()
     {
-        var weapon = Items.RandomWeapon();
-        if (Class is not (EAdventureClass.Spellcaster or EAdventureClass.Healer)) return weapon;
-        return Rank switch
+        switch (Class)
         {
-            ERank.Bronze => Items.SimpleStaff,
-            ERank.Silver => Items.EnchantedStaff,
-            ERank.Gold => Items.MagicalStaff,
-            ERank.Diamond => Items.WondrousStaff,
-            ERank.Legendary => Items.GoldyStaff,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+            case (EAdventureClass.Spellcaster):
+                return Rank switch
+                {
+                    ERank.Bronze => Items.SimpleStaff,
+                    ERank.Silver => Items.EnchantedStaff,
+                    ERank.Gold => Items.MagicalStaff,
+                    ERank.Diamond => Items.WondrousStaff,
+                    ERank.Legendary => Items.GoldyStaff,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            case (EAdventureClass.Archer):
+                return Rank switch
+                {
+                    ERank.Bronze => Items.SimpleBow,
+                    ERank.Silver => Items.EnchantedBow,
+                    ERank.Gold => Items.MagicalBow,
+                    ERank.Diamond => Items.WondrousBow,
+                    ERank.Legendary => Items.GoldyBow,
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            default:
+            {
+                var weapon = Items.RandomWeapon();
+                return weapon;
+            }
+        }
+
     }
 }

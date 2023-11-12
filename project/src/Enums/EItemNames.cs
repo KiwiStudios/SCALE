@@ -29,6 +29,12 @@ public enum EItemNames
     MagicalStaff,
     WondrousStaff,
     GodlyStaff,
+    
+    SimpleBow,
+    EnchantedBow,
+    MagicalBow,
+    WondrousBow,
+    GodlyBow,
 
     [StringRepresentation("Leather Helmet")]
     LeatherHelmet,
