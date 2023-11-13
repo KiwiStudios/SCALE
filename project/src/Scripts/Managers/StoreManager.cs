@@ -33,8 +33,7 @@ public partial class StoreManager : Node
     }
     private void NewMorning()
     {
-        Storage.InStorage.AddRange(Items.RandomMiscItems(3));
-        Storage.InStorage.AddRange(Items.RandomBronzeRankItems(2));
+        Storage.InStorage.AddRange(Items.RandomBronzeRankItems(5));
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
         AddItemsToDayStart(rowContainer, Storage.InStorage);
     }
@@ -106,7 +105,7 @@ public partial class StoreManager : Node
                 var itemContainer = Scenes.UI_ITEM_CONTAINER_SCENE.Instantiate() as ItemContainer ?? throw new ArgumentNullException();
                 itemContainer.Item = item;
 
-                itemContainer.SetText(item.Name.ToString());
+                itemContainer.SetText(item.DisplayName());
 
                 row.AddChild(itemContainer);
             }

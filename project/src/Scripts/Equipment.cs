@@ -11,9 +11,9 @@ public class Equipment
     public Armour? Boots;
     public Weapon? PrimaryWeapon;
     public Shield? Shield;
-    public List<Miscellaneous> Consumables;
+    public List<Consumable> Consumables;
     
-    public Equipment(List<Miscellaneous> consumables, Weapon primaryWeapon, Armour? helmet, Armour? chestPlate, Armour? leggings, Armour? boots, Shield? shield)
+    public Equipment(List<Consumable> consumables, Weapon primaryWeapon, Armour? helmet, Armour? chestPlate, Armour? leggings, Armour? boots, Shield? shield)
     {
         if (helmet is not null && helmet.EquipmentSlot != EArmour.Helmet)
         {

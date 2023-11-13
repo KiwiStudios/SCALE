@@ -15,10 +15,9 @@ public enum EItemNames
     Chestplate,
     Leggings,
     Boots,
-
-    [StringRepresentation("Elixir of Healing")]
-    ElixirOfHealing,
-
+    
+    Potion,
+    
     [StringRepresentation("Potion of Invisibility")]
     PotionOfInvisibility,
     [StringRepresentation("Mana Crystal")] ManaCrystal,

@@ -109,7 +109,7 @@ public partial class Adventurer : RefCounted
 
     private Equipment DetermineStartingEquipment()
     {
-        var startingConsumables = Items.RandomMiscItems(2);
+        var startingConsumables = Items.FindPotions(2,Rank);
         var weapon = Items.FindWeapon(Class, Rank);
         var helmet = FindStartingArmourPiece(EArmour.Helmet);
         var chestPlate = FindStartingArmourPiece(EArmour.Chestplate);

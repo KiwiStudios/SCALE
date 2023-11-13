@@ -23,6 +23,6 @@ public class Storage
     {
         InStorage.AddRange(Items.RandomBronzeRankItems(StartingItemCountBronzeRank));
         InStorage.AddRange(Items.RandomSilverRankItems(StartingItemCountSilverRank));
-        InStorage.AddRange(Items.RandomMiscItems(StartingItemCountConsumable));
+        InStorage.AddRange(Items.RandomSmallPotions(StartingItemCountConsumable));
     }
 }

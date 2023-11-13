@@ -49,12 +49,13 @@ public static class Items
     public static readonly Bow WondrousBow = new Bow(EItemNames.Bow, CostOfWondrousWeapon, ERank.Diamond, EItemLevel.Wondrous);
     public static readonly Bow GodlyBow = new Bow(EItemNames.Bow, CostOfGodlyWeapon, ERank.Legendary, EItemLevel.Godly);
     public static readonly Bow[] ArcherWeapons = { SimpleBow, EnchantedBow, MagicalBow, WondrousBow, GodlyBow };
-    
+
     public static readonly Weapon[] SimpleWeapons = { SimpleOneHandedWeapon, SimpleTwoHandedWeapon, SimpleStaff, SimpleBow };
     public static readonly Weapon[] EnchantedWeapons = { EnchantedOneHandedWeapon, EnchantedTwoHandedWeapon, EnchantedStaff, EnchantedBow };
-    public static readonly Weapon[] MagicalWeapons = { MagicalOneHandedWeapon, MagicalTwoHandedWeapon, MagicalStaff, MagicalBow  };
+    public static readonly Weapon[] MagicalWeapons = { MagicalOneHandedWeapon, MagicalTwoHandedWeapon, MagicalStaff, MagicalBow };
     public static readonly Weapon[] WondrousWeapons = { WondrousOneHandedWeapon, WondrousTwoHandedWeapon, WondrousStaff, WondrousBow };
     public static readonly Weapon[] GodlyWeapons = { GodlyOneHandedWeapon, GodlyTwoHandedWeapon, GodlyStaff, GodlyBow };
+
     #endregion
 
     #region Armour
@@ -81,82 +82,112 @@ public static class Items
     public static readonly Armour BronzeLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseBronzeCost * LeggingsModifier), EArmorMaterial.Bronze);
     public static readonly Armour BronzeBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseBronzeCost * BootsModifier), EArmorMaterial.Bronze);
     public static readonly Armour[] BronzeArmour = { BronzeHelmet, BronzeChestPlate, BronzeLeggings, BronzeBoots };
-    
+
     public static readonly Armour IronHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseIronCost * HelmetModifier), EArmorMaterial.Iron);
     public static readonly Armour IronChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseIronCost * ChestPlateModifier), EArmorMaterial.Iron);
     public static readonly Armour IronLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseIronCost * LeggingsModifier), EArmorMaterial.Iron);
     public static readonly Armour IronBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseIronCost * BootsModifier), EArmorMaterial.Iron);
     public static readonly Armour[] IronArmour = { IronHelmet, IronChestPlate, IronLeggings, IronBoots };
-    
+
     public static readonly Armour SteelHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseSteelCost * HelmetModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelChestPlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseSteelCost * ChestPlateModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseSteelCost * LeggingsModifier), EArmorMaterial.Steel);
     public static readonly Armour SteelBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseSteelCost * BootsModifier), EArmorMaterial.Steel);
     public static readonly Armour[] SteelArmour = { SteelHelmet, SteelChestPlate, SteelLeggings, SteelBoots };
-    
+
     public static readonly Armour DragonScaleHelmet = new Armour(EItemNames.Helmet, (int)Math.Round(BaseDragonScaleCost * HelmetModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScalePlate = new Armour(EItemNames.Chestplate, (int)Math.Round(BaseDragonScaleCost * ChestPlateModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScaleLeggings = new Armour(EItemNames.Leggings, (int)Math.Round(BaseDragonScaleCost * LeggingsModifier), EArmorMaterial.DragonScale);
     public static readonly Armour DragonScaleBoots = new Armour(EItemNames.Boots, (int)Math.Round(BaseDragonScaleCost * BootsModifier), EArmorMaterial.DragonScale);
     public static readonly Armour[] DragonScaleArmour = { DragonScaleHelmet, DragonScalePlate, DragonScaleLeggings, DragonScaleBoots };
+
+    #endregion
+
+    #region Consumables
+
+    private const int SmallPotionCost = 10;
+    private const int MediumPotionCost = 25;
+    private const int LargePotionCost = 50;
+
+    public static readonly Consumable SmallHealthPotion = new Consumable(EItemNames.Potion, SmallPotionCost, EPotionTypes.Health, EVialSize.Small);
+    public static readonly Consumable MediumHealthPotion = new Consumable(EItemNames.Potion, MediumPotionCost, EPotionTypes.Health, EVialSize.Medium);
+    public static readonly Consumable LargeHealthPotion = new Consumable(EItemNames.Potion, LargePotionCost, EPotionTypes.Health, EVialSize.Large);
+    public static readonly Consumable[] HealthPotions = { SmallHealthPotion, MediumHealthPotion, LargeHealthPotion };
+
+    public static readonly Consumable SmallStaminaPotion = new Consumable(EItemNames.Potion, SmallPotionCost, EPotionTypes.Stamina, EVialSize.Small);
+    public static readonly Consumable MediumStaminaPotion = new Consumable(EItemNames.Potion, MediumPotionCost, EPotionTypes.Stamina, EVialSize.Medium);
+    public static readonly Consumable LargeStaminaPotion = new Consumable(EItemNames.Potion, LargePotionCost, EPotionTypes.Stamina, EVialSize.Large);
+    public static readonly Consumable[] StaminaPotions = { SmallStaminaPotion, MediumStaminaPotion, LargeStaminaPotion };
+
+    public static readonly Consumable SmallManaPotion = new Consumable(EItemNames.Potion, SmallPotionCost, EPotionTypes.Mana, EVialSize.Small);
+    public static readonly Consumable MediumManaPotion = new Consumable(EItemNames.Potion, MediumPotionCost, EPotionTypes.Mana, EVialSize.Medium);
+    public static readonly Consumable LargeManaPotion = new Consumable(EItemNames.Potion, LargePotionCost, EPotionTypes.Mana, EVialSize.Large);
+    public static readonly Consumable[] ManaPotions = { SmallManaPotion, MediumManaPotion, LargeManaPotion };
+
+    public static readonly Consumable[] SmallPotions = { SmallHealthPotion, SmallStaminaPotion, SmallManaPotion };
+    public static readonly Consumable[] MediumPotions = { MediumHealthPotion, MediumStaminaPotion, MediumManaPotion };
+    public static readonly Consumable[] LargePotions = { LargeHealthPotion, LargeStaminaPotion, LargeManaPotion };
     
     #endregion
 
     #region Miscellaneous
 
-    public static readonly List<Miscellaneous> MiscItems = new List<Miscellaneous>
-    {
-        new Miscellaneous(EItemNames.ElixirOfHealing, 30),
-        new Miscellaneous(EItemNames.PotionOfInvisibility, 25),
-        new Miscellaneous(EItemNames.ManaCrystal, 20),
-        new Miscellaneous(EItemNames.FirebreathAle, 20),
-        new Miscellaneous(EItemNames.AmbrosiaNectar, 35),
-        new Miscellaneous(EItemNames.DragonsBloodWine, 30),
-        new Miscellaneous(EItemNames.TrollbaneTonic, 25),
-        new Miscellaneous(EItemNames.FeywildHoney, 25),
-        new Miscellaneous(EItemNames.GhostPepperElixir, 20),
-        new Miscellaneous(EItemNames.ManticoreMilk, 30),
-        new Miscellaneous(EItemNames.MoonlitDewdrops, 25),
-        new Miscellaneous(EItemNames.CelestialEssence, 30),
-        new Miscellaneous(EItemNames.WyrmwoodBrew, 25),
-        new Miscellaneous(EItemNames.PhoenixFeatherTea, 30),
-        new Miscellaneous(EItemNames.EnchantedTruffle, 35),
-        new Miscellaneous(EItemNames.FaerieFruit, 25),
-        new Miscellaneous(EItemNames.BasiliskEyeBrew, 30),
-        new Miscellaneous(EItemNames.StardustLoaf, 20),
-        new Miscellaneous(EItemNames.OgresStrengthAle, 20),
-        new Miscellaneous(EItemNames.SirensSongAle, 20),
-        new Miscellaneous(EItemNames.ShadowfireWhiskey, 25),
-        new Miscellaneous(EItemNames.GriffinsRoarBrew, 30),
-        new Miscellaneous(EItemNames.PixiePlumWine, 25),
-        new Miscellaneous(EItemNames.WyrmscaleDraught, 30),
-        new Miscellaneous(EItemNames.UnicornTearElixir, 35),
-        new Miscellaneous(EItemNames.GorgonsGazeMead, 25),
-        new Miscellaneous(EItemNames.NymphsNectar, 30),
-        new Miscellaneous(EItemNames.LichbaneElixir, 30),
-        new Miscellaneous(EItemNames.GoblinsGoldStout, 25),
-        new Miscellaneous(EItemNames.FrostberryNog, 20),
-        new Miscellaneous(EItemNames.AngelsKissMead, 25),
-        new Miscellaneous(EItemNames.ChimeraChili, 20),
-        new Miscellaneous(EItemNames.SorcerersBrew, 25),
-        new Miscellaneous(EItemNames.MinotaurMuscleMead, 20),
-        new Miscellaneous(EItemNames.StarlightBiscuit, 20),
-        new Miscellaneous(EItemNames.GargoyleGravy, 20),
-        new Miscellaneous(EItemNames.ElfrootElixir, 25),
-        new Miscellaneous(EItemNames.DemonsDelight, 30),
-        new Miscellaneous(EItemNames.ValkyriesVigor, 30),
-        new Miscellaneous(EItemNames.EnchantersInfusion, 30),
-        new Miscellaneous(EItemNames.SphinxsSecret, 35),
-        new Miscellaneous(EItemNames.GnomishGrog, 25),
-        new Miscellaneous(EItemNames.MoonlitMuffin, 20),
-        new Miscellaneous(EItemNames.VipersVenomVial, 30),
-        new Miscellaneous(EItemNames.WitchsBrew, 25),
-        new Miscellaneous(EItemNames.PaladinsPint, 25),
-        new Miscellaneous(EItemNames.GoblinsGrog, 20),
-        new Miscellaneous(EItemNames.PegasusPlumBrandy, 25),
-        new Miscellaneous(EItemNames.FeywildFizz, 25),
-        new Miscellaneous(EItemNames.MoonshadowMintTea, 30),
-    };
+    /// <summary>
+    /// Commented out for now but if we implement crafting we probably want to use it for raw crafting materials
+    /// </summary>
+    
+    // public static readonly List<Miscellaneous> MiscItems = new List<Miscellaneous>
+    // {
+    //     new Miscellaneous(EItemNames.PotionOfInvisibility, 25),
+    //     new Miscellaneous(EItemNames.ManaCrystal, 20),
+    //     new Miscellaneous(EItemNames.FirebreathAle, 20),
+    //     new Miscellaneous(EItemNames.AmbrosiaNectar, 35),
+    //     new Miscellaneous(EItemNames.DragonsBloodWine, 30),
+    //     new Miscellaneous(EItemNames.TrollbaneTonic, 25),
+    //     new Miscellaneous(EItemNames.FeywildHoney, 25),
+    //     new Miscellaneous(EItemNames.GhostPepperElixir, 20),
+    //     new Miscellaneous(EItemNames.ManticoreMilk, 30),
+    //     new Miscellaneous(EItemNames.MoonlitDewdrops, 25),
+    //     new Miscellaneous(EItemNames.CelestialEssence, 30),
+    //     new Miscellaneous(EItemNames.WyrmwoodBrew, 25),
+    //     new Miscellaneous(EItemNames.PhoenixFeatherTea, 30),
+    //     new Miscellaneous(EItemNames.EnchantedTruffle, 35),
+    //     new Miscellaneous(EItemNames.FaerieFruit, 25),
+    //     new Miscellaneous(EItemNames.BasiliskEyeBrew, 30),
+    //     new Miscellaneous(EItemNames.StardustLoaf, 20),
+    //     new Miscellaneous(EItemNames.OgresStrengthAle, 20),
+    //     new Miscellaneous(EItemNames.SirensSongAle, 20),
+    //     new Miscellaneous(EItemNames.ShadowfireWhiskey, 25),
+    //     new Miscellaneous(EItemNames.GriffinsRoarBrew, 30),
+    //     new Miscellaneous(EItemNames.PixiePlumWine, 25),
+    //     new Miscellaneous(EItemNames.WyrmscaleDraught, 30),
+    //     new Miscellaneous(EItemNames.UnicornTearElixir, 35),
+    //     new Miscellaneous(EItemNames.GorgonsGazeMead, 25),
+    //     new Miscellaneous(EItemNames.NymphsNectar, 30),
+    //     new Miscellaneous(EItemNames.LichbaneElixir, 30),
+    //     new Miscellaneous(EItemNames.GoblinsGoldStout, 25),
+    //     new Miscellaneous(EItemNames.FrostberryNog, 20),
+    //     new Miscellaneous(EItemNames.AngelsKissMead, 25),
+    //     new Miscellaneous(EItemNames.ChimeraChili, 20),
+    //     new Miscellaneous(EItemNames.SorcerersBrew, 25),
+    //     new Miscellaneous(EItemNames.MinotaurMuscleMead, 20),
+    //     new Miscellaneous(EItemNames.StarlightBiscuit, 20),
+    //     new Miscellaneous(EItemNames.GargoyleGravy, 20),
+    //     new Miscellaneous(EItemNames.ElfrootElixir, 25),
+    //     new Miscellaneous(EItemNames.DemonsDelight, 30),
+    //     new Miscellaneous(EItemNames.ValkyriesVigor, 30),
+    //     new Miscellaneous(EItemNames.EnchantersInfusion, 30),
+    //     new Miscellaneous(EItemNames.SphinxsSecret, 35),
+    //     new Miscellaneous(EItemNames.GnomishGrog, 25),
+    //     new Miscellaneous(EItemNames.MoonlitMuffin, 20),
+    //     new Miscellaneous(EItemNames.VipersVenomVial, 30),
+    //     new Miscellaneous(EItemNames.WitchsBrew, 25),
+    //     new Miscellaneous(EItemNames.PaladinsPint, 25),
+    //     new Miscellaneous(EItemNames.GoblinsGrog, 20),
+    //     new Miscellaneous(EItemNames.PegasusPlumBrandy, 25),
+    //     new Miscellaneous(EItemNames.FeywildFizz, 25),
+    //     new Miscellaneous(EItemNames.MoonshadowMintTea, 30),
+    // };
 
     #endregion
 
@@ -164,6 +195,7 @@ public static class Items
 
     private static List<Weapon>? _backingAllWeapons;
     private static List<Armour>? _backingAllArmour;
+    private static List<Consumable>? _backingAllPotions;
     private static List<Item>? _backingGetAllItems;
     private static List<Item>? _backAllBronzeRankItems;
     private static List<Item>? _backAllSilverRankItems;
@@ -181,12 +213,27 @@ public static class Items
         _backingAllWeapons ??= l;
         return l;
     }
-    
+
     private static List<Weapon> AllWeapons
     {
         get => _backingAllWeapons ?? GetAllWeaponsOnce();
     }
     
+    private static List<Consumable> GetAllPotionsOnce()
+    {
+        var l = new List<Consumable>();
+        l.AddRange(HealthPotions);
+        l.AddRange(ManaPotions);
+        l.AddRange(StaminaPotions);
+        _backingAllPotions ??= l;
+        return l;
+    }
+
+    private static List<Consumable> AllPotions
+    {
+        get => _backingAllPotions ?? GetAllPotionsOnce();
+    }
+
     private static List<Armour> GetAllArmourOnce()
     {
         var l = new List<Armour>();
@@ -198,7 +245,7 @@ public static class Items
         _backingAllArmour ??= l;
         return l;
     }
-    
+
     private static List<Armour> AllArmour
     {
         get => _backingAllArmour ?? GetAllArmourOnce();
@@ -211,82 +258,87 @@ public static class Items
         l.AddRange(SimpleWeapons);
         l.Add(SimpleShield);
         l.AddRange(LeatherArmour);
+        l.AddRange(SmallPotions);
         _backAllBronzeRankItems ??= l;
         return l;
     }
-    
+
     public static List<Item> AllBronzeRankItems
     {
         get => _backAllBronzeRankItems ?? GetAllBronzeItemsOnce();
     }
-    
+
     private static List<Item> GetAllSilverItemsOnce()
     {
         var l = new List<Item>();
         l.AddRange(EnchantedWeapons);
         l.Add(EnchantedShield);
         l.AddRange(BronzeArmour);
+        l.AddRange(SmallPotions);
         _backAllSilverRankItems ??= l;
         return l;
     }
-    
+
     public static List<Item> AllSilverRankItems
     {
         get => _backAllSilverRankItems ?? GetAllSilverItemsOnce();
     }
-    
+
     private static List<Item> GetAllGoldItemsOnce()
     {
         var l = new List<Item>();
         l.AddRange(MagicalWeapons);
         l.Add(MagicalShield);
         l.AddRange(IronArmour);
+        l.AddRange(MediumPotions);
         _backAllGoldRankItems ??= l;
         return l;
     }
-    
+
     public static List<Item> AllGoldRankItems
     {
         get => _backAllGoldRankItems ?? GetAllGoldItemsOnce();
     }
-    
+
     private static List<Item> GetAllDiamondItemsOnce()
     {
         var l = new List<Item>();
         l.AddRange(WondrousWeapons);
         l.Add(WondrousShield);
         l.AddRange(SteelArmour);
+        l.AddRange(MediumPotions);
         _backAllDiamondRankItems ??= l;
         return l;
     }
-    
+
     public static List<Item> AllDiamondRankItems
     {
         get => _backAllDiamondRankItems ?? GetAllDiamondItemsOnce();
     }
-    
+
     private static List<Item> GetAllLegendaryItemsOnce()
     {
         var l = new List<Item>();
         l.AddRange(GodlyWeapons);
         l.Add(GodlyShield);
         l.AddRange(DragonScaleArmour);
+        l.AddRange(LargePotions);
         _backAllLegendaryRankItems ??= l;
         return l;
     }
-    
+
     public static List<Item> AllLegendaryRankItems
     {
         get => _backAllLegendaryRankItems ?? GetAllLegendaryItemsOnce();
     }
-    
+
     private static List<Item> GetAllItemsOnce()
     {
         var l = new List<Item>();
-        l.AddRange(MiscItems);
         l.AddRange(AllWeapons);
         l.AddRange(AllShields);
         l.AddRange(AllArmour);
+        l.AddRange(AllPotions);
         _backingGetAllItems ??= l;
         return l;
     }
@@ -298,10 +350,42 @@ public static class Items
 
     #endregion
 
-
     #region RandomItems
 
-        public static Item RandomBronzeRankItem()
+    public static Consumable RandomSmallPotion()
+    {
+        var potion = SmallPotions
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (potion is null) throw new Exception("No potion found");
+        return potion;
+    }
+    
+    public static Consumable RandomMediumPotion()
+    {
+        var potion = MediumPotions
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (potion is null) throw new Exception("No potion found");
+        return potion;
+    }
+    
+    public static Consumable RandomLargePotion()
+    {
+        var potion = LargePotions
+            .Shuffle()
+            .Take(1)
+            .ToArray()
+            [0];
+        if (potion is null) throw new Exception("No potion found");
+        return potion;
+    }
+
+    public static Item RandomBronzeRankItem()
     {
         var item = AllBronzeRankItems
             .Shuffle()
@@ -311,7 +395,7 @@ public static class Items
         if (item is null) throw new Exception("No Bronze Rank Item Found");
         return item;
     }
-    
+
     public static Item RandomSilverRankItem()
     {
         var item = AllSilverRankItems
@@ -322,7 +406,7 @@ public static class Items
         if (item is null) throw new Exception("No Silver Rank Item Found");
         return item;
     }
-    
+
     public static Item RandomGoldRankItem()
     {
         var item = AllGoldRankItems
@@ -333,8 +417,8 @@ public static class Items
         if (item is null) throw new Exception("No Gold Rank Item Found");
         return item;
     }
-    
-    
+
+
     public static Item RandomDiamondRankItem()
     {
         var item = AllDiamondRankItems
@@ -345,7 +429,7 @@ public static class Items
         if (item is null) throw new Exception("No Diamond Rank Item Found");
         return item;
     }
-    
+
     public static Item RandomLegendaryRankItem()
     {
         var item = AllLegendaryRankItems
@@ -356,51 +440,78 @@ public static class Items
         if (item is null) throw new Exception("No Legendary Rank Item Found");
         return item;
     }
-    
+
     public static IEnumerable<Item> RandomBronzeRankItems(int amount)
     {
         return AllBronzeRankItems
             .Shuffle()
             .Take(amount);
     }
-    
+
     public static IEnumerable<Item> RandomSilverRankItems(int amount)
     {
         return AllSilverRankItems
             .Shuffle()
             .Take(amount);
     }
-    
+
     public static IEnumerable<Item> RandomGoldRankItems(int amount)
     {
         return AllGoldRankItems
             .Shuffle()
             .Take(amount);
     }
-    
+
     public static IEnumerable<Item> RandomDiamondRankItems(int amount)
     {
         return AllDiamondRankItems
             .Shuffle()
             .Take(amount);
     }
-    
+
     public static IEnumerable<Item> RandomLegendaryRankItems(int amount)
     {
         return AllLegendaryRankItems
             .Shuffle()
             .Take(amount);
     }
-
-    public static IEnumerable<Miscellaneous> RandomMiscItems(int amount)
-    {
-        return MiscItems
-            .Shuffle()
-            .Take(amount);
-    }
-
-    #endregion
     
+    public static Consumable[] RandomSmallPotions(int amount)
+    {
+        List<Consumable> potions = new List<Consumable>();
+        for (int i = 0; i < amount; i++)
+        {
+            var randomIndex = GD.RandRange(0, SmallPotions.Length - 1);
+            potions.Add(SmallPotions[randomIndex]);
+        }
+        return potions.ToArray();
+    }
+    
+    public static Consumable[] RandomMediumPotions(int amount)
+    {
+        List<Consumable> potions = new List<Consumable>();
+        for (int i = 0; i < amount; i++)
+        {
+            var randomIndex = GD.RandRange(0, MediumPotions.Length - 1);
+            potions.Add(MediumPotions[randomIndex]);
+        }
+        return potions.ToArray();
+    }
+    
+    
+    public static Consumable[] RandomLargePotions(int amount)
+    {
+        List<Consumable> potions = new List<Consumable>();
+        for (int i = 0; i < amount; i++)
+        {
+            var randomIndex = GD.RandRange(0, LargePotions.Length - 1);
+            potions.Add(LargePotions[randomIndex]);
+        }
+        return potions.ToArray();
+    }
+    
+    #endregion
+
 
     #region Functions
 
@@ -508,6 +619,31 @@ public static class Items
             _ => throw new ArgumentOutOfRangeException()
         };
     }
+
+    public static Consumable FindPotion(ERank rank)
+    {
+        return rank switch
+        {
+            ERank.Bronze => RandomSmallPotion(),
+            ERank.Silver => RandomSmallPotion(),
+            ERank.Gold => RandomMediumPotion(),
+            ERank.Diamond => RandomMediumPotion(),
+            ERank.Legendary => RandomLargePotion(),
+            _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
+        };
+    }
     
+    public static Consumable[] FindPotions(int amount, ERank rank)
+    {
+        return rank switch
+        {
+            ERank.Bronze => RandomSmallPotions(amount),
+            ERank.Silver => RandomSmallPotions(amount),
+            ERank.Gold => RandomMediumPotions(amount),
+            ERank.Diamond => RandomMediumPotions(amount),
+            ERank.Legendary => RandomLargePotions(amount),
+            _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
+        };
+    }
     #endregion
 }
