@@ -13,6 +13,26 @@ public static class Extensions
 	{
 		return GodotObject.IsInstanceValid(inst);
 	}
+
+    public static Color HexToRgbaColour(string hexColor)
+    {
+        string redHex = hexColor.Substring(1, 2);
+        string greenHex = hexColor.Substring(3, 2);
+        string blueHex = hexColor.Substring(5, 2);
+        string alphaHex = "FF"; // Default alpha if not provided in the hex code
+
+        if (hexColor.Length == 9)
+        {
+            alphaHex = hexColor.Substring(7, 2);
+        }
+
+        int red = Convert.ToInt32(redHex, 16);
+        int green = Convert.ToInt32(greenHex, 16);
+        int blue = Convert.ToInt32(blueHex, 16);
+        int alpha = Convert.ToInt32(alphaHex, 16);
+
+        return new Color(red, green, blue, alpha);
+    }
     
     public static string Reverse(this string text)
     {

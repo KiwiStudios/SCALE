@@ -5,10 +5,15 @@ namespace SCALE.Scripts;
 public partial class EventLogLabelText : RichTextLabel
 {
     public string BackingText = null!;
-    public bool isFromNewLine = false;
 
+    public EventLogLabelText()
+    {
+        
+    }
+    
     public override void _EnterTree()
     {
         Text = string.Empty;
     }
+
 }
