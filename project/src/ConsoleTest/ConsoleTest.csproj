@@ -8,10 +8,6 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\..\source-generators\InputMapSourceGenerator\InputMapSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    </ItemGroup>
     <ItemGroup>
       <Compile Remove="obj\**" />
     </ItemGroup>

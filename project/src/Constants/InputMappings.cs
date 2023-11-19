@@ -1,3 +1,5 @@
+using InputMapSourceGenerator;
+
 namespace SCALE.Constants;
 
 [GenerateInputMappings]

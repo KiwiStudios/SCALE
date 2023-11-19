@@ -1,3 +1,5 @@
+using AudioPathsSourceGenerator;
+
 namespace SCALE.Constants;
 
 [GenerateAudioPaths]
