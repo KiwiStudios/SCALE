@@ -9,9 +9,6 @@
         <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\source-generators\ScenesPathSourceGenerator\ScenesPathSourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-    </ItemGroup>
-    <ItemGroup>
       <Compile Remove="ConsoleTest\**" />
       <Compile Remove="Scripts\ShootingPoint.cs" />
       <Compile Remove="Serialization\**" />
@@ -41,6 +38,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="scenespathsourcegenerator" Version="2023.11.21-15-35" />
       <PackageReference Include="StringyEnums" Version="1.2.1" />
     </ItemGroup>
     <ItemGroup>

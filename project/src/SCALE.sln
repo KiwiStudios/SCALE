@@ -1,10 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source-generators", "source-generators", "{3EE19428-B48E-41F3-B87B-F0B97D4272F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{45CD7532-AFA5-463E-84DA-D0AE69A4661F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScenesPathSourceGenerator", "..\source-generators\ScenesPathSourceGenerator\ScenesPathSourceGenerator.csproj", "{8701797D-117C-4F03-A315-AA86E7FB3623}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCALE", "SCALE.csproj", "{8F5D16B1-B4DB-4B2E-B731-9AD7555E6EC3}"
 EndProject
@@ -21,12 +17,6 @@ Global
 		{45CD7532-AFA5-463E-84DA-D0AE69A4661F}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{45CD7532-AFA5-463E-84DA-D0AE69A4661F}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{45CD7532-AFA5-463E-84DA-D0AE69A4661F}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
-		{8701797D-117C-4F03-A315-AA86E7FB3623}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 		{8F5D16B1-B4DB-4B2E-B731-9AD7555E6EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8F5D16B1-B4DB-4B2E-B731-9AD7555E6EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F5D16B1-B4DB-4B2E-B731-9AD7555E6EC3}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
@@ -35,6 +25,5 @@ Global
 		{8F5D16B1-B4DB-4B2E-B731-9AD7555E6EC3}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8701797D-117C-4F03-A315-AA86E7FB3623} = {3EE19428-B48E-41F3-B87B-F0B97D4272F2}
 	EndGlobalSection
 EndGlobal
