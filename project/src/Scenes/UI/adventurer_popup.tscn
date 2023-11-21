@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbbfxnojwjmd4"]
+
+[ext_resource type="Script" path="res://Scripts/AdventurerPopup.cs" id="1_6s6pn"]
+[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="1_14ih8"]
+[ext_resource type="Texture2D" uid="uid://bwf2oo2s42n3e" path="res://Assets/Sprites/Win-Popup-Background.png" id="2_3gsd5"]
+[ext_resource type="Script" path="res://Scripts/Popups/CloseButton.cs" id="3_foyvf"]
+
+[node name="AdventurerPreview" type="Popup"]
+transparent_bg = true
+initial_position = 2
+size = Vector2i(1476, 607)
+visible = true
+always_on_top = true
+script = ExtResource("1_6s6pn")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_14ih8")
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(1100, 500)
+layout_mode = 2
+texture = ExtResource("2_3gsd5")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AdventurerDetail" type="RichTextLabel" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "hello worldd wad awd awd awd aw"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Close" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_14ih8")
+text = "Close"
+script = ExtResource("3_foyvf")
+_popupName = 1

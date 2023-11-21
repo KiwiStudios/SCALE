@@ -1,5 +1,6 @@
 // ReSharper disable RedundantNameQualifier
 
+using EventBusSourceGenerator;
 using SCALE.GameData;
 
 namespace SCALE.Events;
@@ -10,9 +11,9 @@ public partial class EventBus : Node
 
     #region Popup management
 
-    /// <param name="popupNames">Use the EPopupNames enum</param>
+    /// <param name="popupNames" type="EPopupNames">Use the EPopupNames enum</param>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnPopupOpenEventHandler(string popupNames);
+    public delegate void OnPopupOpenEventHandler(string popupNames, params GodotObject[] args);
 
     /// <param name="popupNames">Use the EPopupNames enum</param>
     [Signal, GenerateMethodForEventHandler]

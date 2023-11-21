@@ -1,19 +1,18 @@
-﻿using System.Net.Mime;
-
-namespace SCALE.Scripts;
+﻿namespace SCALE.Scripts;
 
 public partial class EventLogLabelText : RichTextLabel
 {
     public string BackingText = null!;
 
+    private EventBus _eventBus = null!;
+
     public EventLogLabelText()
     {
-        
-    }
-    
-    public override void _EnterTree()
-    {
-        Text = string.Empty;
     }
 
+    public override void _EnterTree()
+    {
+        _eventBus = this.GetEventBus();
+        Text = string.Empty;
+    }
 }

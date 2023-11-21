@@ -78,7 +78,7 @@ public partial class EventLogLabel : VBoxContainer
     {
         var colour = adventurer.ColourCode();
 
-        var adventurerName = new EventLogLabelText()
+        var adventurerName = new AdventurerText(adventurer)
         {
             AutowrapMode = TextServer.AutowrapMode.Off,
             FitContent = true,
