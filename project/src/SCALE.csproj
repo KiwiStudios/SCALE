@@ -30,7 +30,7 @@
     <ItemGroup>
       <PackageReference Include="AudioPathsSourceGenerator" Version="2023.11.19-17-08" />
       <PackageReference Include="Bogus" Version="34.0.2" />
-      <PackageReference Include="EventBusSourceGenerator" Version="2023.11.21-15-48" />
+      <PackageReference Include="EventBusSourceGenerator" Version="2023.11.21-19-39" />
       <PackageReference Include="InputMapSourceGenerator" Version="2023.11.19-17-01" />
       <PackageReference Include="morelinq" Version="4.0.0" />
       <PackageReference Include="protobuf-net" Version="3.2.26" />
