@@ -6,10 +6,6 @@ public partial class EventLogLabelText : RichTextLabel
 
     private EventBus _eventBus = null!;
 
-    public EventLogLabelText()
-    {
-    }
-
     public override void _EnterTree()
     {
         _eventBus = this.GetEventBus();

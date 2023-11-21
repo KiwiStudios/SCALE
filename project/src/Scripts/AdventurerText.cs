@@ -6,14 +6,9 @@ namespace SCALE.Scripts;
 
 public partial class AdventurerText : EventLogLabelText
 {
-    private readonly Adventurer _adventurer;
+    public Adventurer Adventurer = null!;
     private bool isActive = false;
     private EventBus _eventBus = null!;
-
-    public AdventurerText(Adventurer adventurer) : base()
-    {
-        _adventurer = adventurer;
-    }
 
     public override void _EnterTree()
     {
@@ -42,7 +37,7 @@ public partial class AdventurerText : EventLogLabelText
         base._Input(@event);
         if (isActive && Input.IsActionJustPressed(InputMappings.Left_Click))
         {
-            _eventBus.EmitOnPopupOpen(EPopupNames.AdventurerPreview.ToString(), _adventurer);
+            _eventBus.EmitOnPopupOpen(EPopupNames.AdventurerPreview.ToString(), Adventurer);
         }
     }
 }

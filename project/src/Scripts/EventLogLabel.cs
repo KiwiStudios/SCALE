@@ -78,10 +78,11 @@ public partial class EventLogLabel : VBoxContainer
     {
         var colour = adventurer.ColourCode();
 
-        var adventurerName = new AdventurerText(adventurer)
+        var adventurerName = new AdventurerText()
         {
             AutowrapMode = TextServer.AutowrapMode.Off,
             FitContent = true,
+            Adventurer = adventurer
         };
         adventurerName.BackingText = $"{adventurer.Name}";
         adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
