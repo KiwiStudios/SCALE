@@ -7,6 +7,8 @@ public partial class Weapon : Item
 {
     public ERank Rank;
     public EItemLevel ItemLevel;
+
+    public int WeaponRating => (int)Rank + (int)ItemLevel;
     public Weapon(EItemNames name, int value, ERank rank, EItemLevel itemLevel) : base(name, value)
     {
         Rank = rank;

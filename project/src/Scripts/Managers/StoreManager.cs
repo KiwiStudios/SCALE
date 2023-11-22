@@ -19,6 +19,7 @@ public partial class StoreManager : Node
     private bool isNewMorning = false;
 
     public static string GroupName = nameof(StoreManager);
+    private AdventurerManager _adventurerManager = null!;
 
     public override void _EnterTree()
     {
@@ -27,12 +28,16 @@ public partial class StoreManager : Node
         base._EnterTree();
         _eventBus = this.GetEventBus();
 
+        _adventurerManager = (AdventurerManager)Root.SceneTree.GetFirstNodeInGroup(AdventurerManager.GroupName);
         _eventBus.OnDayStartItemSelected += OnDayStartItemSelected;
         _eventBus.OnDayStartItemUnSelected += OnDayStartItemUnSelected;
         _eventBus.OnGoToSceneFinished += OnGoToSceneFinished;
         _eventBus.OnEndDay += NewMorning;
         InitializeStore();
     }
+
+    public List<float> HistoryOfAdventurerScores = new List<float>();
+    public float CurrentItemScalingFactor = 1f;
 
     private void NewMorning()
     {
@@ -41,18 +46,43 @@ public partial class StoreManager : Node
         label.Text = "The travelling merchant offers wares..";
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
 
+        var adventurerScores = _adventurerManager.Adventurers.Sum(x => x.GetTotalAdventurerScore());
+        HistoryOfAdventurerScores.Add(adventurerScores);
+
+        if (HistoryOfAdventurerScores.Count > 1)
+        {
+            var diff = HistoryOfAdventurerScores[^1] - HistoryOfAdventurerScores[0];
+            var percentageChange = diff / Math.Abs(HistoryOfAdventurerScores[0]);
+            CurrentItemScalingFactor = 1f + percentageChange;
+        }
+
         _eventBus.EmitOnGoldCountChanged(Store.Gold);
         dayStartSelectedItems = new List<Item>();
 
         var wares = new List<Item>();
-        wares.AddRange(Items.RandomBronzeRankItems(GD.RandRange(1, 3)));
-        wares.AddRange(Items.RandomSilverRankItems(GD.RandRange(0, 2)));
-        wares.AddRange(Items.RandomGoldRankItems(GD.RandRange(0, 1)));
-        wares.AddRange(Items.RandomDiamondRankItems(GD.RandRange(0, 1)));
-        wares.AddRange(Items.RandomLegendaryRankItems(GD.RandRange(0, 1)));
+
+        var bronzeMax = (int)(2 * CurrentItemScalingFactor * 4.5f);
+        var silverMax = (int)(2 * CurrentItemScalingFactor * 4);
+        var goldMax = (int)(1 * CurrentItemScalingFactor * 3);
+        var diamondMax = (int)(1 * CurrentItemScalingFactor * 2);
+        var legendaryMax = (int)(1 * CurrentItemScalingFactor * 1.5f);
+        
+        Console.WriteLine($"{nameof(bronzeMax)} : {bronzeMax}");
+        Console.WriteLine($"{nameof(silverMax)} : {silverMax}");
+        Console.WriteLine($"{nameof(goldMax)} : {goldMax}");
+        Console.WriteLine($"{nameof(diamondMax)} : {diamondMax}");
+        Console.WriteLine($"{nameof(legendaryMax)} : {legendaryMax}");
+        Console.Write("");
+
+        wares.AddRange(Items.RandomBronzeRankItems(GD.RandRange(1, bronzeMax)));
+        wares.AddRange(Items.RandomSilverRankItems(GD.RandRange(0, silverMax)));
+        wares.AddRange(Items.RandomGoldRankItems(GD.RandRange(0, goldMax)));
+        wares.AddRange(Items.RandomDiamondRankItems(GD.RandRange(0, diamondMax)));
+        wares.AddRange(Items.RandomLegendaryRankItems(GD.RandRange(0, legendaryMax)));
+
 
         AddItemsToDayStart(rowContainer, wares, newMorning: true);
-        
+
         _eventBus.EmitOnDayStartGoldTotalChanged(dayStartSelectedItems.Sum(x => x.Value), Store.Gold);
     }
 
@@ -105,6 +135,7 @@ public partial class StoreManager : Node
         {
             Store.Gold -= dayStartSelectedItems.Sum(x => x.Value);
         }
+
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 

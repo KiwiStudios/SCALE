@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using MoreLinq;
 using MoreLinq.Extensions;
+using SCALE.Enums;
 using SCALE.Scripts.Managers;
 using StringyEnums;
 using Environment = System.Environment;
@@ -72,6 +73,52 @@ public partial class EventLogLabel : VBoxContainer
         _eventBus = this.GetEventBus();
 
         _eventBus.OnItemSold += OnItemSold;
+        _eventBus.OnAdventurerLevelUp += OnAdventurerLevelUp;
+    }
+
+    private void OnAdventurerLevelUp(string rankfrom,
+                                     string rankto,
+                                     Adventurer adventurer)
+    {
+        var colour = adventurer.ColourCode();
+
+        var adventurerName = new AdventurerText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+            Adventurer = adventurer
+        };
+        adventurerName.BackingText = $"{adventurer.Name}";
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
+
+        var rankFromText = new EventLogLabelText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+        };
+        rankFromText.BackingText = $"{rankfrom}";
+        rankFromText.AddThemeColorOverride("default_color", Color.FromHtml(Enum.Parse<ERank>(rankfrom).GetColourCode()));
+
+        var rankToText = new EventLogLabelText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+        };
+        rankToText.BackingText = $"{rankto}";
+        rankToText.AddThemeColorOverride("default_color", Color.FromHtml(Enum.Parse<ERank>(rankto).GetColourCode()));
+
+        AddEvent(
+            new List<object>()
+            {
+                $"Adventurer ",
+                adventurerName,
+                $" leveled up from ",
+                rankFromText,
+                " to ",
+                rankToText,
+                "!"
+            }
+        );
     }
 
     private void OnItemSold(Item item, Adventurer adventurer)

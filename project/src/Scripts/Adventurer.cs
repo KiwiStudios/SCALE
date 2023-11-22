@@ -42,6 +42,13 @@ public partial class Adventurer : RefCounted
         ArmourRating = Equipment.DetermineArmourRating();
     }
 
+    public float GetTotalAdventurerScore()
+    {
+        return (int)Rank
+            + Equipment.DetermineArmourRating()
+            + Equipment.PrimaryWeapon?.WeaponRating ?? 0;
+    }
+    
     private ERank DetermineRank()
     {
         var randomNumber = GD.RandRange(0, 100);

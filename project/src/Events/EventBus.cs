@@ -1,6 +1,7 @@
 
 using EventBusSourceGenerator;
 using SCALE.GameData;
+using SCALE.Scripts.Managers;
 
 namespace SCALE.Events;
 
@@ -79,6 +80,14 @@ public partial class EventBus : Node
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnDayStartGoldTotalChangedEventHandler(int goldTotalInCart, int moneyInStore);
+
+    
+    /// <summary>
+    /// Use the ERank enum.
+    /// </summary>
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnAdventurerLevelUpEventHandler(string rankFrom, string rankTo, Adventurer adventurer);
+
 
     #endregion
 

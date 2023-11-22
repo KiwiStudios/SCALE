@@ -69,6 +69,7 @@ public partial class AdventurerManager : Node
             {
                 SetAdventurerFieldToItem(adventurer, item, field);
                 _storeManager.Store.BuyItem(_eventBus, item, adventurer);
+                DetermineLevelUp(adventurer);
             }
         }
 
@@ -79,6 +80,7 @@ public partial class AdventurerManager : Node
             {
                 SetAdventurerFieldToItem(adventurer, possibleUpgradeEquipment, field);
                 _storeManager.Store.BuyItem(_eventBus, possibleUpgradeEquipment, adventurer);
+                DetermineLevelUp(adventurer);
             }
         }
     }
@@ -109,6 +111,38 @@ public partial class AdventurerManager : Node
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(field), field, null);
+        }
+        
+    }
+
+    private void DetermineLevelUp(Adventurer adventurer)
+    {
+        Console.WriteLine($"Current adventurer {adventurer.Name} rank: {adventurer.Rank}. Score: {adventurer.GetTotalAdventurerScore()}");
+
+        var score = adventurer.GetTotalAdventurerScore();
+
+        if (adventurer.Rank == ERank.Bronze && score > 20)
+        {
+            adventurer.Rank = ERank.Silver;
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Bronze.ToString(), ERank.Silver.ToString(), adventurer);
+        }
+
+        if (adventurer.Rank == ERank.Silver && score > 30)
+        {
+            adventurer.Rank = ERank.Gold;
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Silver.ToString(), ERank.Gold.ToString(), adventurer);
+        }
+
+        if (adventurer.Rank == ERank.Gold && score > 35)
+        {
+            adventurer.Rank = ERank.Diamond;
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Gold.ToString(), ERank.Diamond.ToString(), adventurer);
+        }
+
+        if (adventurer.Rank == ERank.Diamond && score > 40)
+        {
+            adventurer.Rank = ERank.Legendary;
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Diamond.ToString(), ERank.Legendary.ToString(), adventurer);
         }
     }
 
