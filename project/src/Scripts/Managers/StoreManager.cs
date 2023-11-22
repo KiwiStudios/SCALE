@@ -15,13 +15,15 @@ public partial class StoreManager : Node
     private Node _itemContainer = null!;
 
     private List<Item> dayStartSelectedItems = new List<Item>();
+    private bool isInitial = true;
+    private bool isNewMorning = false;
 
     public static string GroupName = nameof(StoreManager);
 
     public override void _EnterTree()
     {
         AddToGroup(GroupName);
-        
+
         base._EnterTree();
         _eventBus = this.GetEventBus();
 
@@ -31,11 +33,27 @@ public partial class StoreManager : Node
         _eventBus.OnEndDay += NewMorning;
         InitializeStore();
     }
+
     private void NewMorning()
     {
-        Storage.InStorage.AddRange(Items.RandomBronzeRankItems(5));
+        isNewMorning = true;
+        var label = Root.SceneTree.GetFirstNodeInGroup("daystart_title") as Label ?? throw new ArgumentNullException();
+        label.Text = "The travelling merchant offers wares..";
         var rowContainer = Root.SceneTree.GetFirstNodeInGroup("row_container") as VBoxContainer ?? throw new ArgumentNullException();
-        AddItemsToDayStart(rowContainer, Storage.InStorage);
+
+        _eventBus.EmitOnGoldCountChanged(Store.Gold);
+        dayStartSelectedItems = new List<Item>();
+
+        var wares = new List<Item>();
+        wares.AddRange(Items.RandomBronzeRankItems(GD.RandRange(1, 3)));
+        wares.AddRange(Items.RandomSilverRankItems(GD.RandRange(0, 2)));
+        wares.AddRange(Items.RandomGoldRankItems(GD.RandRange(0, 1)));
+        wares.AddRange(Items.RandomDiamondRankItems(GD.RandRange(0, 1)));
+        wares.AddRange(Items.RandomLegendaryRankItems(GD.RandRange(0, 1)));
+
+        AddItemsToDayStart(rowContainer, wares, newMorning: true);
+        
+        _eventBus.EmitOnDayStartGoldTotalChanged(dayStartSelectedItems.Sum(x => x.Value), Store.Gold);
     }
 
     private void OnGoToSceneFinished(PackedScene scene)
@@ -43,7 +61,9 @@ public partial class StoreManager : Node
         if (scene == Scenes.UI_DAYSTART_SCENE)
         {
             SetupItemSelect();
+            isInitial = false;
         }
+
         if (scene == Scenes.UI_SHOP_SCENE)
         {
             _eventBus.EmitOnGoldCountChanged(Store.Gold);
@@ -58,7 +78,10 @@ public partial class StoreManager : Node
         var continueButton = Root.SceneTree.GetFirstNodeInGroup("continue_button") as ContinueButton ?? throw new ArgumentNullException();
         continueButton.Pressed += NewDay;
 
-        AddItemsToDayStart(rowContainer, Storage.InStorage);
+        if (isInitial)
+        {
+            AddItemsToDayStart(rowContainer, Storage.InStorage);
+        }
     }
 
 
@@ -76,23 +99,37 @@ public partial class StoreManager : Node
         {
             Storage.InStorage.Remove(item);
         }
+
         Store.items = dayStartSelectedItems;
+        if (isNewMorning)
+        {
+            Store.Gold -= dayStartSelectedItems.Sum(x => x.Value);
+        }
         _eventBus.EmitOnGoToScene(Scenes.UI_SHOP_SCENE);
     }
 
     private void OnDayStartItemUnSelected(Item item)
     {
         dayStartSelectedItems.Remove(item);
+        if (isNewMorning is true)
+        {
+            _eventBus.EmitOnDayStartGoldTotalChanged(dayStartSelectedItems.Sum(x => x.Value), Store.Gold);
+        }
     }
 
     private void OnDayStartItemSelected(Item item)
     {
         dayStartSelectedItems.Add(item);
+        if (isNewMorning is true)
+        {
+            _eventBus.EmitOnDayStartGoldTotalChanged(dayStartSelectedItems.Sum(x => x.Value), Store.Gold);
+        }
     }
 
     private void AddItemsToDayStart(VBoxContainer rowContainer,
                                     List<Item> items,
-                                    int itemsPerRow = 4)
+                                    int itemsPerRow = 4,
+                                    bool newMorning = false)
     {
         for (var i = 0; i < items.Count; i += itemsPerRow)
         {
@@ -106,6 +143,11 @@ public partial class StoreManager : Node
                 itemContainer.Item = item;
 
                 itemContainer.SetText(item.DisplayName());
+
+                if (newMorning)
+                {
+                    itemContainer.SetGoldText($"{item.Value} gold");
+                }
 
                 row.AddChild(itemContainer);
             }

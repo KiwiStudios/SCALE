@@ -77,6 +77,9 @@ public partial class EventBus : Node
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnItemSoldEventHandler(Item item, Adventurer adventurer);
 
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnDayStartGoldTotalChangedEventHandler(int goldTotalInCart, int moneyInStore);
+
     #endregion
 
     #region TimeManagment

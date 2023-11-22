@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://ditd24bwgsxv7"]
+[gd_scene load_steps=11 format=3 uid="uid://ditd24bwgsxv7"]
 
 [ext_resource type="Script" path="res://Scripts/ItemContainer.cs" id="1_3h5hw"]
 [ext_resource type="FontFile" uid="uid://cpigb3fj2lwar" path="res://Assets/Fonts/VCR_OSD_MONO_1.001.ttf" id="1_bnk57"]
 [ext_resource type="Texture2D" uid="uid://bjl8vja7dhlll" path="res://Assets/Sprites/item-border.png" id="1_cueob"]
-[ext_resource type="Texture2D" uid="uid://cqvnqpf3o5v1e" path="res://Assets/Sprites/placeholder.png" id="3_y7etk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ff870"]
 
@@ -30,10 +29,8 @@ ScrollContainer/styles/panel = SubResource("StyleBoxEmpty_gtmnb")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rw5yr"]
 texture = ExtResource("1_cueob")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2a2c8"]
-
 [node name="BoxContainer" type="Button"]
-custom_minimum_size = Vector2(256, 256)
+custom_minimum_size = Vector2(256, 153)
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_default_cursor_shape = 2
@@ -44,16 +41,15 @@ script = ExtResource("1_3h5hw")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
 offset_right = 256.0
-offset_bottom = 256.0
+offset_bottom = 153.0
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_rw5yr")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-custom_minimum_size = Vector2(256, 256)
 layout_mode = 0
 offset_right = 256.0
-offset_bottom = 256.0
+offset_bottom = 153.0
 mouse_filter = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
@@ -65,35 +61,24 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="ItemImage" type="BoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(232, 132)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer2/ItemImage"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2a2c8")
-
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer2/ItemImage/Panel"]
-custom_minimum_size = Vector2(232, 132)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource("3_y7etk")
-
 [node name="ItemText" type="BoxContainer" parent="Panel/MarginContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(232, 90)
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 2
+vertical = true
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
-custom_minimum_size = Vector2(232, 90)
+[node name="ItemName" type="Label" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "awdawdad"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="GoldCost" type="Label" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.807843, 0.635294, 0.0823529, 1)
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1

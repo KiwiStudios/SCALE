@@ -14,9 +14,25 @@ public partial class ItemContainer : ButtonPressedMove
 	{
 		PlaySound = false;
 		_eventBus = this.GetEventBus();
+        _eventBus.OnDayStartGoldTotalChanged += OnDayStartGoldTotalChanged;
+        
 	}
 
-	public override void _Pressed()
+    private void OnDayStartGoldTotalChanged(int goldTotalInCart, int moneyInStore)
+    {
+        if (goldTotalInCart + Item.Value > moneyInStore && !_selected)
+        {
+            Disabled = true;
+            Disable();
+        }
+        else if (Disabled)
+        {
+            Disabled = false;
+            Unselect();
+        }
+    }
+
+    public override void _Pressed()
 	{
 		base._Pressed();
 
@@ -35,7 +51,15 @@ public partial class ItemContainer : ButtonPressedMove
 		
 	}
 
-	public void Select()
+    public void Disable()
+    {
+        var modulate = Modulate;
+        modulate = Colors.Gray;
+        modulate.A = 0.2f;
+        Modulate = modulate;
+    }
+
+    public void Select()
 	{
 		var modulate = Modulate;
 		modulate = Colors.ForestGreen;
@@ -66,9 +90,15 @@ public partial class ItemContainer : ButtonPressedMove
 		}
 	}
 
+    public void SetGoldText(string text)
+    {
+        var label = GetNode<Label>("Panel/MarginContainer/VBoxContainer2/ItemText/GoldCost");
+        label.Text = text;
+    }
+    
 	public void SetText(string text)
 	{
-		var label = GetNode<Label>("Panel/MarginContainer/VBoxContainer2/ItemText/Label");
+		var label = GetNode<Label>("Panel/MarginContainer/VBoxContainer2/ItemText/ItemName");
 		label.Text = text;
 	}
 }

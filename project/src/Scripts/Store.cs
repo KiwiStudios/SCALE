@@ -11,7 +11,10 @@ public class Store
                         Item item,
                         Adventurer adventurer)
     {
-        Gold += item.Value;
+        var profitPercentage = GD.Randf() + 1;
+        var gains = (int)(item.Value * profitPercentage);
+        Gold += gains;
+        item.Value = gains;
         items.Remove(item);
         eventBus.EmitOnGoldCountChanged(Gold);
         eventBus.EmitOnItemSold(item, adventurer);

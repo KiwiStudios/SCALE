@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceiql28r8acbj"]
+[gd_scene load_steps=7 format=3 uid="uid://ijh8lbv4lria"]
 
-[ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_i4qr2"]
-[ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_wwyhq"]
-[ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="3_gcri0"]
-[ext_resource type="Texture2D" uid="uid://oacqqd57m2xx" path="res://Assets/Sprites/border.png" id="3_n61sn"]
-[ext_resource type="Script" path="res://Scripts/Buttons/ContinueButton.cs" id="5_b34e6"]
-[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="5_obhab"]
+[ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_pvejc"]
+[ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_ixvqb"]
+[ext_resource type="Texture2D" uid="uid://oacqqd57m2xx" path="res://Assets/Sprites/border.png" id="3_icmox"]
+[ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="4_caeaq"]
+[ext_resource type="Script" path="res://Scripts/Buttons/ContinueButton.cs" id="5_rlnv6"]
+[ext_resource type="Script" path="res://Scripts/DayStart/GoldCounter.cs" id="6_xvs2l"]
 
-[node name="DayStart" type="Node2D"]
+[node name="DayContinue" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_i4qr2")
-script = ExtResource("2_wwyhq")
+texture = ExtResource("1_pvejc")
+script = ExtResource("2_ixvqb")
 
 [node name="BoxContainer2" type="BoxContainer" parent="."]
 offset_right = 1280.0
@@ -25,7 +25,7 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("3_n61sn")
+texture = ExtResource("3_icmox")
 
 [node name="MarginContainer" type="MarginContainer" parent="BoxContainer2"]
 layout_mode = 2
@@ -51,22 +51,21 @@ layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer" groups=["continue_button"]]
 layout_mode = 2
-theme = ExtResource("5_obhab")
+theme = ExtResource("4_caeaq")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 28
 text = "Continue"
-script = ExtResource("5_b34e6")
+script = ExtResource("5_rlnv6")
 
-[node name="GoldCounter" type="Label" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
-script = ExtResource("3_gcri0")
+script = ExtResource("6_xvs2l")
 
-[node name="Label2" type="Label" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer" groups=["daystart_title"]]
+[node name="Label2" type="Label" parent="BoxContainer2/MarginContainer/VBoxContainer/BoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Select your starting items"
+theme_override_font_sizes/font_size = 48
+text = "The travelling merchant offers wares.."
 
 [node name="ItemBoxContainer" type="BoxContainer" parent="BoxContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -82,7 +81,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BoxContainer2/MarginContainer/VBoxContainer/ItemBoxContainer/ItemContainer"]
 layout_mode = 2
-theme = ExtResource("5_obhab")
+theme = ExtResource("4_caeaq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer2/MarginContainer/VBoxContainer/ItemBoxContainer/ItemContainer/ScrollContainer" groups=["row_container"]]
 layout_mode = 2
