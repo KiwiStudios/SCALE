@@ -7,15 +7,17 @@ namespace SCALE.Scripts.Managers;
 public partial class AdventurerManager : Node
 {
     private EventBus _eventBus = null!;
-    private const int AdventureCount = 50;
+    private const int AdventureCount = 25;
     private StoreManager _storeManager = null!;
 
-    private List<Adventurer> _adventurers = AdventurerList();
+    public readonly List<Adventurer> Adventurers = AdventurerList();
+    public static readonly string GroupName = nameof(AdventurerManager);
 
     public override void _EnterTree()
     {
         _eventBus = this.GetEventBus();
         base._EnterTree();
+        AddToGroup(GroupName);
     }
 
     public override void _Ready()
@@ -38,7 +40,7 @@ public partial class AdventurerManager : Node
 
     private void AdventureBuying(long timestamp)
     {
-        foreach (var adventurer in _adventurers)
+        foreach (var adventurer in Adventurers)
         {
             SimulateDay(adventurer);
         }
@@ -46,7 +48,7 @@ public partial class AdventurerManager : Node
 
     private void SimulateDay(Adventurer adventurer)
     {
-        var buyChance = 1;
+        var buyChance = 10;
         var willBuy = GD.RandRange(0, 100) < buyChance;
         if (willBuy)
         {
@@ -65,8 +67,8 @@ public partial class AdventurerManager : Node
             var item = GetItemThatAdventurerWants(storeItems, field);
             if (item is not null)
             {
-                var success = _storeManager.Store.BuyItem(_eventBus, item, adventurer);
-                if (success) SetAdventurerFieldToItem(adventurer, item, field);
+                SetAdventurerFieldToItem(adventurer, item, field);
+                _storeManager.Store.BuyItem(_eventBus, item, adventurer);
             }
         }
 
@@ -75,8 +77,8 @@ public partial class AdventurerManager : Node
             var possibleUpgradeEquipment = GetPossibleUpgradeThatAdventurerWants(storeItems, field, adventurer);
             if (possibleUpgradeEquipment is not null)
             {
-                var success = _storeManager.Store.BuyItem(_eventBus, possibleUpgradeEquipment, adventurer);
-                if (success) SetAdventurerFieldToItem(adventurer, possibleUpgradeEquipment, field);
+                SetAdventurerFieldToItem(adventurer, possibleUpgradeEquipment, field);
+                _storeManager.Store.BuyItem(_eventBus, possibleUpgradeEquipment, adventurer);
             }
         }
     }

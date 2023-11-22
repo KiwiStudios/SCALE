@@ -94,6 +94,7 @@ public partial class Adventurer : RefCounted
             _ => throw new ArgumentOutOfRangeException()
         };
     }
+
     private int HighStat()
     {
         return Rank switch
@@ -109,7 +110,7 @@ public partial class Adventurer : RefCounted
 
     private Equipment DetermineStartingEquipment()
     {
-        var startingConsumables = Items.FindPotions(2,Rank);
+        var startingConsumables = Items.FindPotions(2, Rank);
         var weapon = Items.FindWeapon(Class, Rank);
         var helmet = FindStartingArmourPiece(EArmour.Helmet);
         var chestPlate = FindStartingArmourPiece(EArmour.Chestplate);
@@ -128,20 +129,10 @@ public partial class Adventurer : RefCounted
         {
             return null;
         }
+
         var rankToUse = onPar ? Rank : (ERank)((int)Rank - 1);
         return Items.FindArmourPiece(rankToUse, slot);
     }
 
-    public String ColourCode()
-    {
-        return Rank switch
-        {
-            ERank.Bronze => "#CD7F32",
-            ERank.Silver => "#C0C0C0",
-            ERank.Gold => "#FFD700",
-            ERank.Diamond => "#B9F2FF",
-            ERank.Legendary => "#ff4500",
-            _ => throw new ArgumentOutOfRangeException()
-        };
-    }
+    public string ColourCode() => Rank.GetColourCode();
 }

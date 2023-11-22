@@ -146,7 +146,7 @@ public partial class EventLogLabel : VBoxContainer
 
                 var child = rowsToWrite[currentIdx]![currentRowChildIdx];
                 var isWriting = child.BackingText.Length > 0;
-                var isOverMaxWidth = currentRow.GetChildren().Cast<EventLogLabelText>().Sum(x => x.Size.X) > Math.Max(currentRow.Size.X - 50, 50);
+                var isOverMaxWidth = currentRow.GetChildren().Cast<EventLogLabelText>().Sum(x => x.Size.X) > Math.Max(currentRow.Size.X - 25, 25);
 
                 if (currentRow.GetChildren().Contains(child) is false)
                 {

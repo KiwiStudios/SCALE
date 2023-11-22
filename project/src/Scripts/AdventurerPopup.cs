@@ -1,19 +1,19 @@
-﻿using System.Linq;
+using System.Linq;
 using Environment = System.Environment;
 
 namespace SCALE.Scripts;
 
 public partial class AdventurerPopup : Popup
 {
-    public Adventurer Adventurer = null!;
+	public Adventurer Adventurer = null!;
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public override void _Ready()
+	{
+		base._Ready();
 
-        var adventurerDetail = GetNode<RichTextLabel>("CenterContainer/MarginContainer/VBoxContainer/AdventurerDetail");
+		var adventurerDetail = GetNode<RichTextLabel>("CenterContainer/MarginContainer/VBoxContainer/AdventurerDetail");
 
-        adventurerDetail.Text = @$"[font_size={{36}}]{Adventurer.Name}[/font_size]
+		adventurerDetail.Text = @$"[font_size={{36}}]{Adventurer.Name}[/font_size]
 Gold: {Adventurer.Gold}
 Rank: {Adventurer.Rank.ToString()}
 Health: {Adventurer.Health}
@@ -38,9 +38,9 @@ Shield: {Adventurer.Equipment.Shield?.DisplayName() ?? "None"}
 ";
 
 #pragma warning disable CS0219
-        var foo = 0;
+		var foo = 0;
 
-        Show();
+		Show();
 #pragma warning restore CS0219
-    }
+	}
 }
