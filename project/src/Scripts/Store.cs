@@ -7,7 +7,7 @@ public class Store
     public List<Item> items = new List<Item>();
     public int Gold = 20;
 
-    public void BuyItem(EventBus eventBus,
+    public bool BuyItem(EventBus eventBus,
                         Item item,
                         Adventurer adventurer)
     {
@@ -15,5 +15,6 @@ public class Store
         items.Remove(item);
         eventBus.EmitOnGoldCountChanged(Gold);
         eventBus.EmitOnItemSold(item, adventurer);
+        return true;
     }
 }
