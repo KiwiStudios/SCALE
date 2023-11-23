@@ -76,8 +76,8 @@ public partial class EventLogLabel : VBoxContainer
         _eventBus.OnAdventurerLevelUp += OnAdventurerLevelUp;
     }
 
-    private void OnAdventurerLevelUp(string rankfrom,
-                                     string rankto,
+    private void OnAdventurerLevelUp(ERank rankfrom,
+                                     ERank rankto,
                                      Adventurer adventurer)
     {
         var colour = adventurer.ColourCode();
@@ -97,7 +97,7 @@ public partial class EventLogLabel : VBoxContainer
             FitContent = true,
         };
         rankFromText.BackingText = $"{rankfrom}";
-        rankFromText.AddThemeColorOverride("default_color", Color.FromHtml(Enum.Parse<ERank>(rankfrom).GetColourCode()));
+        rankFromText.AddThemeColorOverride("default_color", Color.FromHtml(rankfrom.GetColourCode()));
 
         var rankToText = new EventLogLabelText()
         {
@@ -105,7 +105,7 @@ public partial class EventLogLabel : VBoxContainer
             FitContent = true,
         };
         rankToText.BackingText = $"{rankto}";
-        rankToText.AddThemeColorOverride("default_color", Color.FromHtml(Enum.Parse<ERank>(rankto).GetColourCode()));
+        rankToText.AddThemeColorOverride("default_color", Color.FromHtml(rankto.GetColourCode()));
 
         AddEvent(
             new List<object>()

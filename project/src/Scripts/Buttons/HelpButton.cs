@@ -17,6 +17,6 @@ public partial class HelpButton : ButtonPressedMove
     {
         base._Pressed();
         
-        _eventBus.EmitOnPopupOpen(EPopupNames.InitialInstructions.ToString());
+        _eventBus.EmitOnPopupOpen(EPopupNames.InitialInstructions);
     }
 }

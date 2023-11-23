@@ -37,7 +37,7 @@ public partial class AdventurerText : EventLogLabelText
         base._Input(@event);
         if (isActive && Input.IsActionJustPressed(InputMappings.Left_Click))
         {
-            _eventBus.EmitOnPopupOpen(EPopupNames.AdventurerPreview.ToString(), Adventurer);
+            _eventBus.EmitOnPopupOpen(EPopupNames.AdventurerPreview, Adventurer);
         }
     }
 }

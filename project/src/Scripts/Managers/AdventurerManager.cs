@@ -124,25 +124,25 @@ public partial class AdventurerManager : Node
         if (adventurer.Rank == ERank.Bronze && score > 20)
         {
             adventurer.Rank = ERank.Silver;
-            _eventBus.EmitOnAdventurerLevelUp(ERank.Bronze.ToString(), ERank.Silver.ToString(), adventurer);
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Bronze, ERank.Silver, adventurer);
         }
 
         if (adventurer.Rank == ERank.Silver && score > 30)
         {
             adventurer.Rank = ERank.Gold;
-            _eventBus.EmitOnAdventurerLevelUp(ERank.Silver.ToString(), ERank.Gold.ToString(), adventurer);
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Silver, ERank.Gold, adventurer);
         }
 
         if (adventurer.Rank == ERank.Gold && score > 35)
         {
             adventurer.Rank = ERank.Diamond;
-            _eventBus.EmitOnAdventurerLevelUp(ERank.Gold.ToString(), ERank.Diamond.ToString(), adventurer);
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Gold, ERank.Diamond, adventurer);
         }
 
         if (adventurer.Rank == ERank.Diamond && score > 40)
         {
             adventurer.Rank = ERank.Legendary;
-            _eventBus.EmitOnAdventurerLevelUp(ERank.Diamond.ToString(), ERank.Legendary.ToString(), adventurer);
+            _eventBus.EmitOnAdventurerLevelUp(ERank.Diamond, ERank.Legendary, adventurer);
         }
     }
 

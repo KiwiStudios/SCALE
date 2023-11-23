@@ -1,5 +1,6 @@
 
 using EventBusSourceGenerator;
+using SCALE.Enums;
 using SCALE.GameData;
 using SCALE.Scripts.Managers;
 
@@ -13,11 +14,11 @@ public partial class EventBus : Node
 
     /// <param name="popupNames" type="EPopupNames">Use the EPopupNames enum</param>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnPopupOpenEventHandler(string popupNames, params GodotObject[] args);
+    public delegate void OnPopupOpenEventHandler(EPopupNames popupNames, params GodotObject[] args);
 
     /// <param name="popupNames">Use the EPopupNames enum</param>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnPopupCloseEventHandler(string popupNames);
+    public delegate void OnPopupCloseEventHandler(EPopupNames popupNames);
     
     #endregion
 
@@ -48,7 +49,7 @@ public partial class EventBus : Node
     /// </summary>
     /// <param name="gameState">Use the EGameState enum</param>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnGoToGameStateEventHandler(string gameState, params GodotObject[] args);
+    public delegate void OnGoToGameStateEventHandler(EGameState gameState, params GodotObject[] args);
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnGoToSceneEventHandler(PackedScene scene);
@@ -60,7 +61,7 @@ public partial class EventBus : Node
     public delegate void OnGoToPreviousSceneEventHandler();
     
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnGoToGameStateFinishedEventHandler(string gameState, params GodotObject[] args);
+    public delegate void OnGoToGameStateFinishedEventHandler(EGameState gameState, params GodotObject[] args);
 
     #endregion
 
@@ -86,7 +87,7 @@ public partial class EventBus : Node
     /// Use the ERank enum.
     /// </summary>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnAdventurerLevelUpEventHandler(string rankFrom, string rankTo, Adventurer adventurer);
+    public delegate void OnAdventurerLevelUpEventHandler(ERank rankFrom, ERank rankTo, Adventurer adventurer);
 
 
     #endregion

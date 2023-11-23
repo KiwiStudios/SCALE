@@ -17,11 +17,10 @@ public partial class PopupManager : Node
         _eventbus.OnPopupClose += OnPopupClose;
     }
 
-    private void OnPopupOpen(string popupName, params GodotObject[] args)
+    private void OnPopupOpen(EPopupNames popupName, params GodotObject[] args)
     {
         if (currentPopup is not null) return;
-        var ePopupName = Enum.Parse<EPopupNames>(popupName);
-        var popup = ePopupName switch
+        var popup = popupName switch
         {
             EPopupNames.InitialInstructions => Scenes.UI_TUTORIAL_POPUP_SCENE.Instantiate<Popup>(),
             EPopupNames.AdventurerPreview => Scenes.UI_ADVENTURER_POPUP_SCENE.Instantiate<AdventurerPopup>(),
@@ -33,22 +32,25 @@ public partial class PopupManager : Node
             adventurerPopup.Adventurer = (Adventurer)args[0];
         }
 
-        popup.Name = popupName;
+        popup.Name = popupName.ToString();
         popup.PopupHide += PopupOnPopupHide;
         Root.Tree.AddChild(
             popup,
             true
         );
-        currentPopup = ePopupName;
+        currentPopup = popupName;
     }
 
 
     private void PopupOnPopupHide()
     {
-        OnPopupClose(currentPopup.ToString()!);
+        if (currentPopup is not null)
+        {
+            OnPopupClose(currentPopup.Value);
+        }
     }
 
-    private void OnPopupClose(string popupName)
+    private void OnPopupClose(EPopupNames popupName)
     {
         //Enum.Parse<EPopupNames>(popupName);
         if (currentPopup is null) return;
