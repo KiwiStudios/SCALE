@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using MoreLinq.Extensions;
 using SCALE.Enums;
 
 namespace SCALE.Models;
@@ -16,10 +18,10 @@ public partial class MonsterSlayingQuest : Quest
         var t = rank switch
         {
             ERank.Bronze => BronzeSlayingQuest(),
-            ERank.Silver => BronzeSlayingQuest(),
-            ERank.Gold => BronzeSlayingQuest(),
-            ERank.Diamond => BronzeSlayingQuest(),
-            ERank.Legendary => BronzeSlayingQuest(),
+            ERank.Silver => SilverSlayingQuest(),
+            ERank.Gold => GoldSlayingQuest(),
+            ERank.Diamond => DiamondSlayingQuest(),
+            ERank.Legendary => LegendarySlayingQuest(),
             _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
         };
     }
@@ -27,18 +29,99 @@ public partial class MonsterSlayingQuest : Quest
 
     private Stack<Monster> BronzeSlayingQuest()
     {
-        int encounter = GD.RandRange(0, 1);
-        switch(encounter)
-        {
-            case 0:
-                Monsters.Push(new Monster(EMonsterName.Zombie));
-                break;
-            case 1: 
-                Monsters.Push(new Monster(EMonsterName.Goblin));
-                break;
-        }
+        var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
+        Monsters.Push(monsterToFight);
         return Monsters;
     }
+
+    private Stack<Monster> SilverSlayingQuest()
+    {
+        var quantity = GD.RandRange(1, 3);
+        var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
+        for (int i = 0; i < quantity; i++)
+        {
+            Monsters.Push(monsterToFight);
+        }
+
+        return Monsters;
+    }
+
+    private Stack<Monster> GoldSlayingQuest()
+    {
+        var roll = GD.RandRange(0, 1);
+        var challenge = roll == 1 ? EDangerLevel.Low : EDangerLevel.Medium;
+        if (challenge is EDangerLevel.Low)
+        {
+            var quantity = GD.RandRange(3, 5);
+            var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
+            for (int i = 0; i < quantity; i++)
+            {
+                Monsters.Push(monsterToFight);
+            }
+        }
+        else
+        {
+            var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
+            Monsters.Push(monsterToFight);
+        }
+
+        return Monsters;
+    }
+    
+    private Stack<Monster> DiamondSlayingQuest()
+    {
+        var challenge = Extensions.GetRandomEnumValue<EDangerLevel>();
+        if (challenge is EDangerLevel.Low)
+        {
+            var quantity = GD.RandRange(7, 10);
+            var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
+            for (int i = 0; i < quantity; i++)
+            {
+                Monsters.Push(monsterToFight);
+            }
+        }
+        else if(challenge is EDangerLevel.Medium)
+        {
+            var quantity = GD.RandRange(1, 4);
+            var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
+            for (int i = 0; i < quantity; i++)
+            {
+                Monsters.Push(monsterToFight);
+            }
+        }
+        else
+        {
+            var monsterToFight = Extensions.RandomItemFromList(Monster.HighThreatMonsters);
+            Monsters.Push(monsterToFight);
+        }
+
+        return Monsters;
+    }
+    
+    
+    private Stack<Monster> LegendarySlayingQuest()
+    {
+        var roll = GD.RandRange(0, 1);
+        var challenge = roll == 1 ? EDangerLevel.Medium : EDangerLevel.High;
+        if(challenge is EDangerLevel.Medium)
+        {
+            var quantity = GD.RandRange(3, 6);
+            var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
+            for (int i = 0; i < quantity; i++)
+            {
+                Monsters.Push(monsterToFight);
+            }
+        }
+        else
+        {
+            var monsterToFight = Extensions.RandomItemFromList(Monster.HighThreatMonsters);
+            Monsters.Push(monsterToFight);
+        }
+
+        return Monsters;
+    }
+    
+    
     protected override void ProgressQuest(Adventurer adventurer)
     {
         if (Monsters.Count <= 0) return;
@@ -65,7 +148,14 @@ public partial class MonsterSlayingQuest : Quest
     }
     public override string Text()
     {
-        return "went on a quest to slay";
+        var monsterName = Monsters.Peek().Name.ToString();
+        var prefix = "went on a quest to slay a ";
+        if (Monsters.Count > 1)
+        {
+            prefix += "a group of ";
+            monsterName += "s";
+        }
+        return prefix + monsterName;
     }
 
     private void MonsterAttack(Adventurer adventurer, Monster monster)
