@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MoreLinq.Extensions;
 using SCALE.Enums;
 
@@ -8,6 +9,7 @@ namespace SCALE.Models;
 public partial class MonsterSlayingQuest : Quest
 {
     private Stack<Monster> Monsters = new Stack<Monster>();
+    private List<Monster> StartingFight = new List<Monster>();
     private int DamageDuringQuest;
     public MonsterSlayingQuest(ERank rank) : base(rank, EQuestTypes.MonsterSlaying)
     {
@@ -24,6 +26,7 @@ public partial class MonsterSlayingQuest : Quest
             ERank.Legendary => LegendarySlayingQuest(),
             _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
         };
+        StartingFight = t.ToList();
     }
 
 
@@ -148,9 +151,9 @@ public partial class MonsterSlayingQuest : Quest
     }
     public override string Text()
     {
-        var monsterName = Monsters.Peek().Name.ToString();
+        var monsterName = StartingFight.First().Name.ToString();
         var prefix = "went on a quest to slay a ";
-        if (Monsters.Count > 1)
+        if (StartingFight.Count > 1)
         {
             prefix += "a group of ";
             monsterName += "s";
