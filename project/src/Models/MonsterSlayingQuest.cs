@@ -145,7 +145,7 @@ public partial class MonsterSlayingQuest : Quest
         var monster = _monsters.Peek();
         MonsterAttack(adventurer, monster);
 
-        if (_damageDuringQuest >= adventurer.Health)
+        if (_damageDuringQuest >= adventurer.MaxHealth)
         {
             adventurer.IsDead = true;
             adventurer.DeathMessage = monster.KilledByMessage(_monsters.Count > 1);
@@ -169,9 +169,10 @@ public partial class MonsterSlayingQuest : Quest
         var toHit = GD.RandRange(0, 100);
         
         //Better agility allows you to dodge more easily
-        if (toHit >= adventurer.Agility * 4) return;
-        
-        _damageDuringQuest += (int)(monster.Power * (100 - adventurer.ArmourRating / 100));
+        if (toHit < adventurer.Agility * 4) return;
+
+        var t = 1 - (double)adventurer.ArmourRating / 100;
+        _damageDuringQuest += (int)(monster.Power * t);
     }
 
     private bool AdventurerKillsMonster(Adventurer adventurer)

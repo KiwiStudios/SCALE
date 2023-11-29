@@ -16,7 +16,7 @@ public partial class AdventurerPopup : Popup
 		adventurerDetail.Text = @$"[font_size={{36}}]{Adventurer.Name}[/font_size]
 Gold: {Adventurer.Gold}
 Rank: {Adventurer.Rank.ToString()}
-Health: {Adventurer.Health}
+Health: {Adventurer.HealthStat}
 Class: {Adventurer.Class}
 
 [font_size={{28}}]Statistics[/font_size]

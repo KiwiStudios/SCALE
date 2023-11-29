@@ -14,7 +14,8 @@ public partial class Adventurer : RefCounted
     public EAdventureClass Class;
     public string Name;
     public ERank Rank;
-    public int Health;
+    public int HealthStat;
+    public int MaxHealth;
     public int Arcana;
     public int Strength;
     public int Agility;
@@ -72,7 +73,7 @@ public partial class Adventurer : RefCounted
         Arcana = AverageStat();
         Strength = AverageStat();
         Agility = AverageStat();
-        Health = AverageStat();
+        HealthStat = AverageStat();
 
         //Make main stat for class better
         switch (Class)
@@ -87,11 +88,13 @@ public partial class Adventurer : RefCounted
                 Arcana = HighStat();
                 break;
             case EAdventureClass.Tank:
-                Health = HighStat();
+                HealthStat = HighStat();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        MaxHealth = HealthStat * 4;
     }
 
     private int AverageStat()
