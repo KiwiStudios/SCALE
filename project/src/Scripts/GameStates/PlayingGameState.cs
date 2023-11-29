@@ -61,7 +61,7 @@ public partial class PlayingGameState : GameState
 
         if (Root.Data.IsFirstInstructionsShown is false)
         {
-            _eventBus.EmitOnPopupOpen(EPopupNames.InitialInstructions.ToString());
+            _eventBus.EmitOnPopupOpen(EPopupNames.InitialInstructions);
             Root.Data.IsFirstInstructionsShown = true;
         }
     }
@@ -72,7 +72,7 @@ public partial class PlayingGameState : GameState
 
         if (Input.IsActionJustPressed(InputMappings.Escape_Key))
         {
-            eventBus.EmitOnGoToGameState(EGameState.MainMenu.ToString());
+            eventBus.EmitOnGoToGameState(EGameState.MainMenu);
             eventBus.EmitOnGoToScene(Scenes.GAMESTATES_MAIN_SCENE);
         }
     }

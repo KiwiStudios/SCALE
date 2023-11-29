@@ -20,7 +20,7 @@ public partial class GameStateManager : Node
     public override void _EnterTree()
     {
         _eventBus = this.GetEventBus();
-        _eventBus!.OnGoToGameState += (s, args) => SwitchState(Enum.Parse<EGameState>(s), args);
+        _eventBus!.OnGoToGameState += SwitchState;
     }
 
     public override void _Ready()
@@ -66,6 +66,6 @@ public partial class GameStateManager : Node
         _gameStateNode = newGameStateNode;
         AddChild(newGameStateNode, true);
 
-        _eventBus!.EmitOnGoToGameStateFinished(newGameState.ToString(), args);
+        _eventBus!.EmitOnGoToGameStateFinished(newGameState, args);
     }
 }

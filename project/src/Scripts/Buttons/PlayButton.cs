@@ -16,6 +16,6 @@ public partial class PlayButton : ButtonPressedMove
 
     public override void _Pressed()
     {
-        _eventBus.EmitOnGoToGameState(EGameState.Playing.ToString());
+        _eventBus.EmitOnGoToGameState(EGameState.Playing);
     }
 }

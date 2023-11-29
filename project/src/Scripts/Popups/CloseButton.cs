@@ -9,6 +9,6 @@ public partial class CloseButton : Button
 	public override void _Pressed()
 	{
 		var eventBus = this.GetEventBus();
-		eventBus.EmitOnPopupClose(_popupName.ToString());
+		eventBus.EmitOnPopupClose(_popupName);
 	}
 }
