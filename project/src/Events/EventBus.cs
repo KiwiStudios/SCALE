@@ -115,10 +115,20 @@ public partial class EventBus : Node
     public delegate void OnSkipRestOfDayEventHandler();
     
     #endregion
+
+    #region Adventurers
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnAdventurerDeathEventHandler(Adventurer adventurer);
+
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnAdventurerGoesOnQuestEventHandler(Adventurer adventurer, Quest quest);
+
+    #endregion
     
     /// <summary>
     /// Time in ticks (DateTime)
     /// </summary>
     [Signal, GenerateMethodForEventHandler]
-    public delegate void OnTimeTickEventHandler(long timestamp);
+    public delegate void OnTimeTickEventHandler(long timestamp, int minutes);
 }

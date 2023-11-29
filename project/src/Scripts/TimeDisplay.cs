@@ -20,7 +20,7 @@ public partial class TimeDisplay : Label
         Text = GetDateText(TimeManager.CurrentTime);
     }
 
-    private void OnTimeTick(long timestamp)
+    private void OnTimeTick(long timestamp, int minutes)
     {
         Text = GetDateText(new DateTime(timestamp));
     }

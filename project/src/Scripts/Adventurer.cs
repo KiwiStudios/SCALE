@@ -19,6 +19,9 @@ public partial class Adventurer : RefCounted
     public int Gold;
     public int ArmourRating;
     public Equipment Equipment;
+    public Quest? Quest;
+    public bool IsDead = false;
+    public string? DeathMessage;
 
     private readonly List<string> _locales = new List<string>()
     {
@@ -142,4 +145,11 @@ public partial class Adventurer : RefCounted
     }
 
     public string ColourCode() => Rank.GetColourCode();
+    
+    public void TakeQuest()
+    {
+        if (Equipment.PrimaryWeapon is null) return;
+        if (Class is EAdventureClass.Spellcaster && Equipment.PrimaryWeapon is Staff staff && staff.Element == EStaffElement.Healing) return;
+        Quest.RandomQuest(Rank);
+    }
 }

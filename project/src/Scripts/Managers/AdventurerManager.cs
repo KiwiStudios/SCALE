@@ -8,9 +8,11 @@ public partial class AdventurerManager : Node
 {
     private EventBus _eventBus = null!;
     private const int AdventureCount = 25;
+    private const int QuestChance = 40;
     private StoreManager _storeManager = null!;
 
     public readonly List<Adventurer> Adventurers = AdventurerList();
+    private List<Adventurer> _deadAdventurers = new List<Adventurer>();
     public static readonly string GroupName = nameof(AdventurerManager);
 
     public override void _EnterTree()
@@ -23,8 +25,19 @@ public partial class AdventurerManager : Node
     public override void _Ready()
     {
         base._Ready();
-        _eventBus.OnTimeTick += AdventureBuying;
+        _eventBus.OnTimeTick += TimePasses;
+        _eventBus.OnStartNewDay += OnOnStartNewDay;
         _storeManager = (StoreManager)Root.SceneTree.GetFirstNodeInGroup(StoreManager.GroupName);
+    }
+    private void OnOnStartNewDay()
+    {
+        foreach (var adventurer in Adventurers)
+        {
+            var roll = GD.RandRange(0, 100);
+            if (roll > QuestChance) continue;
+            adventurer.Quest = Quest.RandomQuest(adventurer.Rank);
+            _eventBus.EmitOnAdventurerGoesOnQuest(adventurer, adventurer.Quest);
+        }
     }
 
     private static List<Adventurer> AdventurerList()
@@ -38,21 +51,37 @@ public partial class AdventurerManager : Node
         return t;
     }
 
-    private void AdventureBuying(long timestamp)
+    private void TimePasses(long timestamp, int minutes)
     {
         foreach (var adventurer in Adventurers)
         {
-            SimulateDay(adventurer);
+            SimulateDay(adventurer, minutes);
         }
+
+        //Remove all the dead adventurers
+        foreach (var adventurer in _deadAdventurers)
+        {
+            Adventurers.Remove(adventurer);
+        }
+        _deadAdventurers = new List<Adventurer>();
     }
 
-    private void SimulateDay(Adventurer adventurer)
+    private void SimulateDay(Adventurer adventurer, int minutes)
     {
         var buyChance = 10;
         var willBuy = GD.RandRange(0, 100) < buyChance;
-        if (willBuy)
+        if (willBuy & adventurer.Quest is null)
         {
             BuyItem(adventurer);
+        } else if (adventurer.Quest is not null)
+        {
+            adventurer.Quest.ProgressTime(adventurer, minutes);
+        }
+        
+        if (adventurer.IsDead)
+        {
+            _eventBus.EmitOnAdventurerDeath(adventurer);
+            _deadAdventurers.Add(adventurer);
         }
     }
 

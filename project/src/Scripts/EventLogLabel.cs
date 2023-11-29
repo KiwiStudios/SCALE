@@ -73,7 +73,54 @@ public partial class EventLogLabel : VBoxContainer
         _eventBus = this.GetEventBus();
 
         _eventBus.OnItemSold += OnItemSold;
+        _eventBus.OnAdventurerDeath += OnAdventureDeath;
         _eventBus.OnAdventurerLevelUp += OnAdventurerLevelUp;
+        _eventBus.OnAdventurerGoesOnQuest += OnOnAdventurerGoesOnQuest;
+    }
+    private void OnOnAdventurerGoesOnQuest(Adventurer adventurer, Quest quest)
+    {
+        // var colour = adventurer.ColourCode();
+        // var adventurerName = new AdventurerText()
+        // {
+        //     AutowrapMode = TextServer.AutowrapMode.Off,
+        //     FitContent = true,
+        //     Adventurer = adventurer
+        // };
+        // adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        // AddEvent(
+        //     new List<object>()
+        //     {
+        //         $"Adventurer ",
+        //         adventurerName,
+        //         $" ",
+        //         "goes on a quest",
+        //         "!"
+        //     }
+        // );
+    }
+    private void OnAdventureDeath(Adventurer adventurer)
+    {
+        var colour = adventurer.ColourCode();
+        var adventurerName = new AdventurerText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+            Adventurer = adventurer
+        };
+        adventurerName.BackingText = $"{adventurer.Name}";
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        
+        AddEvent(
+            new List<object>()
+            {
+                $"Adventurer ",
+                adventurerName,
+                $" ",
+                adventurer.DeathMessage!,
+                "!"
+            }
+        );
+        
     }
 
     private void OnAdventurerLevelUp(string rankfrom,
