@@ -75,28 +75,53 @@ public partial class EventLogLabel : VBoxContainer
         _eventBus.OnItemSold += OnItemSold;
         _eventBus.OnAdventurerDeath += OnAdventureDeath;
         _eventBus.OnAdventurerLevelUp += OnAdventurerLevelUp;
-        _eventBus.OnAdventurerGoesOnQuest += OnOnAdventurerGoesOnQuest;
+        _eventBus.OnAdventurerGoesOnQuest += OnAdventurerGoesOnQuest;
+        _eventBus.OnAdventurerComesBackFromQuest += OnAdventurerComesBackFromQuest;
     }
-    private void OnOnAdventurerGoesOnQuest(Adventurer adventurer, Quest quest)
+
+    private void OnAdventurerComesBackFromQuest(Adventurer adventurer, Quest quest)
     {
-        // var colour = adventurer.ColourCode();
-        // var adventurerName = new AdventurerText()
-        // {
-        //     AutowrapMode = TextServer.AutowrapMode.Off,
-        //     FitContent = true,
-        //     Adventurer = adventurer
-        // };
-        // adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
-        // AddEvent(
-        //     new List<object>()
-        //     {
-        //         $"Adventurer ",
-        //         adventurerName,
-        //         $" ",
-        //         "goes on a quest",
-        //         "!"
-        //     }
-        // );
+        var colour = adventurer.ColourCode();
+        var adventurerName = new AdventurerText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+            Adventurer = adventurer
+        };
+        adventurerName.BackingText = adventurer.Name;
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        AddEvent(
+            new List<object>()
+            {
+                $"Adventurer ",
+                adventurerName,
+                $" ",
+                "has come back from",
+                quest.Text(),
+            }
+        );
+    }
+    
+    private void OnAdventurerGoesOnQuest(Adventurer adventurer, Quest quest)
+    {
+        var colour = adventurer.ColourCode();
+        var adventurerName = new AdventurerText()
+        {
+            AutowrapMode = TextServer.AutowrapMode.Off,
+            FitContent = true,
+            Adventurer = adventurer
+        };
+        adventurerName.BackingText = adventurer.Name;
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        AddEvent(
+            new List<object>()
+            {
+                $"Adventurer ",
+                adventurerName,
+                $" ",
+                quest.Text()
+            }
+        );
     }
     private void OnAdventureDeath(Adventurer adventurer)
     {

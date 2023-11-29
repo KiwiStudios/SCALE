@@ -33,7 +33,7 @@ public partial class Root : Node2D
 
 	private Camera? _camera;
 
-    
+	
 	public override void _EnterTree()
 	{
 		Tree = GetTree().Root;
@@ -50,9 +50,9 @@ public partial class Root : Node2D
 		InitializeGameData();
 
 		ParseCmdArgs();
-    }
+	}
 
-    /// <summary>
+	/// <summary>
 	/// Supported cli arg now:
 	/// --saveGameDebug=load
 	/// --saveGameDebug=save

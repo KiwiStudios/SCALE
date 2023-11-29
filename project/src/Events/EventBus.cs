@@ -124,6 +124,9 @@ public partial class EventBus : Node
 
     [Signal, GenerateMethodForEventHandler]
     public delegate void OnAdventurerGoesOnQuestEventHandler(Adventurer adventurer, Quest quest);
+    
+    [Signal, GenerateMethodForEventHandler]
+    public delegate void OnAdventurerComesBackFromQuestEventHandler(Adventurer adventurer, Quest quest);
 
     #endregion
     

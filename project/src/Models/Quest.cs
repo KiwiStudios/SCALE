@@ -10,6 +10,7 @@ public abstract partial class Quest : RefCounted
     public int OldTime; //In minutes
     public bool QuestCompleted;
     public int QuestCompletionTime;
+
     protected Quest(ERank rank, EQuestTypes questType)
     {
         Type = questType;
@@ -34,14 +35,14 @@ public abstract partial class Quest : RefCounted
             var currentTime = OldTime + (i * TimeManager.TickTime);
             TimeTick(currentTime, adventurer);
         }
-        
+
         if (QuestCompleted && newTime > QuestCompletionTime + TravelTime)
         {
             adventurer.Quest = null;
-            //todo emit returned sucessfully from quest
+            Root.EventBus.EmitOnAdventurerComesBackFromQuest(adventurer, this);
             return;
         }
-        
+
         OldTime += timeElapsed;
     }
 
@@ -49,10 +50,10 @@ public abstract partial class Quest : RefCounted
     {
         //If not yet arrived on quest location do nothing
         if (currentTime < TravelTime) return;
-        
+
         //Do nothing when the quest is completed as traveling back
-        if(QuestCompleted) return;
-        
+        if (QuestCompleted) return;
+
         ProgressQuest(adventurer);
     }
 

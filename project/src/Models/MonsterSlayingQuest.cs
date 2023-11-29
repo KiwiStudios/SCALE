@@ -27,7 +27,7 @@ public partial class MonsterSlayingQuest : Quest
 
     private Stack<Monster> BronzeSlayingQuest()
     {
-        int encounter = GD.RandRange(0, 5);
+        int encounter = GD.RandRange(0, 1);
         switch(encounter)
         {
             case 0:

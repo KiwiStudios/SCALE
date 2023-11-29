@@ -26,10 +26,10 @@ public partial class AdventurerManager : Node
     {
         base._Ready();
         _eventBus.OnTimeTick += TimePasses;
-        _eventBus.OnStartNewDay += OnOnStartNewDay;
+        _eventBus.OnStartNewDay += OnStartNewDay;
         _storeManager = (StoreManager)Root.SceneTree.GetFirstNodeInGroup(StoreManager.GroupName);
     }
-    private void OnOnStartNewDay()
+    private void OnStartNewDay()
     {
         foreach (var adventurer in Adventurers)
         {

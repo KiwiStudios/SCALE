@@ -15,8 +15,8 @@ public partial class StoreManager : Node
     private Node _itemContainer = null!;
 
     private List<Item> dayStartSelectedItems = new List<Item>();
-    private bool isInitial = true;
-    private bool isNewMorning = false;
+    private bool isInitial = false;
+    private bool isNewMorning = true;
 
     public static string GroupName = nameof(StoreManager);
     private AdventurerManager _adventurerManager = null!;
