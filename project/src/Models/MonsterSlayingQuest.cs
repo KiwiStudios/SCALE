@@ -19,7 +19,7 @@ public partial class MonsterSlayingQuest : Quest
     public override string Text()
     {
         var monsterName = _monstersAtStartOfFight.First().Name.ToString();
-        var prefix = "went on a quest to slay a ";
+        var prefix = "a quest to slay a ";
         if (_monstersAtStartOfFight.Count > 1)
         {
             prefix += "a group of ";

@@ -32,6 +32,7 @@ public partial class TimeManager : Node
     }
     private void OnSkipRestOfDay()
     {
+        _eventBus.EmitOnTimeTick(CurrentTime.Ticks,8 * 60);
         EndDay();
     }
     private void StartTime()
