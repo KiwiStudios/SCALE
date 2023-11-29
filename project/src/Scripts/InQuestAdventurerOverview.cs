@@ -13,6 +13,12 @@ public partial class InQuestAdventurerOverview : VBoxContainer
         _eventBus = this.GetEventBus();
         _eventBus.OnAdventurerGoesOnQuest += OnAdventurerGoesOnQuest;
         _eventBus.OnAdventurerComesBackFromQuest += OnAdventurerComesBackFromQuest;
+        _eventBus.OnAdventurerDeath += OnAdventurerDeath;
+    }
+
+    private void OnAdventurerDeath(Adventurer adventurer)
+    {
+        RemoveAdventurerFromList(adventurer);
     }
 
     private void AddAdventurerToList(Adventurer adventurer)
@@ -20,7 +26,7 @@ public partial class InQuestAdventurerOverview : VBoxContainer
         foreach (var child in GetChildren())
         {
             if (child is Label) continue;
-            
+
             var adventurerText = (AdventurerText)child;
             if (adventurerText.Adventurer.Id == adventurer.Id)
             {
@@ -55,11 +61,11 @@ public partial class InQuestAdventurerOverview : VBoxContainer
 
     private void OnAdventurerComesBackFromQuest(Adventurer adventurer, Quest quest)
     {
-        AddAdventurerToList(adventurer);
+        RemoveAdventurerFromList(adventurer);
     }
 
     private void OnAdventurerGoesOnQuest(Adventurer adventurer, Quest quest)
     {
-        RemoveAdventurerFromList(adventurer);
+        AddAdventurerToList(adventurer);
     }
 }

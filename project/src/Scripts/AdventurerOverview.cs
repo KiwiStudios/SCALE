@@ -17,17 +17,29 @@ public partial class AdventurerOverview : VBoxContainer
         _eventBus = this.GetEventBus();
 
         _eventBus.OnItemSold += OnItemSold; 
+        _eventBus.OnAdventurerDeath += OnAdventurerDeath;
         
         Render();
     }
 
+    private void OnAdventurerDeath(Adventurer adventurer)
+    {
+        Rerender();
+    }
+    
+
     private void OnItemSold(Item item, Adventurer adventurer)
+    {
+        Rerender();
+    }
+
+    private void Rerender()
     {
         foreach (var child in GetChildren())
         {
             child.Free();
         }
-        
+
         _storeManager = (StoreManager)Root.SceneTree.GetFirstNodeInGroup(StoreManager.GroupName);
         _adventurerManager = (AdventurerManager)Root.SceneTree.GetFirstNodeInGroup(AdventurerManager.GroupName);
         Render();
@@ -48,7 +60,7 @@ public partial class AdventurerOverview : VBoxContainer
                 FitContent = true,
                 Adventurer = adventurer,
                 AnimateText = false,
-                CustomMinimumSize = new Vector2(120, 20)
+                CustomMinimumSize = new Vector2(100, 20)
             };
             adventurerText.BackingText = $"{adventurer.Name}";
             adventurerText.Text = $"{adventurer.Name}";
@@ -107,7 +119,7 @@ public partial class AdventurerOverview : VBoxContainer
             AutowrapMode = TextServer.AutowrapMode.Off,
             FitContent = false,
             Text = text,
-            CustomMinimumSize = new Vector2(120, 20)
+            CustomMinimumSize = new Vector2(100, 20)
         };
     }
 

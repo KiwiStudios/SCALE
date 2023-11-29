@@ -63,9 +63,14 @@ size_flags_horizontal = 3
 horizontal_alignment = 2
 script = ExtResource("3_kd181")
 
-[node name="EventLog" type="VBoxContainer" parent="HBoxContainer/MarginContainer/TextLogContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer/TextLogContainer"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
+
+[node name="EventLog" type="VBoxContainer" parent="HBoxContainer/MarginContainer/TextLogContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("3_0tcba")
 
@@ -101,8 +106,13 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("8_c64mj")
 
@@ -131,27 +141,34 @@ stretch_mode = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("11_er5ik")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer3"]
-layout_mode = 2
-
-[node name="DayDisplay" type="Label" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer"]
+[node name="DayDisplay" type="Label" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Dead adventurers"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("12_bqnlm")
 
-[node name="DayDisplay" type="Label" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2"]
+[node name="DayDisplay" type="Label" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer2/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "In-quest adventurers"
