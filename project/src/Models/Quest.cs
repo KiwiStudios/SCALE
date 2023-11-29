@@ -6,7 +6,7 @@ namespace SCALE.Models;
 public abstract partial class Quest : RefCounted
 {
     public EQuestTypes Type;
-    public const int TravelTime = 3;
+    public int TravelTime;
     public int OldTime; //In minutes
     public bool QuestCompleted;
     public int QuestCompletionTime;
@@ -19,11 +19,13 @@ public abstract partial class Quest : RefCounted
     public static Quest RandomQuest(ERank rank)
     {
         var questType = Extensions.GetRandomEnumValue<EQuestTypes>();
-        return questType switch
+        var quest = questType switch
         {
             EQuestTypes.MonsterSlaying => new MonsterSlayingQuest(rank),
             _ => throw new ArgumentOutOfRangeException()
         };
+        quest.TravelTime = GD.RandRange(120, 180);
+        return quest;
     }
 
     public void ProgressTime(Adventurer adventurer, int timeElapsed)
@@ -54,10 +56,10 @@ public abstract partial class Quest : RefCounted
         //Do nothing when the quest is completed as traveling back
         if (QuestCompleted) return;
 
-        ProgressQuest(adventurer);
+        ProgressQuest(adventurer, currentTime);
     }
 
-    protected abstract void ProgressQuest(Adventurer adventurer);
+    protected abstract void ProgressQuest(Adventurer adventurer, int currentTime);
 
     public abstract string Text();
 }

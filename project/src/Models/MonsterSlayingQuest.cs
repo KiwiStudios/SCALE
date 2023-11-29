@@ -8,13 +8,26 @@ namespace SCALE.Models;
 
 public partial class MonsterSlayingQuest : Quest
 {
-    private Stack<Monster> Monsters = new Stack<Monster>();
-    private List<Monster> StartingFight = new List<Monster>();
-    private int DamageDuringQuest;
+    private readonly Stack<Monster> _monsters = new Stack<Monster>();
+    private List<Monster> _monstersAtStartOfFight = new List<Monster>();
+    private int _damageDuringQuest;
     public MonsterSlayingQuest(ERank rank) : base(rank, EQuestTypes.MonsterSlaying)
     {
         DetermineMonsters(rank);
     }
+    
+    public override string Text()
+    {
+        var monsterName = _monstersAtStartOfFight.First().Name.ToString();
+        var prefix = "went on a quest to slay a ";
+        if (_monstersAtStartOfFight.Count > 1)
+        {
+            prefix += "a group of ";
+            monsterName += "s";
+        }
+        return prefix + monsterName;
+    }
+    
     private void DetermineMonsters(ERank rank)
     {
         var t = rank switch
@@ -26,15 +39,15 @@ public partial class MonsterSlayingQuest : Quest
             ERank.Legendary => LegendarySlayingQuest(),
             _ => throw new ArgumentOutOfRangeException(nameof(rank), rank, null)
         };
-        StartingFight = t.ToList();
+        _monstersAtStartOfFight = t.ToList();
     }
 
 
     private Stack<Monster> BronzeSlayingQuest()
     {
         var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
-        Monsters.Push(monsterToFight);
-        return Monsters;
+        _monsters.Push(monsterToFight);
+        return _monsters;
     }
 
     private Stack<Monster> SilverSlayingQuest()
@@ -43,10 +56,10 @@ public partial class MonsterSlayingQuest : Quest
         var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
         for (int i = 0; i < quantity; i++)
         {
-            Monsters.Push(monsterToFight);
+            _monsters.Push(monsterToFight);
         }
 
-        return Monsters;
+        return _monsters;
     }
 
     private Stack<Monster> GoldSlayingQuest()
@@ -59,16 +72,16 @@ public partial class MonsterSlayingQuest : Quest
             var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
             for (int i = 0; i < quantity; i++)
             {
-                Monsters.Push(monsterToFight);
+                _monsters.Push(monsterToFight);
             }
         }
         else
         {
             var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
-            Monsters.Push(monsterToFight);
+            _monsters.Push(monsterToFight);
         }
 
-        return Monsters;
+        return _monsters;
     }
     
     private Stack<Monster> DiamondSlayingQuest()
@@ -80,7 +93,7 @@ public partial class MonsterSlayingQuest : Quest
             var monsterToFight = Extensions.RandomItemFromList(Monster.LowThreatMonsters);
             for (int i = 0; i < quantity; i++)
             {
-                Monsters.Push(monsterToFight);
+                _monsters.Push(monsterToFight);
             }
         }
         else if(challenge is EDangerLevel.Medium)
@@ -89,16 +102,16 @@ public partial class MonsterSlayingQuest : Quest
             var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
             for (int i = 0; i < quantity; i++)
             {
-                Monsters.Push(monsterToFight);
+                _monsters.Push(monsterToFight);
             }
         }
         else
         {
             var monsterToFight = Extensions.RandomItemFromList(Monster.HighThreatMonsters);
-            Monsters.Push(monsterToFight);
+            _monsters.Push(monsterToFight);
         }
 
-        return Monsters;
+        return _monsters;
     }
     
     
@@ -112,60 +125,53 @@ public partial class MonsterSlayingQuest : Quest
             var monsterToFight = Extensions.RandomItemFromList(Monster.MediumThreatMonsters);
             for (int i = 0; i < quantity; i++)
             {
-                Monsters.Push(monsterToFight);
+                _monsters.Push(monsterToFight);
             }
         }
         else
         {
             var monsterToFight = Extensions.RandomItemFromList(Monster.HighThreatMonsters);
-            Monsters.Push(monsterToFight);
+            _monsters.Push(monsterToFight);
         }
 
-        return Monsters;
+        return _monsters;
     }
     
     
-    protected override void ProgressQuest(Adventurer adventurer)
+    protected override void ProgressQuest(Adventurer adventurer, int currentTime)
     {
-        if (Monsters.Count <= 0) return;
+        if (_monsters.Count <= 0) return;
         
-        var monster = Monsters.Peek();
+        var monster = _monsters.Peek();
         MonsterAttack(adventurer, monster);
 
-        if (DamageDuringQuest >= adventurer.Health)
+        if (_damageDuringQuest >= adventurer.Health)
         {
             adventurer.IsDead = true;
-            adventurer.DeathMessage = monster.KilledByMessage(Monsters.Count > 1);
+            adventurer.DeathMessage = monster.KilledByMessage(_monsters.Count > 1);
             return;
         }
 
         if (!AdventurerKillsMonster(adventurer)) return;
         
-        Monsters.Pop();
+        _monsters.Pop();
         
-        if (Monsters.Count == 0)
+        if (_monsters.Count == 0)
         {
             QuestCompleted = true;
+            QuestCompletionTime = currentTime;
         }
 
-    }
-    public override string Text()
-    {
-        var monsterName = StartingFight.First().Name.ToString();
-        var prefix = "went on a quest to slay a ";
-        if (StartingFight.Count > 1)
-        {
-            prefix += "a group of ";
-            monsterName += "s";
-        }
-        return prefix + monsterName;
     }
 
     private void MonsterAttack(Adventurer adventurer, Monster monster)
     {
         var toHit = GD.RandRange(0, 100);
-        if (toHit <= adventurer.ArmourRating) return;
-        DamageDuringQuest += monster.Power;
+        
+        //Better agility allows you to dodge more easily
+        if (toHit >= adventurer.Agility * 4) return;
+        
+        _damageDuringQuest += (int)(monster.Power * (100 - adventurer.ArmourRating / 100));
     }
 
     private bool AdventurerKillsMonster(Adventurer adventurer)
