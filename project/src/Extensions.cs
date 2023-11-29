@@ -133,4 +133,11 @@ public static class Extensions
 
         return minIndex;
     }
+
+    public static T RandomItemFromList<T>(List<T> list)
+    {
+        if (list.Count == 0) throw new Exception("Empty list");
+        var randIndex = GD.RandRange(0, list.Count - 1);
+        return list[randIndex];
+    }
 }

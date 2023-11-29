@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SCALE.Enums;
 
 namespace SCALE.Models;
@@ -67,13 +68,13 @@ public class Monster
         Power = power;
     }
 
-    public string DisplayName(EMonsterName name)
+    public string DisplayName()
     {
-        return name switch
+        return Name switch
         {
             EMonsterName.GiantRat => "Giant Rat",
             EMonsterName.GiantSpider => "Giant Spider",
-            _ => name.ToString()
+            _ => Name.ToString()
         };
 
     }
@@ -99,8 +100,26 @@ public class Monster
         };
         return multiple switch
         {
-            true => preFix + "group of " + DisplayName(Name) + "s",
-            false => preFix + DisplayName(Name)
+            true => preFix + "group of " + DisplayName() + "s",
+            false => preFix + DisplayName()
         };
     }
+
+    public static Monster Goblin = new Monster(EMonsterName.Goblin);
+    public static Monster Slime = new Monster(EMonsterName.Slime);
+    public static Monster Skeleton = new Monster(EMonsterName.Skeleton);
+    public static Monster Zombie = new Monster(EMonsterName.Zombie);
+    public static Monster GiantRat = new Monster(EMonsterName.GiantRat);
+    public static Monster GiantSpider = new Monster(EMonsterName.GiantSpider);
+    public static Monster Imp = new Monster(EMonsterName.Imp);
+    public static Monster Ogre = new Monster(EMonsterName.Ogre);
+    public static Monster Harpy = new Monster(EMonsterName.Harpy);
+    public static Monster Siren = new Monster(EMonsterName.Siren);
+    public static Monster Minotaur = new Monster(EMonsterName.Minotaur);
+    public static Monster Dragon = new Monster(EMonsterName.Dragon);
+    public static Monster Hydra = new Monster(EMonsterName.Hydra);
+
+    public static List<Monster> LowThreatMonsters = new List<Monster>(){Goblin, Slime, Imp, Skeleton, Zombie, GiantRat, GiantSpider};
+    public static List<Monster> MediumThreatMonsters = new List<Monster>() { Ogre, Harpy, Siren, Minotaur };
+    public static List<Monster> HighThreatMonsters = new List<Monster>() { Dragon, Hydra };
 }
