@@ -39,7 +39,7 @@ public partial class Adventurer : RefCounted
     public Adventurer()
     {
         var randomLocale = _locales[GD.RandRange(0, _locales.Count - 1)];
-        Name = new Faker(randomLocale).Name.FirstName();
+        Name = new Faker(randomLocale).Name.FirstName().Split(" ")[0];
         Class = Extensions.GetRandomEnumValue<EAdventureClass>();
         Rank = DetermineRank();
         GenerateInitialStats();

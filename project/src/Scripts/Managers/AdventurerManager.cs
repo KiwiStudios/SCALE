@@ -7,7 +7,7 @@ namespace SCALE.Scripts.Managers;
 public partial class AdventurerManager : Node
 {
     private EventBus _eventBus = null!;
-    private const int AdventureCount = 25;
+    private const int AdventureCount = 20;
     private const int QuestChance = 40;
     private StoreManager _storeManager = null!;
 
@@ -58,12 +58,33 @@ public partial class AdventurerManager : Node
             SimulateDay(adventurer, minutes);
         }
 
+        AddNewAdventurers();
+        
         //Remove all the dead adventurers
         foreach (var adventurer in _deadAdventurers)
         {
             Adventurers.Remove(adventurer);
         }
         _deadAdventurers = new List<Adventurer>();
+    }
+
+    private void AddNewAdventurers()
+    {
+        if (Adventurers.Count < AdventureCount)
+        {
+           // var baseChance = 5;
+            var maxAdventurers = (int)(AdventureCount * 1.3);
+            var slotsFree  = maxAdventurers - Adventurers.Count;
+
+            for (int i = 0; i < slotsFree; i++)
+            {
+                var rand = GD.RandRange(0, 100);
+                if (rand > 15)
+                {
+                    Adventurers.Add(new Adventurer());
+                }
+            }
+        }
     }
 
     private void SimulateDay(Adventurer adventurer, int minutes)
