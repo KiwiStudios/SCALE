@@ -7,7 +7,7 @@
 [node name="TotPopUp" type="Popup"]
 transparent_bg = true
 initial_position = 2
-size = Vector2i(1430, 607)
+size = Vector2i(1476, 607)
 visible = true
 always_on_top = true
 
@@ -20,7 +20,7 @@ grow_vertical = 2
 theme = ExtResource("1_epuf1")
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-custom_minimum_size = Vector2(1100, 500)
+custom_minimum_size = Vector2(1300, 600)
 layout_mode = 2
 texture = ExtResource("2_t6ow6")
 expand_mode = 1
@@ -37,15 +37,12 @@ layout_mode = 2
 
 [node name="Instructions" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "The goal is to make the atom reach the end goal.
-Which in this level is in the top right.
-You can plan a route for the atom by creating lines,
-using the left mouse button.
-You can only create  a limited amount of them, 
-and not all of them are of the same length.
-Good luck 👍
-(Made a mistake? Use right click to undo it)"
+theme_override_font_sizes/font_size = 42
+text = "The goal is to earn as much money as you can.
+Strategically choose your items and sell them
+to adventurers needing equipment. 
+Watch the adventurers go on daring quests and
+come back successfully, or die a horrible death."
 horizontal_alignment = 1
 vertical_alignment = 1
 

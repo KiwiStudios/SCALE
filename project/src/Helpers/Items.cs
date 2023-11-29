@@ -255,10 +255,7 @@ public static class Items
     private static List<Item> GetAllBronzeItemsOnce()
     {
         var l = new List<Item>();
-        l.AddRange(SimpleWeapons);
-        l.Add(SimpleShield);
         l.AddRange(LeatherArmour);
-        l.AddRange(SmallPotions);
         _backAllBronzeRankItems ??= l;
         return l;
     }
@@ -274,7 +271,6 @@ public static class Items
         l.AddRange(EnchantedWeapons);
         l.Add(EnchantedShield);
         l.AddRange(BronzeArmour);
-        l.AddRange(SmallPotions);
         _backAllSilverRankItems ??= l;
         return l;
     }
@@ -290,7 +286,6 @@ public static class Items
         l.AddRange(MagicalWeapons);
         l.Add(MagicalShield);
         l.AddRange(IronArmour);
-        l.AddRange(MediumPotions);
         _backAllGoldRankItems ??= l;
         return l;
     }
@@ -306,7 +301,6 @@ public static class Items
         l.AddRange(WondrousWeapons);
         l.Add(WondrousShield);
         l.AddRange(SteelArmour);
-        l.AddRange(MediumPotions);
         _backAllDiamondRankItems ??= l;
         return l;
     }
@@ -322,7 +316,6 @@ public static class Items
         l.AddRange(GodlyWeapons);
         l.Add(GodlyShield);
         l.AddRange(DragonScaleArmour);
-        l.AddRange(LargePotions);
         _backAllLegendaryRankItems ??= l;
         return l;
     }
