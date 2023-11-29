@@ -67,17 +67,17 @@ size_flags_vertical = 3
 mouse_filter = 2
 vertical = true
 
-[node name="ItemName" type="Label" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
+[node name="ItemName" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
 text = "awdawdad"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 1
+fit_content = true
 
 [node name="GoldCost" type="Label" parent="Panel/MarginContainer/VBoxContainer2/ItemText"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.807843, 0.635294, 0.0823529, 1)
+theme_override_colors/font_color = Color(0.854902, 0.647059, 0.12549, 1)
+theme_override_colors/font_shadow_color = Color(0.227451, 0.227451, 0.227451, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1

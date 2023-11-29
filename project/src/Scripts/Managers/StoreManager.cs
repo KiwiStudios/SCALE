@@ -91,7 +91,7 @@ public partial class StoreManager : Node
         if (scene == Scenes.UI_DAYSTART_SCENE)
         {
             SetupItemSelect();
-            isInitial = false;
+            NewMorning();
         }
 
         if (scene == Scenes.UI_SHOP_SCENE)

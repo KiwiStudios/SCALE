@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MoreLinq;
 using MoreLinq.Extensions;
 using SCALE.Enums;
@@ -48,24 +49,85 @@ public partial class EventLogLabel : VBoxContainer
         "[ItemValue] coins richer, [Name] triumphantly wields [ItemName] on their journeys.",
     };
 
-    public List<object> GetRandomTextOnItemSold(EventLogLabelText adventurer,
-                                                string itemValue,
-                                                string itemName)
+    List<string> SplitStringBasedOnIdentifiers(string inputString)
     {
-        var template = OnItemSoldTemplates[GD.RandRange(0, OnItemSoldTemplates.Count - 1)];
+        List<string> splitList = new List<string>();
 
-        template = template.Replace("[ItemValue]", itemValue);
-        template = template.Replace("[ItemName]", itemName);
+        string pattern = @"(\[ItemValue\]|\[ItemName\]|\[Name\])";
+        string[] substrings = Regex.Split(inputString, pattern);
 
-        var templateSplittedOnAdventurerName = template.Split("[Name]");
-        return new List<object>()
+        foreach (string match in substrings)
         {
-            templateSplittedOnAdventurerName[0],
-            adventurer,
-            templateSplittedOnAdventurerName[1]
-        };
+            if (!string.IsNullOrWhiteSpace(match))
+            {
+                splitList.Add(match);
+            }
+        }
+
+        return splitList;
     }
 
+    public List<object> GetRandomTextOnItemSold(EventLogLabelText adventurer,
+                                                Item item)
+    {
+        var template = OnItemSoldTemplates[GD.RandRange(0, OnItemSoldTemplates.Count - 1)];
+        var output = new List<object>();
+
+        var splittedStrings = SplitStringBasedOnIdentifiers(template);
+
+        foreach (var splittedString in splittedStrings)
+        {
+            if (splittedString == "[Name]")
+            {
+                output.Add(adventurer);
+                continue;
+            }
+
+            if (splittedString == "[ItemName]")
+            {
+                var label = new EventLogLabelText()
+                {
+                    AutowrapMode = TextServer.AutowrapMode.Off,
+                    FitContent = true,
+                };
+                label.BackingText = $"{item.DisplayName()}";
+                label.AddThemeColorOverride("default_color", Color.FromHtml(GetColourCodeFromItem(item)));
+                output.Add(label);
+                continue;
+            }
+
+            if (splittedString == "[ItemValue]")
+            {
+                var label = new EventLogLabelText()
+                {
+                    AutowrapMode = TextServer.AutowrapMode.Off,
+                    FitContent = true,
+                };
+                label.BackingText = $"{item.Value} gold";
+                label.AddThemeColorOverride("default_color", Color.FromHtml("#FFD700"));
+                output.Add(label);
+                continue;
+            }
+            
+            output.Add(splittedString);
+        }
+
+        return output;
+    }
+
+    private string GetColourCodeFromItem(Item item)
+    {
+        var rank = item switch
+        {
+            Weapon weapon => weapon.Rank,
+            Armour armour => armour.Rank,
+            Consumable consumable => consumable.GetRank(),
+            _ => throw new ArgumentOutOfRangeException(nameof(item), item, null)
+        };
+
+        return rank.GetColourCode();
+    }
+    
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -89,11 +151,10 @@ public partial class EventLogLabel : VBoxContainer
             Adventurer = adventurer
         };
         adventurerName.BackingText = adventurer.Name;
-        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
         AddEvent(
             new List<object>()
             {
-                $"Adventurer ",
                 adventurerName,
                 $" ",
                 "has come back from",
@@ -101,7 +162,7 @@ public partial class EventLogLabel : VBoxContainer
             }
         );
     }
-    
+
     private void OnAdventurerGoesOnQuest(Adventurer adventurer, Quest quest)
     {
         var colour = adventurer.ColourCode();
@@ -112,17 +173,17 @@ public partial class EventLogLabel : VBoxContainer
             Adventurer = adventurer
         };
         adventurerName.BackingText = adventurer.Name;
-        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
         AddEvent(
             new List<object>()
             {
-                $"Adventurer ",
                 adventurerName,
                 $" ",
                 quest.Text()
             }
         );
     }
+
     private void OnAdventureDeath(Adventurer adventurer)
     {
         var colour = adventurer.ColourCode();
@@ -133,19 +194,17 @@ public partial class EventLogLabel : VBoxContainer
             Adventurer = adventurer
         };
         adventurerName.BackingText = $"{adventurer.Name}";
-        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour)); 
-        
+        adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
+
         AddEvent(
             new List<object>()
             {
-                $"Adventurer ",
                 adventurerName,
                 $" ",
                 adventurer.DeathMessage!,
                 "!"
             }
         );
-        
     }
 
     private void OnAdventurerLevelUp(ERank rankfrom,
@@ -182,7 +241,6 @@ public partial class EventLogLabel : VBoxContainer
         AddEvent(
             new List<object>()
             {
-                $"Adventurer ",
                 adventurerName,
                 $" leveled up from ",
                 rankFromText,
@@ -207,7 +265,7 @@ public partial class EventLogLabel : VBoxContainer
         adventurerName.AddThemeColorOverride("default_color", Color.FromHtml(colour));
 
         AddEvent(
-            GetRandomTextOnItemSold(adventurerName, $"{item.Value} gold", item.DisplayName())
+            GetRandomTextOnItemSold(adventurerName, item)
         );
     }
 

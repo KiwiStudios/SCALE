@@ -86,6 +86,7 @@ public static class Extensions
         };
     }
 
+    
     public static EventBus GetEventBus(this Node node)
     {
         return node.GetNode<EventBus>(EventBus.NodePath);
