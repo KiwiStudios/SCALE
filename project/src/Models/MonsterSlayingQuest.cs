@@ -46,10 +46,11 @@ public partial class MonsterSlayingQuest : Quest
         var monster = Monsters.Peek();
         MonsterAttack(adventurer, monster);
 
-        if (DamageDuringQuest > adventurer.Health)
+        if (DamageDuringQuest >= adventurer.Health)
         {
             adventurer.IsDead = true;
             adventurer.DeathMessage = monster.KilledByMessage(Monsters.Count > 1);
+            return;
         }
 
         if (!AdventurerKillsMonster(adventurer)) return;

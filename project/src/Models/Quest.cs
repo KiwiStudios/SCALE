@@ -38,6 +38,7 @@ public abstract partial class Quest : RefCounted
         if (QuestCompleted && newTime > QuestCompletionTime + TravelTime)
         {
             adventurer.Quest = null;
+            //todo emit returned sucessfully from quest
             return;
         }
         
