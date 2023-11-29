@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d22xsmxko1bnd"]
+[gd_scene load_steps=13 format=3 uid="uid://d22xsmxko1bnd"]
 
 [ext_resource type="Texture2D" uid="uid://ddecjwf45ifbe" path="res://Assets/Sprites/BackgroundPlaying.png" id="1_adkuf"]
 [ext_resource type="Script" path="res://Scripts/DayStart/DayStartBackground.cs" id="2_b3840"]
@@ -10,6 +10,8 @@
 [ext_resource type="Theme" uid="uid://y3dyprgd8tld" path="res://Assets/quantum_bounce_theme.tres" id="8_5ye26"]
 [ext_resource type="Script" path="res://Scripts/AdventurerOverview.cs" id="8_c64mj"]
 [ext_resource type="Script" path="res://Scripts/Buttons/SkipDayButton.cs" id="9_arynl"]
+[ext_resource type="Script" path="res://Scripts/DeadAdventurerOverview.cs" id="11_er5ik"]
+[ext_resource type="Script" path="res://Scripts/InQuestAdventurerOverview.cs" id="12_bqnlm"]
 
 [node name="Shop" type="Node2D"]
 
@@ -132,6 +134,7 @@ layout_mode = 2
 [node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("11_er5ik")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer3"]
 layout_mode = 2
@@ -146,6 +149,7 @@ vertical_alignment = 1
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("12_bqnlm")
 
 [node name="DayDisplay" type="Label" parent="HBoxContainer/ShopContainer/MarginContainer/HBoxContainer/VBoxContainer2/VBoxContainer2"]
 layout_mode = 2

@@ -9,6 +9,8 @@ namespace SCALE.Scripts;
 
 public partial class Adventurer : RefCounted
 {
+
+    public string Id = Guid.NewGuid().ToString("N");
     public EAdventureClass Class;
     public string Name;
     public ERank Rank;
