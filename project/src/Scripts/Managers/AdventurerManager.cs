@@ -59,12 +59,13 @@ public partial class AdventurerManager : Node
         }
 
         AddNewAdventurers();
-        
+
         //Remove all the dead adventurers
         foreach (var adventurer in _deadAdventurers)
         {
             Adventurers.Remove(adventurer);
         }
+
         _deadAdventurers = new List<Adventurer>();
     }
 
@@ -72,9 +73,9 @@ public partial class AdventurerManager : Node
     {
         if (Adventurers.Count < AdventureCount)
         {
-           // var baseChance = 5;
+            // var baseChance = 5;
             var maxAdventurers = (int)(AdventureCount * 1.3);
-            var slotsFree  = maxAdventurers - Adventurers.Count;
+            var slotsFree = maxAdventurers - Adventurers.Count;
 
             for (int i = 0; i < slotsFree; i++)
             {
@@ -94,11 +95,12 @@ public partial class AdventurerManager : Node
         if (willBuy & adventurer.Quest is null)
         {
             BuyItem(adventurer);
-        } else if (adventurer.Quest is not null)
+        }
+        else if (adventurer.Quest is not null)
         {
             adventurer.Quest.ProgressTime(adventurer, minutes);
         }
-        
+
         if (adventurer.IsDead)
         {
             _eventBus.EmitOnAdventurerDeath(adventurer);
@@ -114,7 +116,7 @@ public partial class AdventurerManager : Node
         var (randomEquipment, field) = adventurer.Equipment.PickRandomEquipment();
         if (randomEquipment is null)
         {
-            var item = GetItemThatAdventurerWants(storeItems, field);
+            var item = GetItemThatAdventurerWants(storeItems, field, adventurer);
             if (item is not null)
             {
                 SetAdventurerFieldToItem(adventurer, item, field);
@@ -162,7 +164,6 @@ public partial class AdventurerManager : Node
             default:
                 throw new ArgumentOutOfRangeException(nameof(field), field, null);
         }
-        
     }
 
     private void DetermineLevelUp(Adventurer adventurer)
@@ -208,12 +209,18 @@ public partial class AdventurerManager : Node
                 {
                     if (weapon.Rank is not ERank.Legendary && adventurer.Rank is not ERank.Legendary)
                     {
-                        return (int)weapon.Rank == (int)adventurer.Rank + 1;
+                        return (int)weapon.Rank == (int)adventurer.Rank + 1 && ((weapon is Staff && adventurer.Class == EAdventureClass.Spellcaster) ||
+                                                                                (weapon is Bow && adventurer.Class == EAdventureClass.Archer) ||
+                                                                                (weapon is TwoHanded && adventurer.Class == EAdventureClass.Warrior) ||
+                                                                                (weapon is OneHanded && adventurer.Class == EAdventureClass.Tank));
                     }
 
                     if (adventurer.Rank is ERank.Legendary && adventurer.Equipment.PrimaryWeapon.Rank is not ERank.Legendary)
                     {
-                        return true;
+                        return (weapon is Staff && adventurer.Class == EAdventureClass.Spellcaster) ||
+                               (weapon is Bow && adventurer.Class == EAdventureClass.Archer) ||
+                               (weapon is TwoHanded && adventurer.Class == EAdventureClass.Warrior) ||
+                               (weapon is OneHanded && adventurer.Class == EAdventureClass.Tank);
                     }
                 }
             }
@@ -303,13 +310,18 @@ public partial class AdventurerManager : Node
         return false;
     }
 
-    private static Item? GetItemThatAdventurerWants(List<Item> storeItems, EEquipmentField field)
+    private static Item? GetItemThatAdventurerWants(List<Item> storeItems,
+                                                    EEquipmentField field,
+                                                    Adventurer adventurer)
     {
         return storeItems.FirstOrDefault(x =>
         {
             if (x is Weapon weapon && field == EEquipmentField.PrimaryWeapon)
             {
-                return true;
+                return (weapon is Staff && adventurer.Class == EAdventureClass.Spellcaster) ||
+                       (weapon is Bow && adventurer.Class == EAdventureClass.Archer) ||
+                       (weapon is TwoHanded && adventurer.Class == EAdventureClass.Warrior) ||
+                       (weapon is OneHanded && adventurer.Class == EAdventureClass.Tank);
             }
 
             if (x is Armour armour)
